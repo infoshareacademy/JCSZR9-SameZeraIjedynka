@@ -1,0 +1,15 @@
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\bin\Debug\net7.0\Console.exe
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\bin\Debug\net7.0\Console.deps.json
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\bin\Debug\net7.0\Console.runtimeconfig.json
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\bin\Debug\net7.0\Console.dll
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\bin\Debug\net7.0\Console.pdb
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\obj\Debug\net7.0\Console.csproj.AssemblyReference.cache
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\obj\Debug\net7.0\Console.GeneratedMSBuildEditorConfig.editorconfig
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\obj\Debug\net7.0\Console.AssemblyInfoInputs.cache
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\obj\Debug\net7.0\Console.AssemblyInfo.cs
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\obj\Debug\net7.0\Console.csproj.CoreCompileInputs.cache
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\obj\Debug\net7.0\Console.dll
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\obj\Debug\net7.0\refint\Console.dll
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\obj\Debug\net7.0\Console.pdb
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\obj\Debug\net7.0\Console.genruntimeconfig.cache
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\Console\obj\Debug\net7.0\ref\Console.dll
