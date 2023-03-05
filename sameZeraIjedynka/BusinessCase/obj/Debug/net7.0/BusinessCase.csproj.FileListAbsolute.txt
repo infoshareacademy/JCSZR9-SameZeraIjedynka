@@ -1,0 +1,15 @@
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\bin\Debug\net7.0\BusinessCase.exe
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\bin\Debug\net7.0\BusinessCase.deps.json
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\bin\Debug\net7.0\BusinessCase.runtimeconfig.json
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\bin\Debug\net7.0\BusinessCase.dll
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\bin\Debug\net7.0\BusinessCase.pdb
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\BusinessCase.csproj.AssemblyReference.cache
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\BusinessCase.GeneratedMSBuildEditorConfig.editorconfig
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\BusinessCase.AssemblyInfoInputs.cache
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\BusinessCase.AssemblyInfo.cs
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\BusinessCase.csproj.CoreCompileInputs.cache
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\BusinessCase.dll
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\refint\BusinessCase.dll
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\BusinessCase.pdb
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\BusinessCase.genruntimeconfig.cache
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\ref\BusinessCase.dll
