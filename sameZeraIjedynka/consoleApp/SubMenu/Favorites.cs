@@ -35,19 +35,19 @@ namespace Console.SubMenu
         public void AddOrRemove()
         {
             System.Console.Clear();
-            System.Console.WriteLine("Dodanie lub skasowanie");
+            System.Console.WriteLine("Add or remove");
             System.Console.Read();
         }
         public void FavoriteDisplay()
         {
             System.Console.Clear();
-            System.Console.WriteLine("Wyswietlenie ulubionych");
+            System.Console.WriteLine("Display the event");
             System.Console.Read();
         }
         public void ShowNextEvent()
         {
             System.Console.Clear();
-            System.Console.WriteLine("Pokaz najblizsze");
+            System.Console.WriteLine("Display next event");
             System.Console.Read();
         }
 

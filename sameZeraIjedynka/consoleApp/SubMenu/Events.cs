@@ -36,19 +36,19 @@ namespace Console.SubMenu
         public void EventList()
         {
             System.Console.Clear();
-            System.Console.WriteLine("Lista wszystkich wydarzen");
+            System.Console.WriteLine("Event list");
             System.Console.Read();
         }
         public void DateFilter()
         {
             System.Console.Clear();
-            System.Console.WriteLine("Filtrowanie po dacie");
+            System.Console.WriteLine("Filter by date");
             System.Console.Read();
         }
         public void EventFinder()
         {
             System.Console.Clear();
-            System.Console.WriteLine("Wyszukiwanie wydarzen");
+            System.Console.WriteLine("Event search");
             System.Console.Read();
         }
 

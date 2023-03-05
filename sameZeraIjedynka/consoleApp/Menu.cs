@@ -24,13 +24,13 @@ namespace Console
             ;
             System.Console.ForegroundColor = ConsoleColor.Yellow;
             System.Console.WriteLine("===============================================\n" +
-                                     "||           WYBIERZ GLOWY KATALOG:          ||\n" +
+                                     "||           Select from Main Menu:          ||\n" +
                                      "||                                           ||\n" +
-                                     "|| (poprzez wybranie z klawiatury 1,2,lub 3) ||\n" +
+                                     "||          ( press key 1, 2, or 3 )         ||\n" +
                                      "||                                           ||\n" +
-                                     "||     1) Wyswietl wszystkie wydarzenia.     ||\n" +
-                                     "||               2) Ulubione.                ||\n" +
-                                     "||             3) Konfiguracja.              ||\n" +
+                                     "||           1) Display all event.           ||\n" +
+                                     "||               2) Favorite.                ||\n" +
+                                     "||             3) Configuration.             ||\n" +
                                      "===============================================");
             keyInfo = System.Console.ReadKey(true);
             try
@@ -73,15 +73,15 @@ namespace Console
 
         public void DisplayAllEvents()
         {
-            // WYDARZENIA
+            // Events
             System.Console.ForegroundColor = ConsoleColor.Yellow;
             System.Console.Clear();
             System.Console.WriteLine("======================================================\n" +
                                      "||                  WYBIERZ PODMENU                 ||\n" +
                                      "||                                                  ||\n" +
-                                     "|| a) Lista wszystkich wydarzen.                    ||\n" +
-                                     "|| b) Filtrowanie po dacie, organizatorze.          ||\n" +
-                                     "|| c) Wyszukiwanie wydarzen.                        ||\n" +
+                                     "|| a) All event list.                               ||\n" +
+                                     "|| b) Event filter by date.                         ||\n" +
+                                     "|| c) Event search.                                 ||\n" +
                                      "======================================================");
             
             keyInfo = System.Console.ReadKey(true);
@@ -99,15 +99,15 @@ namespace Console
 
         public void FavoritesEvents()
         {
-            // ULUBIONE
+            // Favorites
                 System.Console.ForegroundColor = ConsoleColor.Yellow;
                 System.Console.Clear();
                 System.Console.WriteLine("======================================================\n" +
                                          "||                  WYBIERZ PODMENU                 ||\n" +
                                          "||                                                  ||\n" +
-                                         "|| a) Dodanie / skasowanie wydarzenia z ulubionych. ||\n" +
-                                         "|| b) Wywietlanie ulubionych.                       ||\n" +
-                                         "|| c) Pokazywanie najbliszego w czasie...           ||\n" +
+                                         "|| a) Add or remove from favorite.                  ||\n" +
+                                         "|| b) Display favorite event.                       ||\n" +
+                                         "|| c) Display next event.                           ||\n" +
                                          "======================================================");
                 keyInfo = System.Console.ReadKey(true);
                 try
@@ -123,15 +123,15 @@ namespace Console
         }
         public void ConfigureEvent()
         {
-            // KONFIGURACJA
+            // Configuration
             System.Console.ForegroundColor = ConsoleColor.Yellow;
             System.Console.Clear();
             System.Console.WriteLine("======================================================\n" +
                                      "||                  WYBIERZ PODMENU                 ||\n" +
                                      "||                                                  ||\n" +
-                                     "|| a) Adowanie / zmiana konfiguracji.               ||\n" +
-                                     "|| b) Moliwo ustalenia sortowania...                ||\n" +
-                                     "|| c) Format wywietlanej daty.                      ||\n" +
+                                     "|| a) Add or config change.                         ||\n" +
+                                     "|| b) Filter setup.                                 ||\n" +
+                                     "|| c) Date format.                                  ||\n" +
                                      "======================================================");
             keyInfo = System.Console.ReadKey(true);
             try
