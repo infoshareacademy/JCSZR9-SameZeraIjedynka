@@ -11,7 +11,7 @@ using System.ComponentModel;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using CsvHelper;
-using AppTestowa;
+using ConsoleApp;
 
 GetEvents.ReadCsv();
 namespace ConsoleApp
