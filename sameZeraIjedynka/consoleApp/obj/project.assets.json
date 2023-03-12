@@ -8,23 +8,23 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\INFOSHARE\\.nuget\\packages\\": {},
+    "C:\\Users\\barte\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\REPOSITORY\\PROJEKT\\JCSZR9-SameZeraIjedynka\\sameZeraIjedynka\\consoleApp\\consoleApp.csproj",
+      "projectUniqueName": "C:\\Users\\barte\\Desktop\\projekt\\JCSZR9-SameZeraIjedynka\\sameZeraIjedynka\\consoleApp\\consoleApp.csproj",
       "projectName": "consoleApp",
-      "projectPath": "C:\\REPOSITORY\\PROJEKT\\JCSZR9-SameZeraIjedynka\\sameZeraIjedynka\\consoleApp\\consoleApp.csproj",
-      "packagesPath": "C:\\Users\\INFOSHARE\\.nuget\\packages\\",
-      "outputPath": "C:\\REPOSITORY\\PROJEKT\\JCSZR9-SameZeraIjedynka\\sameZeraIjedynka\\consoleApp\\obj\\",
+      "projectPath": "C:\\Users\\barte\\Desktop\\projekt\\JCSZR9-SameZeraIjedynka\\sameZeraIjedynka\\consoleApp\\consoleApp.csproj",
+      "packagesPath": "C:\\Users\\barte\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\barte\\Desktop\\projekt\\JCSZR9-SameZeraIjedynka\\sameZeraIjedynka\\consoleApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\INFOSHARE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\barte\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

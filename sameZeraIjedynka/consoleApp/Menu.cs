@@ -7,9 +7,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
-using Console.SubMenu;
+using ConsoleApp;
 
-namespace Console
+namespace ConsoleApp
 {
     public class Menu
     {
@@ -105,7 +105,7 @@ namespace Console
                 System.Console.WriteLine("======================================================\n" +
                                          "||                  WYBIERZ PODMENU                 ||\n" +
                                          "||                                                  ||\n" +
-                                         "|| a) Add or remove from favorite.                  ||\n" +
+                                         "|| a) Add favorite.                                 ||\n" +
                                          "|| b) Display favorite event.                       ||\n" +
                                          "|| c) Display next event.                           ||\n" +
                                          "======================================================");
