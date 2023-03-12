@@ -16,72 +16,55 @@ namespace ConsoleApp
 
         public Favorites(char Selection)
         {
+            var favoriteEvent = new vFavorite();
+            var userInput = Console.ReadLine();
 
             _selection = Selection;
-           
+            while (true)
             {
-                switch (_selection)
                 {
-                    case 'a':
-                        AddEvent();
-                        break;
-                    case 'b':
-                        FavoriteDisplay();
-                        break;
-                    case 'c':
-                        SearchEvent();
-                        break;
-                    case 'd':
-                        RemoveEvent();
-                        break;
-                    case 'x':
-                        return;
-                    default:
-                        Console.WriteLine("Operation unavailable");
-                        break;
+                    switch (_selection)
+                    {
+                        case 'a':
+                            Console.Clear();
+                            Console.WriteLine("Add or remove");
+                            Console.WriteLine("Enter event details: title, date, organizer, type.");
+                            var title = Console.ReadLine();
+                            var date = Console.ReadLine();
+                            var organizer = Console.ReadLine();
+                            var type = Console.ReadLine();
 
+                            var newEvent = new vFavorite(title, date, organizer, type);
+
+                            favoriteEvent.AddFavorite(newEvent);
+                            break;
+                        case 'b':
+
+                            Console.Clear();
+                            Console.WriteLine("Display the event");
+                            favoriteEvent.DisplayAllFavoriteEvents();
+                            break;
+                        case 'c':
+                            Console.Clear();
+                            Console.WriteLine("Enter the search phrase");
+                            var searchEvent = Console.ReadLine();
+                            favoriteEvent.DisplayMatchingEvents(searchEvent);
+                            break;
+                        case 'd':
+                            Console.WriteLine("Enter the title of the event you want to delete: ");
+                            var deletedEvent = Console.ReadLine();
+                            favoriteEvent.RemoveFavorite(deletedEvent);
+                            break;
+                        case 'x':
+                            return;
+                        default:
+                            Console.WriteLine("Operation unavailable");
+                            break;
+
+                    }
+                    Console.WriteLine("Select the operation you want to perform again");
                 }
             }
-           
-        }
-        public void AddEvent()
-        {
-            
-            Console.Clear();
-            Console.WriteLine("Add or remove");
-            Console.WriteLine("Enter event details: title, date, organizer, type.");
-            var title = Console.ReadLine();
-            var date = Console.ReadLine();
-            var organizer = Console.ReadLine();
-            var type = Console.ReadLine();
-
-            var newEvent = new vFavorite(title, date, organizer, type);
-
-            var favoriteEvent = new vFavorite();
-            favoriteEvent.AddFavorite(newEvent);
-        }
-        public void FavoriteDisplay()
-        {
-            var favoriteEvent = new vFavorite();
-            System.Console.Clear();
-            System.Console.WriteLine("Display the event");
-            favoriteEvent.DisplayAllFavoriteEvents();
-        }
-        public void SearchEvent()
-        {
-            var favoriteEvent = new vFavorite();
-            System.Console.Clear();
-            Console.WriteLine("Enter the search phrase");
-            var searchEvent = Console.ReadLine();
-            favoriteEvent.DisplayMatchingEvents(searchEvent);
-        }
-        public void RemoveEvent()
-        {
-
-            var favoriteEvent = new vFavorite();
-            Console.WriteLine("Enter the title of the event you want to delete: ");
-            var deletedEvent = Console.ReadLine();
-            favoriteEvent.RemoveFavorite(deletedEvent);
         }
 
     }

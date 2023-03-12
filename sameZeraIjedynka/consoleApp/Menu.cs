@@ -109,6 +109,7 @@ namespace ConsoleApp
                                          "|| b) Display favorite event.                       ||\n" +
                                          "|| c) Search for your favorite event.               ||\n" +
                                          "|| d) Remove favorite event.                        ||\n" +
+                                         "|| e) Select x to exit.                             ||\n" +
                                          "======================================================");
                 keyInfo = System.Console.ReadKey(true);
                 try
