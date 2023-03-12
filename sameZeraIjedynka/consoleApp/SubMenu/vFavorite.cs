@@ -24,9 +24,11 @@ namespace ConsoleApp
             Favorites.Add(favorite);
         }
         
-        public void RemoveFavorite(vFavorite favorite)
+        public void RemoveFavorite(string deletedEvent)
         {
-            Favorites.Remove(favorite);
+            var eventToDelete = Favorites.RemoveAll(e => e.Title.Contains(deletedEvent));
+
+            Console.WriteLine("The event has been deleted");
         }
 
         private void DisplayEventDitails(vFavorite favorite)

@@ -105,9 +105,10 @@ namespace ConsoleApp
                 System.Console.WriteLine("======================================================\n" +
                                          "||                  WYBIERZ PODMENU                 ||\n" +
                                          "||                                                  ||\n" +
-                                         "|| a) Add favorite.                                 ||\n" +
+                                         "|| a) Add favorite event.                           ||\n" +
                                          "|| b) Display favorite event.                       ||\n" +
-                                         "|| c) Display next event.                           ||\n" +
+                                         "|| c) Search for your favorite event.               ||\n" +
+                                         "|| d) Remove favorite event.                        ||\n" +
                                          "======================================================");
                 keyInfo = System.Console.ReadKey(true);
                 try
