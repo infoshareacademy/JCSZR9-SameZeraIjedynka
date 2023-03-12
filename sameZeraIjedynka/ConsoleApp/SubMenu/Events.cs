@@ -61,21 +61,21 @@ namespace ConsoleApp
 
         public void EventList()
         {
-            System.Console.Clear();
-            System.Console.WriteLine("Event list");
-            System.Console.Read();
+            Console.Clear();
+            Console.WriteLine("Event list");
+            Console.Read();
         }
         public void DateFilter()
         {
-            System.Console.Clear();
-            System.Console.WriteLine("Filter by date");
-            System.Console.Read();
+            Console.Clear();
+            Console.WriteLine("Filter by date");
+            Console.Read();
         }
         public void EventFinder()
         {
-            System.Console.Clear();
-            System.Console.WriteLine("Event search");
-            System.Console.Read();
+            Console.Clear();
+            Console.WriteLine("Event search");
+            Console.Read();
         }
 
     }

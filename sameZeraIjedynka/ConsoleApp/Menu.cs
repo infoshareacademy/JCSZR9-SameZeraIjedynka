@@ -14,7 +14,7 @@ namespace ConsoleApp
     public class Menu
     {
        
-    private int MenuPomocnicze { get; set; } 
+    private int HelperMenu { get; set; } 
     private ConsoleKeyInfo keyInfo;
     
 
@@ -22,8 +22,8 @@ namespace ConsoleApp
         public void PrintWelcomeScreen()
         {
             ;
-            System.Console.ForegroundColor = ConsoleColor.Yellow;
-            System.Console.WriteLine("===============================================\n" +
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("===============================================\n" +
                                      "||           Select from Main Menu:          ||\n" +
                                      "||                                           ||\n" +
                                      "||          ( press key 1, 2, or 3 )         ||\n" +
@@ -32,14 +32,14 @@ namespace ConsoleApp
                                      "||               2) Favorite.                ||\n" +
                                      "||             3) Configuration.             ||\n" +
                                      "===============================================");
-            keyInfo = System.Console.ReadKey(true);
+            keyInfo = Console.ReadKey(true);
             try
             {
                 MenuCall(Convert.ToInt16(keyInfo.KeyChar.ToString()));
             }
             catch
             {
-                System.Console.Clear();
+                Console.Clear();
                 PrintWelcomeScreen();
             }
 
@@ -63,7 +63,7 @@ namespace ConsoleApp
                     break;  
                 default:
                   
-                    System.Console.Clear();
+                    Console.Clear();
                     PrintWelcomeScreen();
                     break;
             }
@@ -74,24 +74,24 @@ namespace ConsoleApp
         public void DisplayAllEvents()
         {
             // Events
-            System.Console.ForegroundColor = ConsoleColor.Yellow;
-            System.Console.Clear();
-            System.Console.WriteLine("======================================================\n" +
-                                     "||                  WYBIERZ PODMENU                 ||\n" +
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Clear();
+            Console.WriteLine("======================================================\n" +
+                                     "||                  CHOOSE SUBMENU                  ||\n" +
                                      "||                                                  ||\n" +
                                      "|| a) All event list.                               ||\n" +
                                      "|| b) Event filter by date.                         ||\n" +
                                      "|| c) Event search.                                 ||\n" +
                                      "======================================================");
-            
-            keyInfo = System.Console.ReadKey(true);
+                
+            keyInfo = Console.ReadKey(true);
             try
             {
-                Events wydarzenia = new Events(Convert.ToChar(keyInfo.KeyChar.ToString()));
+                Events events = new Events(Convert.ToChar(keyInfo.KeyChar.ToString()));
             }
             catch
             {
-                System.Console.Clear();
+                Console.Clear();
                 DisplayAllEvents();
             }
          
@@ -100,23 +100,23 @@ namespace ConsoleApp
         public void FavoritesEvents()
         {
             // Favorites
-                System.Console.ForegroundColor = ConsoleColor.Yellow;
-                System.Console.Clear();
-                System.Console.WriteLine("======================================================\n" +
-                                         "||                  WYBIERZ PODMENU                 ||\n" +
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Clear();
+                Console.WriteLine("======================================================\n" +
+                                         "||                  CHOOSE SUBMENU                  ||\n" +
                                          "||                                                  ||\n" +
                                          "|| a) Add favorite.                                 ||\n" +
                                          "|| b) Display favorite event.                       ||\n" +
                                          "|| c) Display next event.                           ||\n" +
                                          "======================================================");
-                keyInfo = System.Console.ReadKey(true);
+                keyInfo = Console.ReadKey(true);
                 try
                 {
-                    Favorites ulubione = new Favorites(Convert.ToChar(keyInfo.KeyChar.ToString()));
+                    Favorites favorite = new Favorites(Convert.ToChar(keyInfo.KeyChar.ToString()));
                 }
                 catch
                 {
-                    System.Console.Clear();
+                    Console.Clear();
                     FavoritesEvents();
                 }
 
@@ -124,23 +124,23 @@ namespace ConsoleApp
         public void ConfigureEvent()
         {
             // Configuration
-            System.Console.ForegroundColor = ConsoleColor.Yellow;
-            System.Console.Clear();
-            System.Console.WriteLine("======================================================\n" +
-                                     "||                  WYBIERZ PODMENU                 ||\n" +
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Clear();
+            Console.WriteLine("======================================================\n" +
+                                     "||                   CHOOSE SUBMENU                 ||\n" +
                                      "||                                                  ||\n" +
                                      "|| a) Add or config change.                         ||\n" +
                                      "|| b) Filter setup.                                 ||\n" +
                                      "|| c) Date format.                                  ||\n" +
                                      "======================================================");
-            keyInfo = System.Console.ReadKey(true);
+            keyInfo = Console.ReadKey(true);
             try
             {
-                Configuration konfiguracja = new Configuration(Convert.ToChar(keyInfo.KeyChar.ToString()));
+                Configuration configuration = new Configuration(Convert.ToChar(keyInfo.KeyChar.ToString()));
             }
             catch
             {
-                System.Console.Clear();
+                Console.Clear();
                 ConfigureEvent();
             }
 
