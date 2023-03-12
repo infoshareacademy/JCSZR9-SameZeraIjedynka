@@ -11,15 +11,11 @@ using ConsoleApp;
 
 namespace ConsoleApp
 {
-    public class Menu
+    public static class Menu
     {
        
-    private int MenuPomocnicze { get; set; } 
-    private ConsoleKeyInfo keyInfo;
-    
-
-
-        public void PrintWelcomeScreen()
+   
+        public static void PrintWelcomeScreen()
         {
             ;
             System.Console.ForegroundColor = ConsoleColor.Yellow;
@@ -32,7 +28,7 @@ namespace ConsoleApp
                                      "||               2) Favorite.                ||\n" +
                                      "||             3) Configuration.             ||\n" +
                                      "===============================================");
-            keyInfo = System.Console.ReadKey(true);
+            var keyInfo = System.Console.ReadKey(true);
             try
             {
                 MenuCall(Convert.ToInt16(keyInfo.KeyChar.ToString()));
@@ -47,7 +43,7 @@ namespace ConsoleApp
 
         
       
-        public void MenuCall(int selection)
+        public static void MenuCall(int selection)
         {
           
             switch (selection)
@@ -71,7 +67,7 @@ namespace ConsoleApp
 
   
 
-        public void DisplayAllEvents()
+        public static void DisplayAllEvents()
         {
             // Events
             System.Console.ForegroundColor = ConsoleColor.Yellow;
@@ -84,7 +80,7 @@ namespace ConsoleApp
                                      "|| c) Event search.                                 ||\n" +
                                      "======================================================");
             
-            keyInfo = System.Console.ReadKey(true);
+            var keyInfo = System.Console.ReadKey(true);
             try
             {
                 Events wydarzenia = new Events(Convert.ToChar(keyInfo.KeyChar.ToString()));
@@ -97,7 +93,7 @@ namespace ConsoleApp
          
         }
 
-        public void FavoritesEvents()
+        public static void FavoritesEvents()
         {
             // Favorites
                 System.Console.ForegroundColor = ConsoleColor.Yellow;
@@ -111,7 +107,7 @@ namespace ConsoleApp
                                          "|| d) Remove favorite event.                        ||\n" +
                                          "|| e) Select x to exit.                             ||\n" +
                                          "======================================================");
-                keyInfo = System.Console.ReadKey(true);
+               var keyInfo = System.Console.ReadKey(true);
                 try
                 {
                     Favorites ulubione = new Favorites(Convert.ToChar(keyInfo.KeyChar.ToString()));
@@ -123,7 +119,7 @@ namespace ConsoleApp
                 }
 
         }
-        public void ConfigureEvent()
+        public static void ConfigureEvent()
         {
             // Configuration
             System.Console.ForegroundColor = ConsoleColor.Yellow;
@@ -135,7 +131,7 @@ namespace ConsoleApp
                                      "|| b) Filter setup.                                 ||\n" +
                                      "|| c) Date format.                                  ||\n" +
                                      "======================================================");
-            keyInfo = System.Console.ReadKey(true);
+            var keyInfo = System.Console.ReadKey(true);
             try
             {
                 Configuration konfiguracja = new Configuration(Convert.ToChar(keyInfo.KeyChar.ToString()));

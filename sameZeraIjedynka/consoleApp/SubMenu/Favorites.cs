@@ -22,50 +22,52 @@ namespace ConsoleApp
             _selection = Selection;
             while (true)
             {
+                
+                switch (_selection)
                 {
-                    switch (_selection)
-                    {
-                        case 'a':
-                            Console.Clear();
-                            Console.WriteLine("Add or remove");
-                            Console.WriteLine("Enter event details: title, date, organizer, type.");
-                            var title = Console.ReadLine();
-                            var date = Console.ReadLine();
-                            var organizer = Console.ReadLine();
-                            var type = Console.ReadLine();
+                    case 'a':
+                        Console.Clear();
+                        Console.WriteLine("Add or remove");
+                        Console.WriteLine("Enter event details: title, date, organizer, type.");
+                        var title = Console.ReadLine();
+                        var date = Console.ReadLine();
+                        var organizer = Console.ReadLine();
+                        var type = Console.ReadLine();
 
-                            var newEvent = new vFavorite(title, date, organizer, type);
+                        var newEvent = new vFavorite(title, date, organizer, type);
 
-                            favoriteEvent.AddFavorite(newEvent);
-                            break;
-                        case 'b':
+                        favoriteEvent.AddFavorite(newEvent);
+                        break;
+                    case 'b':
 
-                            Console.Clear();
-                            Console.WriteLine("Display the event");
-                            favoriteEvent.DisplayAllFavoriteEvents();
-                            break;
-                        case 'c':
-                            Console.Clear();
-                            Console.WriteLine("Enter the search phrase");
-                            var searchEvent = Console.ReadLine();
-                            favoriteEvent.DisplayMatchingEvents(searchEvent);
-                            break;
-                        case 'd':
-                            Console.WriteLine("Enter the title of the event you want to delete: ");
-                            var deletedEvent = Console.ReadLine();
-                            favoriteEvent.RemoveFavorite(deletedEvent);
-                            break;
-                        case 'x':
-                            return;
-                        default:
-                            Console.WriteLine("Operation unavailable");
-                            break;
+                        Console.Clear();
+                        Console.WriteLine("Display the event");
+                        favoriteEvent.DisplayAllFavoriteEvents();
+                        break;
+                    case 'c':
+                        Console.Clear();
+                        Console.WriteLine("Enter the search phrase");
+                        var searchEvent = Console.ReadLine();
+                        favoriteEvent.DisplayMatchingEvents(searchEvent);
+                        break;
+                    case 'd':
+                        Console.WriteLine("Enter the title of the event you want to delete: ");
+                        var deletedEvent = Console.ReadLine();
+                        favoriteEvent.RemoveFavorite(deletedEvent);
+                        break;
+                    case 'x':
+                        return;
+                    default:
+                        Console.WriteLine("Operation unavailable");
+                        break;
 
-                    }
-                    Console.WriteLine("Select the operation you want to perform again");
                 }
+                Console.WriteLine("Select the operation you want to perform again");
+                Menu.FavoritesEvents();
+
+
             }
         }
-
+       
     }
 }

@@ -4,8 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Menu MainMenu = new Menu();
-            MainMenu.PrintWelcomeScreen();
+            
+            Menu.PrintWelcomeScreen();
         }
     }
 }
