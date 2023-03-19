@@ -5,38 +5,14 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessCase.Controllers;
+using static System.IO.Directory;
 
 namespace ConsoleApp
 {
     
     public class Events
     {
-        public string Title { get; set; }
-
-        public string Date { get; set; }
-
-        public string Organizer { get; set; }
-
-        public string Type { get; set; }
-
-        public Events(string title, string date, string organizer, string type)
-        {
-            Title = title;
-            Date = date;
-            Organizer = organizer;
-            Type = type;
-        }
-
-        public Events()
-        {
-        }
-
-        protected static object Where(Func<object, bool> value)
-        {
-            throw new NotImplementedException();
-        }
-
-
         private char _selection { get; set; }
 
         public Events(char Selection)
@@ -61,21 +37,39 @@ namespace ConsoleApp
 
         public void EventList()
         {
-            System.Console.Clear();
-            System.Console.WriteLine("Event list");
-            System.Console.Read();
+            Console.Clear();
+            Console.WriteLine("--------- Events list ---------");
+            var events = EventController.GetEvents();
+            foreach (var item in events)
+            {
+                if (item.IsFavourite)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                Console.WriteLine($"#{item.Id} {item.Name} \n " +
+                    $"\t{item.Price}$ {item.Date} {item.Place}\n" +
+                    $"\tCapacity: {item.Capacity}\n" +
+                    $"\tOrganizer: {item.Organizer}\n" +
+                    $"\tTarget: {item.Target}");
+                if (item.IsFavourite)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+
+            }
+            Console.Read();
         }
         public void DateFilter()
         {
-            System.Console.Clear();
-            System.Console.WriteLine("Filter by date");
-            System.Console.Read();
+            Console.Clear();
+            Console.WriteLine("--------- Filter by date ---------");
+            Console.Read();
         }
         public void EventFinder()
         {
-            System.Console.Clear();
-            System.Console.WriteLine("Event search");
-            System.Console.Read();
+            Console.Clear();
+            Console.WriteLine("--------- Event search ---------");
+            Console.Read();
         }
 
     }

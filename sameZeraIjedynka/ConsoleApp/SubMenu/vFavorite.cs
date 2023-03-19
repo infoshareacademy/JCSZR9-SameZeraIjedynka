@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessCase.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,11 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
-    public class vFavorite : Events 
+    public class vFavorite : Event
 
     {
-        public vFavorite(string title, string date, string organizer, string type) : base(title, date, organizer, type)
-        {
-        }
-
-        public vFavorite()
+        public vFavorite(int Id, string Name, string Date, string Organizer, string Place, int Price, int Capacity, TargetEnum Target, bool IsFavourite) 
+            : base(Id, Name, Date, Organizer, Place, Price, Capacity, Target, IsFavourite)
         {
         }
 
@@ -32,7 +30,7 @@ namespace ConsoleApp
         private void DisplayEventDitails(vFavorite favorite)
         {
 
-            System.Console.WriteLine($"Event: {favorite.Title}, {favorite.Date}, {favorite.Organizer}, {favorite.Type}.");
+            //System.Console.WriteLine($"Event: {favorite.Title}, {favorite.Date}, {favorite.Organizer}, {favorite.Type}.");
         }
 
         public void DisplayAllFavoriteEvents()
@@ -45,7 +43,7 @@ namespace ConsoleApp
 
         public void DisplayMatchingEvents(string searchEvent)
         {
-            var matchingEvent = Favorites.Where(c => c.Title.Contains(searchEvent)).ToList();
+            var matchingEvent = Favorites.Where(c => c.Name.Contains(searchEvent)).ToList();
 
             foreach(var favorite in matchingEvent)
             {

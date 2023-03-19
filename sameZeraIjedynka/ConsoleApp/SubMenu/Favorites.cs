@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessCase.Model;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -39,31 +40,36 @@ namespace ConsoleApp
         public void AddOrRemove()
         {
             
-            System.Console.Clear();
-            System.Console.WriteLine("Add or remove");
-            System.Console.WriteLine("Enter event details: title, date, organizer, type.");
-            var title = System.Console.ReadLine();
-            var date = System.Console.ReadLine();
-            var organizer = System.Console.ReadLine();
-            var type = System.Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("Add or remove");
+            Console.WriteLine("Enter event details: title, date, organizer, type.");
+            var id = int.Parse(Console.ReadLine());
+            var name = Console.ReadLine();
+            var date = Console.ReadLine();
+            var organizer = Console.ReadLine();
+            var place = Console.ReadLine();
+            int.TryParse(Console.ReadLine(), out int price);
+            var capacity = int.Parse(Console.ReadLine());
+            Enum.TryParse(Console.ReadLine(), out TargetEnum target);
+            bool.TryParse(Console.ReadLine(), out bool isFavourite);
+ 
+            var newEvent = new vFavorite(id, name, date, organizer, place, price, capacity, target, isFavourite);
 
-            var newEvent = new vFavorite(title, date, organizer, type);
-
-            var favoriteEvent = new vFavorite();
-            favoriteEvent.AddFavorite(newEvent);
+            //var favoriteEvent = new vFavorite();
+            //favoriteEvent.AddFavorite(newEvent);
         }
         public void FavoriteDisplay()
         {
-            var favoriteEvent = new vFavorite();
-            System.Console.Clear();
-            System.Console.WriteLine("Display the event");
-            favoriteEvent.DisplayAllFavoriteEvents();
+            //var favoriteEvent = new vFavorite();
+            Console.Clear();
+            Console.WriteLine("Display the event");
+            //favoriteEvent.DisplayAllFavoriteEvents();
         }
         public void ShowNextEvent()
         {
-            System.Console.Clear();
-            System.Console.WriteLine("Display next event");
-            System.Console.Read();
+            Console.Clear();
+            Console.WriteLine("Display next event");
+            Console.Read();
         }
 
     }
