@@ -10,7 +10,7 @@ namespace ConsoleApp
     public class vFavorite : Event
 
     {
-        public vFavorite(int Id, string Name, string Date, string Organizer, string Place, int Price, int Capacity, TargetEnum Target, bool IsFavourite) 
+        public vFavorite(int Id, string Name, DateTime Date, string Organizer, string Place, int Price, int Capacity, TargetEnum Target, bool IsFavourite) 
             : base(Id, Name, Date, Organizer, Place, Price, Capacity, Target, IsFavourite)
         {
         }

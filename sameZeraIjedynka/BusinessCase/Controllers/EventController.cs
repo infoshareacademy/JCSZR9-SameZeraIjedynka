@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using static System.IO.Directory;
 using static System.Environment;
 using System.Globalization;
+using CsvHelper.TypeConversion;
 
 namespace BusinessCase.Controllers
 {
@@ -22,9 +23,14 @@ namespace BusinessCase.Controllers
 
         public static List<Event> GetEvents()
         {
-            using var reader = new StreamReader(_fullPath);
             CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
-            using var csv = new CsvReader(reader, CultureInfo.CurrentCulture);
+
+            using var reader = new StreamReader(_fullPath);
+            using var csv = new CsvReader(reader, CultureInfo.CurrentUICulture);
+
+/*        var options = new TypeConverterOptions { Formats = new[] { "dd/MM/yyyy" } };
+        csv.Context.TypeConverterOptionsCache.AddOptions<DateTime>(options);*/
+            
             csv.Read();
             csv.ReadHeader();
             var events = csv.GetRecords<Event>();
