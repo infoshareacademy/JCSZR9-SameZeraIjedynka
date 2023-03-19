@@ -13,7 +13,7 @@ using CsvHelper.TypeConversion;
 
 namespace BusinessCase.Controllers
 {
-    public class EventController
+    public static class EventController
     {
         private static readonly string _path = GetParent(GetParent(GetParent(GetParent(CurrentDirectory)
                 .ToString()).ToString()).ToString()).ToString() + @"\BusinessCase\Storage\";
