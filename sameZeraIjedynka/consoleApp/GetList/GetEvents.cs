@@ -23,12 +23,12 @@ namespace ConsoleApp
                     csv.Read();
                     csv.ReadHeader();
                     var events = csv.GetRecords<Event>();
-                    //foreach (var oneEvent in events)
-                    //{
-                    //    Console.WriteLine(oneEvent.Name);
+                foreach (var oneevent in events)
+                {
+                    Console.WriteLine($"{oneevent.Name}, {oneevent.Price}");
 
-                    //}
-                    return events.ToList();
+                }
+                return events.ToList();
                 }
 
         }
