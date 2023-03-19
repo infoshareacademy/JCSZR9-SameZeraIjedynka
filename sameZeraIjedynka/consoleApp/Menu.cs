@@ -7,9 +7,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
-using Console.SubMenu;
+using ConsoleApp;
 
-namespace Console
+namespace ConsoleApp
 {
     public class Menu
     {
@@ -21,12 +21,12 @@ namespace Console
 
         public void PrintWelcomeScreen()
         {
-            ;
+            Console.Clear();
             System.Console.ForegroundColor = ConsoleColor.Yellow;
             System.Console.WriteLine("===============================================\n" +
                                      "||           Select from Main Menu:          ||\n" +
                                      "||                                           ||\n" +
-                                     "||          ( press key 1, 2, or 3 )         ||\n" +
+                                     "||   ( press key 1, 2, 3, or 0 for EXIT )    ||\n" +
                                      "||                                           ||\n" +
                                      "||           1) Display all event.           ||\n" +
                                      "||               2) Favorite.                ||\n" +
@@ -54,15 +54,22 @@ namespace Console
             {
                 case 1:
                     DisplayAllEvents();
+                    PrintWelcomeScreen();
                     break;
                 case 2:
                     FavoritesEvents();
+                    PrintWelcomeScreen();
                     break;
                 case 3:
                     ConfigureEvent();
-                    break;  
-                default:
-                  
+                    PrintWelcomeScreen();
+                    break;
+                case 0:
+                    Console.Clear();
+                    Console.WriteLine("EXIT");
+                    Environment.Exit(0);
+                    break;
+                default:                 
                     System.Console.Clear();
                     PrintWelcomeScreen();
                     break;
@@ -105,7 +112,7 @@ namespace Console
                 System.Console.WriteLine("======================================================\n" +
                                          "||                  WYBIERZ PODMENU                 ||\n" +
                                          "||                                                  ||\n" +
-                                         "|| a) Add or remove from favorite.                  ||\n" +
+                                         "|| a) Add favorite.                                 ||\n" +
                                          "|| b) Display favorite event.                       ||\n" +
                                          "|| c) Display next event.                           ||\n" +
                                          "======================================================");

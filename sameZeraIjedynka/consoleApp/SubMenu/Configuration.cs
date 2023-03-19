@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Console.SubMenu
+namespace ConsoleApp
 {
     public class Configuration
     {
@@ -20,16 +20,23 @@ namespace Console.SubMenu
             {
                 case 'a':
                     AddOrChange();
+                    Console.ReadLine();
                     break;
                 case 'b':
-                    Sort();
+                    Sort(); 
+                    Console.ReadLine();
                     break;
                 case 'c':
                     Format();
+                    Console.ReadLine();
+                    break;
+                case '0':
+                    Console.Clear();
+                    Console.WriteLine("EXIT");
+                    Environment.Exit(0);
                     break;
                 default:
                     System.Console.Clear();
-                    
                     break;
             }
         }
