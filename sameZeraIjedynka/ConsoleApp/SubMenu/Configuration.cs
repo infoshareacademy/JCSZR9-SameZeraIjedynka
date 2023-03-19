@@ -28,7 +28,7 @@ namespace ConsoleApp
                     Format();
                     break;
                 default:
-                    System.Console.Clear();
+                    Console.Clear();
                     
                     break;
             }

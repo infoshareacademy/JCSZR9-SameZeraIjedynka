@@ -14,7 +14,7 @@ namespace ConsoleApp
     public class Menu
     {
        
-    private int HelperMenu { get; set; } 
+    private int HelperMenu { get; set; } // TODO: do usunięcia?
     private ConsoleKeyInfo keyInfo;
     
 
@@ -87,7 +87,7 @@ namespace ConsoleApp
             keyInfo = Console.ReadKey(true);
             try
             {
-                Events events = new Events(Convert.ToChar(keyInfo.KeyChar.ToString()));
+                Events events = new(Convert.ToChar(keyInfo.KeyChar.ToString()));
             }
             catch
             {
