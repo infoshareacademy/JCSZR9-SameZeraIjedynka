@@ -8,7 +8,7 @@ namespace ConsoleApp
 {
     public class Event
     {
-        public int ID { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Date { get; set; }
         public string Organizer { get; set; }
@@ -16,7 +16,7 @@ namespace ConsoleApp
         public int Price { get; set; }
         public int Capacity { get; set; }
         public string Target { get; set; }
-
+        public bool IsFavourite { get; set; }
 
     }
 }

@@ -13,7 +13,7 @@ using System.Text.Json.Serialization;
 using CsvHelper;
 using ConsoleApp;
 
-GetEvents.ReadCsv();
+//GetEvents.ReadCsv();
 namespace ConsoleApp
 {
     

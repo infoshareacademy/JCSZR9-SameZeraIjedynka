@@ -16,9 +16,9 @@ namespace ConsoleApp
 
         public static List<Event> ReadCsv()
         {
-            using (var reader = new StreamReader("C:\\Users\\staci\\Desktop\\C#\\AppTestowa\\AppTestowa\\EventsList.csv"))
+            using (var reader = new StreamReader("C:\\Users\\staci\\source\\repos\\JCSZR9-SameZeraIjedynka\\sameZeraIjedynka\\consoleApp\\GetList\\EventsList.csv"))
             
-                using (var csv = new CsvReader(reader, System.Globalization.CultureInfo.CurrentCulture))
+                using (var csv = new CsvReader(reader, System.Globalization.CultureInfo.InvariantCulture))
                 {
                     csv.Read();
                     csv.ReadHeader();
