@@ -35,6 +35,11 @@ namespace ConsoleApp
                     Console.WriteLine("EXIT");
                     Environment.Exit(0);
                     break;
+                case '0':
+                    Console.Clear();
+                    Console.WriteLine("EXIT");
+                    Environment.Exit(0);
+                    break;
                 default:
                     System.Console.Clear();
                     break;

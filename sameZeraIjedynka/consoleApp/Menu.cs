@@ -22,8 +22,13 @@ namespace ConsoleApp
         public void PrintWelcomeScreen()
         {
             Console.Clear();
+<<<<<<< Updated upstream:sameZeraIjedynka/consoleApp/Menu.cs
             System.Console.ForegroundColor = ConsoleColor.Yellow;
             System.Console.WriteLine("===============================================\n" +
+=======
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("===============================================\n" +
+>>>>>>> Stashed changes:sameZeraIjedynka/ConsoleApp/Menu.cs
                                      "||           Select from Main Menu:          ||\n" +
                                      "||                                           ||\n" +
                                      "||   ( press key 1, 2, 3, or 0 for EXIT )    ||\n" +
@@ -65,6 +70,14 @@ namespace ConsoleApp
                     PrintWelcomeScreen();
                     break;
                 case 0:
+<<<<<<< Updated upstream:sameZeraIjedynka/consoleApp/Menu.cs
+=======
+                    Console.Clear();
+                    Console.WriteLine("EXIT");
+                    Environment.Exit(0);
+                    break;
+                default:
+>>>>>>> Stashed changes:sameZeraIjedynka/ConsoleApp/Menu.cs
                     Console.Clear();
                     Console.WriteLine("EXIT");
                     Environment.Exit(0);

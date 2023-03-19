@@ -1,42 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessCase.Controllers;
+using BusinessCase.Model;
+using static System.IO.Directory;
 
 namespace ConsoleApp
 {
     
     public class Events
     {
-        public string Title { get; set; }
-
-        public string Date { get; set; }
-
-        public string Organizer { get; set; }
-
-        public string Type { get; set; }
-
-        public Events(string title, string date, string organizer, string type)
-        {
-            Title = title;
-            Date = date;
-            Organizer = organizer;
-            Type = type;
-        }
-
-        public Events()
-        {
-        }
-
-        protected static object Where(Func<object, bool> value)
-        {
-            throw new NotImplementedException();
-        }
-
-
         private char _selection { get; set; }
 
         public Events(char Selection)
@@ -47,15 +25,12 @@ namespace ConsoleApp
             {
                 case 'a':
                     EventList();
-                    Console.ReadLine();
                     break;
                 case 'b':
-                    DateFilter();
-                    Console.ReadLine();
+                    DateFilter(); 
                     break;
                 case 'c':
                     EventFinder();
-                    Console.ReadLine();
                     break;
                 case '0':
                     Console.Clear();
@@ -67,24 +42,82 @@ namespace ConsoleApp
             }
         }
 
-        public void EventList()
+        public static void DisplayEvents(List<Event> events)
         {
-            System.Console.Clear();
-            System.Console.WriteLine("Event list");
-            GetEvents.ReadCsv();
-       
+            if (events.Count > 0)
+                foreach (var item in events)
+                {
+                    if (item.IsFavourite)
+                        Console.ForegroundColor = ConsoleColor.Green;
+
+                    Console.WriteLine($"#{item.Id} {item.Name} \n " +
+                        $"\t{item.Price}$ {item.Date} {item.Place}\n" +
+                        $"\tCapacity: {item.Capacity}\n" +
+                        $"\tOrganizer: {item.Organizer}\n" +
+                        $"\tTarget: {item.Target}");
+
+                    if (item.IsFavourite)
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+            else
+                Console.WriteLine("No events found");
         }
-        public void DateFilter()
+
+        private void EventList()
         {
-            System.Console.Clear();
-            System.Console.WriteLine("Filter by date");
-            System.Console.Read();
+            Console.Clear();
+            Console.WriteLine("--------- Events list ---------\n");
+
+            var events = EventController.GetEvents();
+            DisplayEvents(events);
+
+            Console.Read();
         }
-        public void EventFinder()
+
+        private void DateFilter()
         {
-            System.Console.Clear();
-            System.Console.WriteLine("Event search");
-            System.Console.Read();
+            Console.Clear();
+            Console.WriteLine("--------- Filter by date ---------\n");
+
+            CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
+
+            Console.WriteLine("Input start date (in MM/DD/YYYY format):");
+            DateTime startDate = DateTime.ParseExact(Console.ReadLine(), 
+                "MM/dd/yyyy", 
+                CultureInfo.CurrentUICulture);
+
+            Console.WriteLine("Input end date (in MM/DD/YYYY format):");
+            DateTime endDate = DateTime.ParseExact(Console.ReadLine(), 
+                "MM/dd/yyyy", 
+                CultureInfo.CurrentUICulture);
+
+            var events = EventController.GetEvents().Where(e => 
+                (e.Date >= startDate) && 
+                (e.Date <= endDate)).ToList();
+            Console.Clear();
+            Console.WriteLine("--------- Filter by date ---------\n");
+            DisplayEvents(events);
+
+            Console.Read();
+        }
+
+        private void EventFinder()
+        {
+            Console.Clear();
+            Console.WriteLine("--------- Event search ---------\n");
+
+            Console.WriteLine("Input pattern:");
+            var searchPattern = Console.ReadLine();
+
+            var events = EventController.GetEvents().Where(e => 
+                (e.Name.Contains(searchPattern)) ||
+                (e.Place.Contains(searchPattern)) ||
+                (e.Organizer.Contains(searchPattern))).ToList();
+            Console.Clear();
+            Console.WriteLine("--------- Event search ---------\n");
+            DisplayEvents(events);
+
+            Console.Read();
         }
 
     }
