@@ -13,3 +13,5 @@ C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\
 C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\BusinessCase.pdb
 C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\BusinessCase.genruntimeconfig.cache
 C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\ref\BusinessCase.dll
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\bin\Debug\net7.0\CsvHelper.dll
+C:\REPOSITORY\PROJEKT\JCSZR9-SameZeraIjedynka\sameZeraIjedynka\BusinessCase\obj\Debug\net7.0\BusinessCase.csproj.CopyComplete
