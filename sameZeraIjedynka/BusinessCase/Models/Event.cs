@@ -16,11 +16,7 @@ namespace BusinessCase.Model
     }
     public class Event
     {
-<<<<<<< HEAD
-        public Event(int Id, string Name, string Date, string Organizer, string Place, int Price, int Capacity, TargetEnum Target, bool IsFavourite)
-=======
         public Event(int Id, string Name, DateTime Date, string Organizer, string Place, int Price, int Capacity, TargetEnum Target, bool IsFavourite)
->>>>>>> origin/Piotr-Olesinski
         {
             this.Id = Id;
             this.Name = Name;
@@ -35,11 +31,7 @@ namespace BusinessCase.Model
 
         public int Id { get; set; }
         public string? Name { get; set; }
-<<<<<<< HEAD
-        public string? Date { get; set; }
-=======
         public DateTime Date { get; set; }
->>>>>>> origin/Piotr-Olesinski
         public string? Organizer { get; set; }
         public string? Place { get; set; }
         public int Price { get; set; }

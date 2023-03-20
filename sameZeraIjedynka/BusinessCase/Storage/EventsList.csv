@@ -1,11 +1,4 @@
 Id,Name,Date,Organizer,Place,Price,Capacity,Target,IsFavourite
-<<<<<<< HEAD
-1,Event1,12.05.2023,Organizer1,Place1,120,120,kids,false
-2,Event2,14.02.2023,Organizer2,Place2,250,489,grandpas,false
-3,Event3,17.06.2023,Organizer3,Place2,200,474,adults,true
-4,Event4,18.09.2023,Organizer4,Place4,400,984,all,false
-5,Event5,22.10.2023,Organizer5,Place3,500,394,adults,false
-=======
 1,Event1,05/12/2023,Organizer1,Place1,120,120,kids,false
 2,Event2,02/14/2023,Organizer2,Place2,250,489,grandpas,false
 3,Event3,06/17/2023,Organizer3,Place2,200,474,adults,true
@@ -14,4 +7,3 @@ Id,Name,Date,Organizer,Place,Price,Capacity,Target,IsFavourite
 6,Dzien Dziecka,06/01/2023,Fundacja Dla Dzieci,Manufaktura,0,999,kids,true
 7,Pomoc powodzianom - event charytatywny,05/02/2023,Teatr Miejski,Teatr Miejski,500,394,all,false
 8,Koncert swiateczny,12/22/2023,-,Park Chrobrego,10,640,adults,false
->>>>>>> origin/Piotr-Olesinski

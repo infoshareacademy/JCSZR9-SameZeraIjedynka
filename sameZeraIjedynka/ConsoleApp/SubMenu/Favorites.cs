@@ -50,11 +50,7 @@ namespace ConsoleApp
             Console.WriteLine("Enter event details: title, date, organizer, type.");
             var id = int.Parse(Console.ReadLine());
             var name = Console.ReadLine();
-<<<<<<< HEAD
-            var date = Console.ReadLine();
-=======
             DateTime.TryParse(Console.ReadLine(), out var date);
->>>>>>> origin/Piotr-Olesinski
             var organizer = Console.ReadLine();
             var place = Console.ReadLine();
             int.TryParse(Console.ReadLine(), out int price);

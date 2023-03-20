@@ -7,10 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessCase.Controllers;
-<<<<<<< HEAD
-=======
 using BusinessCase.Model;
->>>>>>> origin/Piotr-Olesinski
 using static System.IO.Directory;
 
 namespace ConsoleApp
@@ -47,29 +44,6 @@ namespace ConsoleApp
 
         public static void DisplayEvents(List<Event> events)
         {
-<<<<<<< HEAD
-            Console.Clear();
-            Console.WriteLine("--------- Events list ---------");
-            var events = EventController.GetEvents();
-            foreach (var item in events)
-            {
-                if (item.IsFavourite)
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                }
-                Console.WriteLine($"#{item.Id} {item.Name} \n " +
-                    $"\t{item.Price}$ {item.Date} {item.Place}\n" +
-                    $"\tCapacity: {item.Capacity}\n" +
-                    $"\tOrganizer: {item.Organizer}\n" +
-                    $"\tTarget: {item.Target}");
-                if (item.IsFavourite)
-                {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                }
-
-            }
-            Console.Read();
-=======
             if (events.Count > 0)
                 foreach (var item in events)
                 {
@@ -87,30 +61,22 @@ namespace ConsoleApp
                 }
             else
                 Console.WriteLine("No events found");
->>>>>>> origin/Piotr-Olesinski
         }
 
         private void EventList()
         {
             Console.Clear();
-<<<<<<< HEAD
-            Console.WriteLine("--------- Filter by date ---------");
-=======
             Console.WriteLine("--------- Events list ---------\n");
 
             var events = EventController.GetEvents();
             DisplayEvents(events);
 
->>>>>>> origin/Piotr-Olesinski
             Console.Read();
         }
 
         private void DateFilter()
         {
             Console.Clear();
-<<<<<<< HEAD
-            Console.WriteLine("--------- Event search ---------");
-=======
             Console.WriteLine("--------- Filter by date ---------\n");
 
             CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
@@ -151,7 +117,6 @@ namespace ConsoleApp
             Console.WriteLine("--------- Event search ---------\n");
             DisplayEvents(events);
 
->>>>>>> origin/Piotr-Olesinski
             Console.Read();
         }
 
