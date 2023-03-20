@@ -23,7 +23,7 @@ namespace ConsoleApp
         {
             ;
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("===============================================\n" +
+            Console.WriteLine(       "===============================================\n" +
                                      "||           Select from Main Menu:          ||\n" +
                                      "||                                           ||\n" +
                                      "||          ( press key 1, 2, or 3 )         ||\n" +
