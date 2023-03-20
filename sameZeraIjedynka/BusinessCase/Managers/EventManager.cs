@@ -6,21 +6,19 @@ using System.Formats.Asn1;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.IO.Directory;
 using static System.Environment;
 using System.Globalization;
 using CsvHelper.TypeConversion;
+using BusinessCase.Helpers;
 
 namespace BusinessCase.Controllers
 {
     public static class EventManager
     {
-        private static readonly string _path = GetParent(GetParent(GetParent(GetParent(CurrentDirectory)
-                .ToString()).ToString()).ToString()).ToString() + @"\BusinessCase\Storage\";
+
+        private static readonly string _originPath = DirectoryHelper.StepThroughDirectories(CurrentDirectory);
         private static readonly string _filename = "EventsList.csv";
-
-        private static readonly string _fullPath = Path.Combine(_path, _filename);
-
+        private static readonly string _fullPath = Path.Combine(_originPath, _filename);
         public static List<EventModel> GetEvents()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
