@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessCase.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,23 @@ namespace ConsoleApp
 {
     public class Event
     {
+        private int id;
+        private DateTime date;
+        private TargetEnum target;
+
+        public Event(int id, string name, DateTime date, string organizer, string place, int price, int capacity, TargetEnum target, bool isFavourite)
+        {
+            this.id = id;
+            Name = name;
+            this.date = date;
+            Organizer = organizer;
+            Place = place;
+            Price = price;
+            Capacity = capacity;
+            this.target = target;
+            IsFavourite = isFavourite;
+        }
+
         public string Id { get; set; }
         public string Name { get; set; }
         public string Date { get; set; }
