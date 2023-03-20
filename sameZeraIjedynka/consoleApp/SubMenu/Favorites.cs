@@ -1,4 +1,5 @@
-﻿using BusinessCase.Model;
+﻿using BusinessCase.Controllers;
+using BusinessCase.Model;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,7 +27,15 @@ namespace ConsoleApp
                         AddOrRemove();
                         break;
                     case 'b':
-                        FavoriteDisplay();
+                        var fav = EventController.GetEvents().Where(f => f.IsFavourite == true).ToList();
+                        foreach (var a in fav)
+                        {
+                           // Console.WriteLine(a.Name);
+                            Events.DisplayEvents(fav);
+
+                            Console.Read();
+                        }
+                        
                         break;
                     case 'c':
                         ShowNextEvent();
