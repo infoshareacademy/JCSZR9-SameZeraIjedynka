@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessCase.Managers;
+using BusinessCase.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -39,6 +41,22 @@ namespace ConsoleApp
             }
         }
 
+        public static void DisplayConfiguration()
+        {
+            var configuration = ConfigurationManager.GetConfiguration();
+            foreach (var item in configuration)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+
+                Console.WriteLine("\nCurrent configuration");
+                Console.WriteLine("------------------------------");
+                Console.WriteLine(item);
+                Console.WriteLine("------------------------------\n");
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            }
+        }
+
         public void AddOrChange()
         {
             Console.Clear();
@@ -48,7 +66,18 @@ namespace ConsoleApp
         public void Sort()
         {
             Console.Clear();
-            Console.WriteLine("Event filter");
+            Console.WriteLine("--------- Sorting setup ---------");
+            DisplayConfiguration();
+
+            Console.WriteLine("Input category to order by ( Id / Name / Date / Price ):");
+            Enum.TryParse(Console.ReadLine(), out OrderBy orderBy);
+
+            Console.WriteLine("Input order type ( Ascending / Descending )");
+            Enum.TryParse(Console.ReadLine(), out OrderType orderType);
+
+            ConfigurationManager.SetConfiguration(orderBy, orderType);
+
+            DisplayConfiguration();
             Console.ReadKey(true);
         }
         public void Format()

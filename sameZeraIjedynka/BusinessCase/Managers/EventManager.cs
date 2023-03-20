@@ -10,6 +10,8 @@ using static System.Environment;
 using System.Globalization;
 using CsvHelper.TypeConversion;
 using BusinessCase.Helpers;
+using BusinessCase.Models;
+using BusinessCase.Managers;
 
 namespace BusinessCase.Controllers
 {
@@ -19,8 +21,9 @@ namespace BusinessCase.Controllers
         private static readonly string _originPath = DirectoryHelper.StepThroughDirectories(CurrentDirectory);
         private static readonly string _filename = "EventsList.csv";
         private static readonly string _fullPath = Path.Combine(_originPath, _filename);
+        
         public static List<EventModel> GetEvents()
-        {
+        { 
             CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
 
             using var reader = new StreamReader(_fullPath);
@@ -31,8 +34,8 @@ namespace BusinessCase.Controllers
             
             csv.Read();
             csv.ReadHeader();
-            var events = csv.GetRecords<EventModel>();
-            return events.ToList();
+            var events = ConfigurationHelper.SortEvents(csv.GetRecords<EventModel>());
+            return events;
         }
 
         public static List<EventModel> GetEvents(string pattern)
@@ -47,11 +50,11 @@ namespace BusinessCase.Controllers
 
             csv.Read();
             csv.ReadHeader();
-            var events = csv.GetRecords<EventModel>().Where(e =>
-                (e.Name.Contains(pattern)) ||
-                (e.Place.Contains(pattern)) ||
-                (e.Organizer.Contains(pattern))).ToList();
-            //SortEvents(events);
+            var events = ConfigurationHelper.SortEvents(
+                            csv.GetRecords<EventModel>().Where(e =>
+                                (e.Name.Contains(pattern)) ||
+                                (e.Place.Contains(pattern)) ||
+                                (e.Organizer.Contains(pattern))));
             return events.ToList();
         }
 
@@ -67,11 +70,12 @@ namespace BusinessCase.Controllers
 
             csv.Read();
             csv.ReadHeader();
-            var events = csv.GetRecords<EventModel>().Where(e =>
-                (e.Date >= startDate) &&
-                (e.Date <= endDate)).ToList();
-            //SortEvents(events);
+            var events = ConfigurationHelper.SortEvents(
+                            csv.GetRecords<EventModel>().Where(e =>
+                                (e.Date >= startDate) &&
+                                (e.Date <= endDate)).ToList());
             return events.ToList();
         }
+
     }
 }

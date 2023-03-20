@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace BusinessCase.Model
 {
-
     public enum Target
     {
         kids,
@@ -14,6 +13,7 @@ namespace BusinessCase.Model
         grandpas,
         all
     }
+
     public class EventModel
     {
         // TODO: czy ten konstruktor jest potrzebny przy ulubionych?
@@ -31,10 +31,10 @@ namespace BusinessCase.Model
         }
 
         public int Id { get; set; }
-        public string? Name { get; set; }
+        public string Name { get; set; }
         public DateTime Date { get; set; }
-        public string? Organizer { get; set; }
-        public string? Place { get; set; }
+        public string Organizer { get; set; }
+        public string Place { get; set; }
         public int Price { get; set; }
         public int Capacity { get; set; }
         public Target Target { get; set; }

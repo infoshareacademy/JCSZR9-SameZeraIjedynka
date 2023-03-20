@@ -11,16 +11,16 @@ namespace ConsoleApp
 {
     public class Favorites
     {
-        private char _selection { get; set; }
+        private char Selection { get; set; }
 
 
 
         public Favorites(char Selection)
         {
-            _selection = Selection;
+            this.Selection = Selection;
            
             {
-                switch (_selection)
+                switch (this.Selection)
                 {
                     case 'a':
                         AddOrRemove();

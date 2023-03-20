@@ -15,13 +15,13 @@ namespace ConsoleApp
     
     public class Events
     {
-        private char _selection { get; set; }
+        private char Selection { get; set; }
 
         public Events(char Selection)
         {
-            _selection = Selection;
+            this.Selection = Selection;
 
-            switch (_selection)
+            switch (this.Selection)
             {
                 case 'a':
                     EventList();
@@ -60,7 +60,7 @@ namespace ConsoleApp
                 Console.WriteLine("No events found");
         }
 
-        private void EventList()
+        private static void EventList()
         {
             Console.Clear();
             Console.WriteLine("--------- Events list ---------\n");
@@ -69,9 +69,10 @@ namespace ConsoleApp
             DisplayEvents(events);
 
             Console.ReadKey(true);
+            Console.Clear();
         }
 
-        private void DateFilter()
+        private static void DateFilter()
         {
             Console.Clear();
             Console.WriteLine("--------- Filter by date ---------\n");
@@ -95,13 +96,13 @@ namespace ConsoleApp
             Console.ReadKey(true);
         }
 
-        private void EventFinder()
+        private static void EventFinder()
         {
             Console.Clear();
             Console.WriteLine("--------- Event search ---------\n");
 
             Console.WriteLine("Input pattern:");
-            var searchPattern = Console.ReadLine();
+            var searchPattern = Console.ReadLine() ?? string.Empty;
 
             var events = EventManager.GetEvents(searchPattern);
             Console.WriteLine();

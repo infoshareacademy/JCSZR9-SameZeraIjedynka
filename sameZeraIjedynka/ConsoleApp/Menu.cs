@@ -139,7 +139,7 @@ namespace ConsoleApp
                                      "||                   CHOOSE SUBMENU                 ||\n" +
                                      "||                                                  ||\n" +
                                      "|| a) Add or config change.                         ||\n" +
-                                     "|| b) Filter setup.                                 ||\n" +
+                                     "|| b) Configure sorting.                            ||\n" +
                                      "|| c) Date format.                                  ||\n" +
                                      "======================================================");
             keyInfo = Console.ReadKey(true);
