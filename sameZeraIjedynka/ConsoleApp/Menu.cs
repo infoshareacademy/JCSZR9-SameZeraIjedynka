@@ -21,12 +21,12 @@ namespace ConsoleApp
 
         public void PrintWelcomeScreen()
         {
-            ;
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("===============================================\n" +
                                      "||           Select from Main Menu:          ||\n" +
                                      "||                                           ||\n" +
-                                     "||          ( press key 1, 2, or 3 )         ||\n" +
+                                     "||   ( press key 1, 2, 3, or 0 for EXIT )    ||\n" +
                                      "||                                           ||\n" +
                                      "||           1) Display all event.           ||\n" +
                                      "||               2) Favorite.                ||\n" +
@@ -54,13 +54,21 @@ namespace ConsoleApp
             {
                 case 1:
                     DisplayAllEvents();
+                    PrintWelcomeScreen();
                     break;
                 case 2:
                     FavoritesEvents();
+                    PrintWelcomeScreen();
                     break;
                 case 3:
                     ConfigureEvent();
-                    break;  
+                    PrintWelcomeScreen();
+                    break;
+                case 0:
+                    Console.Clear();
+                    Console.WriteLine("EXIT");
+                    Environment.Exit(0);
+                    break;
                 default:
                   
                     Console.Clear();

@@ -31,6 +31,11 @@ namespace ConsoleApp
                     case 'c':
                         ShowNextEvent();
                         break;
+                    case '0':
+                        Console.Clear();
+                        Console.WriteLine("EXIT");
+                        Environment.Exit(0);
+                        break;
                     default:
                         break;
                 }
