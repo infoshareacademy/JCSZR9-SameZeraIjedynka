@@ -70,7 +70,6 @@ namespace ConsoleApp
                     Environment.Exit(0);
                     break;
                 default:
-                  
                     Console.Clear();
                     PrintWelcomeScreen();
                     break;
@@ -87,9 +86,11 @@ namespace ConsoleApp
             Console.WriteLine("======================================================\n" +
                                      "||                  CHOOSE SUBMENU                  ||\n" +
                                      "||                                                  ||\n" +
-                                     "|| a) All event list.                               ||\n" +
-                                     "|| b) Event filter by date.                         ||\n" +
-                                     "|| c) Event search.                                 ||\n" +
+                                     "||       ( press key a, b, c, or 0 for EXIT )       ||\n" +
+                                     "||                                                  ||\n" +
+                                     "|| a) All events list.                              ||\n" +
+                                     "|| b) Filter events by date.                        ||\n" +
+                                     "|| c) Search events.                                ||\n" +
                                      "======================================================");
                 
             keyInfo = Console.ReadKey(true);
