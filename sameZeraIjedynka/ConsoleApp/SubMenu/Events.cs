@@ -40,6 +40,7 @@ namespace ConsoleApp
                 default:
                     break;
             }
+
         }
 
         public static void DisplayEvents(List<EventModel> events)
@@ -67,7 +68,7 @@ namespace ConsoleApp
             var events = EventManager.GetEvents();
             DisplayEvents(events);
 
-            Console.Read();
+            Console.ReadKey(true);
         }
 
         private void DateFilter()
@@ -87,14 +88,11 @@ namespace ConsoleApp
                 "MM/dd/yyyy", 
                 CultureInfo.CurrentUICulture);
 
-            var events = EventManager.GetEvents().Where(e => 
-                (e.Date >= startDate) && 
-                (e.Date <= endDate)).ToList();
-            Console.Clear();
-            Console.WriteLine("--------- Filter by date ---------\n");
+            var events = EventManager.GetEvents(startDate, endDate);
+            Console.WriteLine();
             DisplayEvents(events);
 
-            Console.Read();
+            Console.ReadKey(true);
         }
 
         private void EventFinder()
@@ -105,15 +103,11 @@ namespace ConsoleApp
             Console.WriteLine("Input pattern:");
             var searchPattern = Console.ReadLine();
 
-            var events = EventManager.GetEvents().Where(e => 
-                (e.Name.Contains(searchPattern)) ||
-                (e.Place.Contains(searchPattern)) ||
-                (e.Organizer.Contains(searchPattern))).ToList();
-            Console.Clear();
-            Console.WriteLine("--------- Event search ---------\n");
+            var events = EventManager.GetEvents(searchPattern);
+            Console.WriteLine();
             DisplayEvents(events);
 
-            Console.Read();
+            Console.ReadKey(true);
         }
 
     }

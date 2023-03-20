@@ -43,19 +43,19 @@ namespace ConsoleApp
         {
             Console.Clear();
             Console.WriteLine("List of the events");
-            Console.Read();
+            Console.ReadKey(true);
         }
         public void Sort()
         {
             Console.Clear();
             Console.WriteLine("Event filter");
-            Console.Read();
+            Console.ReadKey(true);
         }
         public void Format()
         {
             Console.Clear();
             Console.WriteLine("Event search");
-            Console.Read();
+            Console.ReadKey(true);
         }
 
     }
