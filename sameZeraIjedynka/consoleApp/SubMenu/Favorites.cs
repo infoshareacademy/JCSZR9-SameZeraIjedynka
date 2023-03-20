@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessCase.Model;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -16,58 +17,65 @@ namespace ConsoleApp
 
         public Favorites(char Selection)
         {
-            var favoriteEvent = new vFavorite();
-            var userInput = Console.ReadLine();
-
             _selection = Selection;
-            while (true)
+           
             {
-                
                 switch (_selection)
                 {
                     case 'a':
-                        Console.Clear();
-                        Console.WriteLine("Add or remove");
-                        Console.WriteLine("Enter event details: title, date, organizer, type.");
-                        var title = Console.ReadLine();
-                        var date = Console.ReadLine();
-                        var organizer = Console.ReadLine();
-                        var type = Console.ReadLine();
-
-                        var newEvent = new vFavorite(title, date, organizer, type);
-
-                        favoriteEvent.AddFavorite(newEvent);
+                        AddOrRemove();
                         break;
                     case 'b':
-
-                        Console.Clear();
-                        Console.WriteLine("Display the event");
-                        favoriteEvent.DisplayAllFavoriteEvents();
+                        FavoriteDisplay();
                         break;
                     case 'c':
+                        ShowNextEvent();
+                        break;
+                    case '0':
                         Console.Clear();
-                        Console.WriteLine("Enter the search phrase");
-                        var searchEvent = Console.ReadLine();
-                        favoriteEvent.DisplayMatchingEvents(searchEvent);
+                        Console.WriteLine("EXIT");
+                        Environment.Exit(0);
                         break;
-                    case 'd':
-                        Console.WriteLine("Enter the title of the event you want to delete: ");
-                        var deletedEvent = Console.ReadLine();
-                        favoriteEvent.RemoveFavorite(deletedEvent);
-                        break;
-                    case 'x':
-                        return;
                     default:
-                        Console.WriteLine("Operation unavailable");
                         break;
-
                 }
-                Console.WriteLine("Select the operation you want to perform again");
-                Menu.FavoritesEvents();
-
-
             }
+           
         }
-       
+        public void AddOrRemove()
+        {
+            
+            Console.Clear();
+            Console.WriteLine("Add or remove");
+            Console.WriteLine("Enter event details: title, date, organizer, type.");
+            var id = int.Parse(Console.ReadLine());
+            var name = Console.ReadLine();
+            DateTime.TryParse(Console.ReadLine(), out var date);
+            var organizer = Console.ReadLine();
+            var place = Console.ReadLine();
+            int.TryParse(Console.ReadLine(), out int price);
+            var capacity = int.Parse(Console.ReadLine());
+            Enum.TryParse(Console.ReadLine(), out TargetEnum target);
+            bool.TryParse(Console.ReadLine(), out bool isFavourite);
+ 
+            var newEvent = new vFavorite(id, name, date, organizer, place, price, capacity, target, isFavourite);
+
+            //var favoriteEvent = new vFavorite();
+            //favoriteEvent.AddFavorite(newEvent);
+        }
+        public void FavoriteDisplay()
+        {
+            //var favoriteEvent = new vFavorite();
+            Console.Clear();
+            Console.WriteLine("Display the event");
+            //favoriteEvent.DisplayAllFavoriteEvents();
+        }
+        public void ShowNextEvent()
+        {
+            Console.Clear();
+            Console.WriteLine("Display next event");
+            Console.Read();
+        }
+
     }
 }

@@ -11,31 +11,35 @@ using ConsoleApp;
 
 namespace ConsoleApp
 {
-    public static class Menu
+    public class Menu
     {
        
-   
-        public static void PrintWelcomeScreen()
+    private int HelperMenu { get; set; } // TODO: do usunięcia?
+    private ConsoleKeyInfo keyInfo;
+    
+
+
+        public void PrintWelcomeScreen()
         {
-            ;
-            System.Console.ForegroundColor = ConsoleColor.Yellow;
-            System.Console.WriteLine("===============================================\n" +
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("===============================================\n" +
                                      "||           Select from Main Menu:          ||\n" +
                                      "||                                           ||\n" +
-                                     "||          ( press key 1, 2, or 3 )         ||\n" +
+                                     "||   ( press key 1, 2, 3, or 0 for EXIT )    ||\n" +
                                      "||                                           ||\n" +
                                      "||           1) Display all event.           ||\n" +
                                      "||               2) Favorite.                ||\n" +
                                      "||             3) Configuration.             ||\n" +
                                      "===============================================");
-            var keyInfo = System.Console.ReadKey(true);
+            keyInfo = Console.ReadKey(true);
             try
             {
                 MenuCall(Convert.ToInt16(keyInfo.KeyChar.ToString()));
             }
             catch
             {
-                System.Console.Clear();
+                Console.Clear();
                 PrintWelcomeScreen();
             }
 
@@ -43,23 +47,31 @@ namespace ConsoleApp
 
         
       
-        public static void MenuCall(int selection)
+        public void MenuCall(int selection)
         {
           
             switch (selection)
             {
                 case 1:
                     DisplayAllEvents();
+                    PrintWelcomeScreen();
                     break;
                 case 2:
                     FavoritesEvents();
+                    PrintWelcomeScreen();
                     break;
                 case 3:
                     ConfigureEvent();
-                    break;  
+                    PrintWelcomeScreen();
+                    break;
+                case 0:
+                    Console.Clear();
+                    Console.WriteLine("EXIT");
+                    Environment.Exit(0);
+                    break;
                 default:
                   
-                    System.Console.Clear();
+                    Console.Clear();
                     PrintWelcomeScreen();
                     break;
             }
@@ -67,78 +79,76 @@ namespace ConsoleApp
 
   
 
-        public static void DisplayAllEvents()
+        public void DisplayAllEvents()
         {
             // Events
-            System.Console.ForegroundColor = ConsoleColor.Yellow;
-            System.Console.Clear();
-            System.Console.WriteLine("======================================================\n" +
-                                     "||                  WYBIERZ PODMENU                 ||\n" +
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Clear();
+            Console.WriteLine("======================================================\n" +
+                                     "||                  CHOOSE SUBMENU                  ||\n" +
                                      "||                                                  ||\n" +
                                      "|| a) All event list.                               ||\n" +
                                      "|| b) Event filter by date.                         ||\n" +
                                      "|| c) Event search.                                 ||\n" +
                                      "======================================================");
-            
-            var keyInfo = System.Console.ReadKey(true);
+                
+            keyInfo = Console.ReadKey(true);
             try
             {
-                Events wydarzenia = new Events(Convert.ToChar(keyInfo.KeyChar.ToString()));
+                Events events = new(Convert.ToChar(keyInfo.KeyChar.ToString()));
             }
             catch
             {
-                System.Console.Clear();
+                Console.Clear();
                 DisplayAllEvents();
             }
          
         }
 
-        public static void FavoritesEvents()
+        public void FavoritesEvents()
         {
             // Favorites
-                System.Console.ForegroundColor = ConsoleColor.Yellow;
-                System.Console.Clear();
-                System.Console.WriteLine("======================================================\n" +
-                                         "||                  WYBIERZ PODMENU                 ||\n" +
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Clear();
+                Console.WriteLine("======================================================\n" +
+                                         "||                  CHOOSE SUBMENU                  ||\n" +
                                          "||                                                  ||\n" +
-                                         "|| a) Add favorite event.                           ||\n" +
+                                         "|| a) Add favorite.                                 ||\n" +
                                          "|| b) Display favorite event.                       ||\n" +
-                                         "|| c) Search for your favorite event.               ||\n" +
-                                         "|| d) Remove favorite event.                        ||\n" +
-                                         "|| e) Select x to exit.                             ||\n" +
+                                         "|| c) Display next event.                           ||\n" +
                                          "======================================================");
-               var keyInfo = System.Console.ReadKey(true);
+                keyInfo = Console.ReadKey(true);
                 try
                 {
-                    Favorites ulubione = new Favorites(Convert.ToChar(keyInfo.KeyChar.ToString()));
+                    Favorites favorite = new Favorites(Convert.ToChar(keyInfo.KeyChar.ToString()));
                 }
                 catch
                 {
-                    System.Console.Clear();
+                    Console.Clear();
                     FavoritesEvents();
                 }
 
         }
-        public static void ConfigureEvent()
+        public void ConfigureEvent()
         {
             // Configuration
-            System.Console.ForegroundColor = ConsoleColor.Yellow;
-            System.Console.Clear();
-            System.Console.WriteLine("======================================================\n" +
-                                     "||                  WYBIERZ PODMENU                 ||\n" +
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Clear();
+            Console.WriteLine("======================================================\n" +
+                                     "||                   CHOOSE SUBMENU                 ||\n" +
                                      "||                                                  ||\n" +
                                      "|| a) Add or config change.                         ||\n" +
                                      "|| b) Filter setup.                                 ||\n" +
                                      "|| c) Date format.                                  ||\n" +
                                      "======================================================");
-            var keyInfo = System.Console.ReadKey(true);
+            keyInfo = Console.ReadKey(true);
             try
             {
-                Configuration konfiguracja = new Configuration(Convert.ToChar(keyInfo.KeyChar.ToString()));
+                Configuration configuration = new Configuration(Convert.ToChar(keyInfo.KeyChar.ToString()));
             }
             catch
             {
-                System.Console.Clear();
+                Console.Clear();
                 ConfigureEvent();
             }
 

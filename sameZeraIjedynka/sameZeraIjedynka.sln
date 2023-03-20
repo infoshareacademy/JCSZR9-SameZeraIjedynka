@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessCase", "BusinessCase\BusinessCase.csproj", "{FD1B5F60-A858-4C4E-BD3B-D93BA97D7FA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consoleApp", "consoleApp\consoleApp.csproj", "{BF606922-9370-4F88-9699-12F5261BE757}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "consoleApp\ConsoleApp.csproj", "{BF606922-9370-4F88-9699-12F5261BE757}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

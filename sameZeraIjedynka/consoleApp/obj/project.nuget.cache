@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "uvWEf3IrudvMK/HSg5bMzOunQCsKeLm1oX1I9YNEK2D3fZaNjIMDO8d9RE6Ag0LCKUB0b6a4E6NwqmCbcobp1A==",
+  "dgSpecHash": "OcTRZUnyp1hdrw3B9L7ywHXg2kmThiD5gi32aCmia38opdr24HROR1xLA7ts7+fA3bVc0EMz+H5WVTW9EahIpg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\barte\\Desktop\\projekt\\JCSZR9-SameZeraIjedynka\\sameZeraIjedynka\\consoleApp\\consoleApp.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\barte\\Desktop\\projekt\\JCSZR9-SameZeraIjedynka\\sameZeraIjedynka\\consoleApp\\ConsoleApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\barte\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
