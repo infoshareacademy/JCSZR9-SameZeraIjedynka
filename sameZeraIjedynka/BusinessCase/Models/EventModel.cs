@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 namespace BusinessCase.Model
 {
 
-    public enum TargetEnum
+    public enum Target
     {
         kids,
         adults,
         grandpas,
         all
     }
-    public class Event
+    public class EventModel
     {
-        public Event(int Id, string Name, DateTime Date, string Organizer, string Place, int Price, int Capacity, TargetEnum Target, bool IsFavourite)
+        public EventModel(int Id, string Name, DateTime Date, string Organizer, string Place, int Price, int Capacity, Target Target, bool IsFavourite)
         {
             this.Id = Id;
             this.Name = Name;
@@ -36,7 +36,7 @@ namespace BusinessCase.Model
         public string? Place { get; set; }
         public int Price { get; set; }
         public int Capacity { get; set; }
-        public TargetEnum Target { get; set; }
+        public Target Target { get; set; }
         public bool IsFavourite { get; set; }
     }
 }

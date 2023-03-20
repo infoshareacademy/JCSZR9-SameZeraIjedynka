@@ -55,7 +55,7 @@ namespace ConsoleApp
             var place = Console.ReadLine();
             int.TryParse(Console.ReadLine(), out int price);
             var capacity = int.Parse(Console.ReadLine());
-            Enum.TryParse(Console.ReadLine(), out TargetEnum target);
+            Enum.TryParse(Console.ReadLine(), out Target target);
             bool.TryParse(Console.ReadLine(), out bool isFavourite);
  
             var newEvent = new vFavorite(id, name, date, organizer, place, price, capacity, target, isFavourite);

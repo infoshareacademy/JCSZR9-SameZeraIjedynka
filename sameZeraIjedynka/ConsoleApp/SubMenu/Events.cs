@@ -42,7 +42,7 @@ namespace ConsoleApp
             }
         }
 
-        public static void DisplayEvents(List<Event> events)
+        public static void DisplayEvents(List<EventModel> events)
         {
             if (events.Count > 0)
                 foreach (var item in events)
@@ -68,7 +68,7 @@ namespace ConsoleApp
             Console.Clear();
             Console.WriteLine("--------- Events list ---------\n");
 
-            var events = EventController.GetEvents();
+            var events = EventManager.GetEvents();
             DisplayEvents(events);
 
             Console.Read();
@@ -91,7 +91,7 @@ namespace ConsoleApp
                 "MM/dd/yyyy", 
                 CultureInfo.CurrentUICulture);
 
-            var events = EventController.GetEvents().Where(e => 
+            var events = EventManager.GetEvents().Where(e => 
                 (e.Date >= startDate) && 
                 (e.Date <= endDate)).ToList();
             Console.Clear();
@@ -109,7 +109,7 @@ namespace ConsoleApp
             Console.WriteLine("Input pattern:");
             var searchPattern = Console.ReadLine();
 
-            var events = EventController.GetEvents().Where(e => 
+            var events = EventManager.GetEvents().Where(e => 
                 (e.Name.Contains(searchPattern)) ||
                 (e.Place.Contains(searchPattern)) ||
                 (e.Organizer.Contains(searchPattern))).ToList();

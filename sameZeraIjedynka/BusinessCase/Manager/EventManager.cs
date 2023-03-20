@@ -13,7 +13,7 @@ using CsvHelper.TypeConversion;
 
 namespace BusinessCase.Controllers
 {
-    public static class EventController
+    public static class EventManager
     {
         private static readonly string _path = GetParent(GetParent(GetParent(GetParent(CurrentDirectory)
                 .ToString()).ToString()).ToString()).ToString() + @"\BusinessCase\Storage\";
@@ -21,7 +21,7 @@ namespace BusinessCase.Controllers
 
         private static readonly string _fullPath = Path.Combine(_path, _filename);
 
-        public static List<Event> GetEvents()
+        public static List<EventModel> GetEvents()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
 
@@ -33,7 +33,7 @@ namespace BusinessCase.Controllers
             
             csv.Read();
             csv.ReadHeader();
-            var events = csv.GetRecords<Event>();
+            var events = csv.GetRecords<EventModel>();
             return events.ToList();
         }
     }
