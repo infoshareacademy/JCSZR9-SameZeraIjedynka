@@ -27,6 +27,11 @@ namespace ConsoleApp
                 case 'c':
                     Format();
                     break;
+                case '0':
+                    Console.Clear();
+                    Console.WriteLine("EXIT");
+                    Environment.Exit(0);
+                    break;
                 default:
                     Console.Clear();
                     
@@ -36,21 +41,21 @@ namespace ConsoleApp
 
         public void AddOrChange()
         {
-            System.Console.Clear();
-            System.Console.WriteLine("List of the events");
-            System.Console.Read();
+            Console.Clear();
+            Console.WriteLine("List of the events");
+            Console.Read();
         }
         public void Sort()
         {
-            System.Console.Clear();
-            System.Console.WriteLine("Event filter");
-            System.Console.Read();
+            Console.Clear();
+            Console.WriteLine("Event filter");
+            Console.Read();
         }
         public void Format()
         {
-            System.Console.Clear();
-            System.Console.WriteLine("Event search");
-            System.Console.Read();
+            Console.Clear();
+            Console.WriteLine("Event search");
+            Console.Read();
         }
 
     }
