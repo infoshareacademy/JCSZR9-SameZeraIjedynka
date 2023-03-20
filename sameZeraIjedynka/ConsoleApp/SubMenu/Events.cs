@@ -50,11 +50,7 @@ namespace ConsoleApp
                     if (item.IsFavourite)
                         Console.ForegroundColor = ConsoleColor.Green;
 
-                    Console.WriteLine($"#{item.Id} {item.Name} \n " +
-                        $"\t{item.Price}$ {item.Date} {item.Place}\n" +
-                        $"\tCapacity: {item.Capacity}\n" +
-                        $"\tOrganizer: {item.Organizer}\n" +
-                        $"\tTarget: {item.Target}");
+                    Console.WriteLine(item);
 
                     if (item.IsFavourite)
                         Console.ForegroundColor = ConsoleColor.Yellow;
