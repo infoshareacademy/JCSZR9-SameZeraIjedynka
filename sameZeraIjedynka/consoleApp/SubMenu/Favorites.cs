@@ -24,21 +24,28 @@ namespace ConsoleApp
                 switch (_selection)
                 {
                     case 'a':
-                        AddOrRemove();
+                        
                         break;
                     case 'b':
                         var fav = EventController.GetEvents().Where(f => f.IsFavourite == true).ToList();
                         foreach (var a in fav)
                         {
-                           // Console.WriteLine(a.Name);
                             Events.DisplayEvents(fav);
 
                             Console.Read();
                         }
-                        
                         break;
                     case 'c':
-                        ShowNextEvent();
+                        Console.WriteLine("Enter the search phrase");
+                        var searchEvent = Console.ReadLine();
+                        var matchingEvent = EventController.GetEvents().Where(c => c.Name.Contains(searchEvent));
+
+                        foreach (var searchEv in matchingEvent)
+                        {
+                            Events.DisplayEvents(searchEv);
+
+                            Console.Read();
+                        }
                         break;
                     case '0':
                         Console.Clear();
@@ -72,13 +79,7 @@ namespace ConsoleApp
             //var favoriteEvent = new vFavorite();
             //favoriteEvent.AddFavorite(newEvent);
         }
-        public void FavoriteDisplay()
-        {
-            //var favoriteEvent = new vFavorite();
-            Console.Clear();
-            Console.WriteLine("Display the event");
-            //favoriteEvent.DisplayAllFavoriteEvents();
-        }
+       
         public void ShowNextEvent()
         {
             Console.Clear();
