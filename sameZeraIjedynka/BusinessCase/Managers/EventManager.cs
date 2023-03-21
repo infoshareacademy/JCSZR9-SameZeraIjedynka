@@ -48,9 +48,9 @@ namespace BusinessCase.Controllers
             csv.ReadHeader();
             var events = ConfigurationHelper.SortEvents(
                             csv.GetRecords<EventModel>().Where(e =>
-                                (e.Name.Contains(pattern)) ||
-                                (e.Place.Contains(pattern)) ||
-                                (e.Organizer.Contains(pattern))));
+                                (e.Name.IndexOf(pattern, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                                (e.Place.IndexOf(pattern, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                                (e.Organizer.IndexOf(pattern, StringComparison.OrdinalIgnoreCase) >= 0)));
             return events.ToList();
         }
 
