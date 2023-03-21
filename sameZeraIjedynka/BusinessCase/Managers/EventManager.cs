@@ -21,18 +21,17 @@ namespace BusinessCase.Controllers
         private static readonly string _originPath = DirectoryHelper.StepThroughDirectories(CurrentDirectory);
         private static readonly string _filename = "EventsList.csv";
         private static readonly string _fullPath = Path.Combine(_originPath, _filename);
-        
+
+        private static readonly string _dateFormat = "MM/dd/yyyy";
+        private static readonly TypeConverterOptions _options = new TypeConverterOptions { Formats = new[] { _dateFormat } };
+
         // get all events list
         public static List<EventModel> GetEvents()
         { 
-            CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
-
             using var reader = new StreamReader(_fullPath);
-            using var csv = new CsvReader(reader, CultureInfo.CurrentUICulture);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
-/*        var options = new TypeConverterOptions { Formats = new[] { "dd/MM/yyyy" } };
-        csv.Context.TypeConverterOptionsCache.AddOptions<DateTime>(options);*/
-            
+            csv.Context.TypeConverterOptionsCache.AddOptions<DateTime>(_options);
             csv.Read();
             csv.ReadHeader();
             var events = ConfigurationHelper.SortEvents(csv.GetRecords<EventModel>());
@@ -42,13 +41,8 @@ namespace BusinessCase.Controllers
         // get events list matching pattern
         public static List<EventModel> GetEvents(string pattern)
         {
-            CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
-
             using var reader = new StreamReader(_fullPath);
-            using var csv = new CsvReader(reader, CultureInfo.CurrentUICulture);
-
-            /*        var options = new TypeConverterOptions { Formats = new[] { "dd/MM/yyyy" } };
-                    csv.Context.TypeConverterOptionsCache.AddOptions<DateTime>(options);*/
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
             csv.Read();
             csv.ReadHeader();
@@ -63,13 +57,8 @@ namespace BusinessCase.Controllers
         // get events list between dates
         public static List<EventModel> GetEvents(DateTime startDate, DateTime endDate)
         {
-            CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
-
             using var reader = new StreamReader(_fullPath);
-            using var csv = new CsvReader(reader, CultureInfo.CurrentUICulture);
-
-            /*        var options = new TypeConverterOptions { Formats = new[] { "dd/MM/yyyy" } };
-                    csv.Context.TypeConverterOptionsCache.AddOptions<DateTime>(options);*/
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
             csv.Read();
             csv.ReadHeader();

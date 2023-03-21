@@ -22,10 +22,8 @@ namespace BusinessCase.Managers
         // get current configuration
         public static List<ConfigurationModel> GetConfiguration()
         {
-            CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
-
             using var reader = new StreamReader(_fullPath);
-            using var csv = new CsvReader(reader, CultureInfo.CurrentUICulture);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
                 csv.Read();
                 csv.ReadHeader();
@@ -40,8 +38,7 @@ namespace BusinessCase.Managers
             ConfigurationModel configuration = new ConfigurationModel(orderBy, orderType);
             List<ConfigurationModel> configurationList = new List<ConfigurationModel>() { configuration };
 
-            CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
-            var csvConfig = new CsvConfiguration(CultureInfo.CurrentUICulture)
+            var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 HasHeaderRecord = true,
                 Delimiter = ",",
