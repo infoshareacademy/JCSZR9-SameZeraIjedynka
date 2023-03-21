@@ -26,15 +26,6 @@ namespace BusinessCase.Models
 
     public class ConfigurationModel
     {
-        public ConfigurationModel()
-        {
-        }
-
-        public ConfigurationModel(OrderBy orderBy)
-        {
-            this.orderBy = orderBy;
-        }
-
         public ConfigurationModel(OrderBy orderBy, OrderType orderType)
         {
             this.orderBy = orderBy;

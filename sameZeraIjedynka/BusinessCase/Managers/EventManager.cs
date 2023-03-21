@@ -22,6 +22,7 @@ namespace BusinessCase.Controllers
         private static readonly string _filename = "EventsList.csv";
         private static readonly string _fullPath = Path.Combine(_originPath, _filename);
         
+        // get all events list
         public static List<EventModel> GetEvents()
         { 
             CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
@@ -38,6 +39,7 @@ namespace BusinessCase.Controllers
             return events;
         }
 
+        // get events list matching pattern
         public static List<EventModel> GetEvents(string pattern)
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
@@ -58,6 +60,7 @@ namespace BusinessCase.Controllers
             return events.ToList();
         }
 
+        // get events list between dates
         public static List<EventModel> GetEvents(DateTime startDate, DateTime endDate)
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);

@@ -18,6 +18,8 @@ namespace BusinessCase.Managers
         private static readonly string _originPath = DirectoryHelper.StepThroughDirectories(CurrentDirectory);
         private static readonly string _filename = "Configuration.csv";
         private static readonly string _fullPath = Path.Combine(_originPath, _filename);
+
+        // get current configuration
         public static List<ConfigurationModel> GetConfiguration()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
@@ -25,15 +27,14 @@ namespace BusinessCase.Managers
             using var reader = new StreamReader(_fullPath);
             using var csv = new CsvReader(reader, CultureInfo.CurrentUICulture);
 
-            /*        var options = new TypeConverterOptions { Formats = new[] { "dd/MM/yyyy" } };
-                    csv.Context.TypeConverterOptionsCache.AddOptions<DateTime>(options);*/
+                csv.Read();
+                csv.ReadHeader();
+                var configuration = csv.GetRecords<ConfigurationModel>().ToList();
 
-            csv.Read();
-            csv.ReadHeader();
-            var configuration = csv.GetRecords<ConfigurationModel>().ToList();
             return configuration.ToList();
         }
 
+        // set new configuration
         public static void SetConfiguration(OrderBy orderBy, OrderType orderType)
         {
             ConfigurationModel configuration = new ConfigurationModel(orderBy, orderType);
@@ -47,15 +48,13 @@ namespace BusinessCase.Managers
                 Encoding = Encoding.UTF8
             };
 
-            using (var writer = new StreamWriter(_fullPath))
-            using (var csvWriter = new CsvWriter(writer, csvConfig))
-            {
+            using var writer = new StreamWriter(_fullPath);
+            using var csvWriter = new CsvWriter(writer, csvConfig);
+          
                 csvWriter.WriteHeader<ConfigurationModel>();
                 csvWriter.NextRecord();
                 csvWriter.WriteRecords(configurationList);
-            }
         }
-
 
     }
 }

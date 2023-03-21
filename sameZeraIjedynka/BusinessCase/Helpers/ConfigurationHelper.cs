@@ -39,7 +39,6 @@ namespace BusinessCase.Helpers
             else
                 sortedEvents = events.OrderBy(x => x.Id).ToList();
 
-
             return sortedEvents;
         }
     }

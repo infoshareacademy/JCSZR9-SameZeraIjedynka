@@ -40,7 +40,6 @@ namespace ConsoleApp
                 default:
                     break;
             }
-
         }
 
         public static void DisplayEvents(List<EventModel> events)

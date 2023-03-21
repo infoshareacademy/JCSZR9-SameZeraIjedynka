@@ -15,7 +15,7 @@ namespace BusinessCase.Helpers
         {
             for (int i = 0; i < _maxDepth; i++)
             {
-                dir = GetParent(dir).ToString();
+                dir = GetParent(dir)?.ToString() ?? String.Empty;
             }
             return dir + @"\BusinessCase\Storage\";
         }
