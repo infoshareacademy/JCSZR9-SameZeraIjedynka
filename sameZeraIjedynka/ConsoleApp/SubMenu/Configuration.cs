@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace ConsoleApp
             switch (_selection)
             {
                 case 'a':
-                    AddOrChange();
+                    ShowConfiguration();
                     break;
                 case 'b':
                     Sort();
@@ -44,46 +45,91 @@ namespace ConsoleApp
         public static void DisplayConfiguration()
         {
             var configuration = ConfigurationManager.GetConfiguration();
-            foreach (var item in configuration)
-            {
                 Console.ForegroundColor = ConsoleColor.Blue;
 
                 Console.WriteLine("\nCurrent configuration");
-                Console.WriteLine("------------------------------");
-                Console.WriteLine(item);
-                Console.WriteLine("------------------------------\n");
+                Console.WriteLine("-----------------------------------------------------");
+                Console.WriteLine(configuration.FirstOrDefault()?.ToString() ?? string.Empty);
+                Console.WriteLine("-----------------------------------------------------");
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
-            }
         }
 
-        public void AddOrChange()
+        public void ShowConfiguration()
         {
             Console.Clear();
-            Console.WriteLine("List of the events");
+            DisplayConfiguration();
             Console.ReadKey(true);
         }
+
         public void Sort()
         {
+            // default
+            OrderBy orderBy = OrderBy.Id;
+            OrderType orderType = OrderType.Ascending;
+
             Console.Clear();
             Console.WriteLine("--------- Sorting setup ---------");
             DisplayConfiguration();
 
-            Console.WriteLine("Input category to order by ( Id / Name / Date / Price ):");
-            Enum.TryParse(Console.ReadLine(), out OrderBy orderBy);
+            Console.WriteLine("\nInput category to order by: " +
+                "\n 0. Id " +
+                "\n 1. Name " +
+                "\n 2. Date " +
+                "\n 3. Price");
+            if (int.TryParse(Console.ReadLine(), out int orderByNum))
+                if (Enum.IsDefined(typeof(OrderBy), orderByNum))
+                   orderBy = (OrderBy)orderByNum;
+                else
+                    Console.WriteLine($"Input not found -> setting to {OrderBy.Id}");
+            else
+                Console.WriteLine($"Input not found -> setting to {OrderBy.Id}");
 
-            Console.WriteLine("Input order type ( Ascending / Descending )");
-            Enum.TryParse(Console.ReadLine(), out OrderType orderType);
+            Console.WriteLine("\nInput order type: " +
+                "\n 0. Ascending" +
+                "\n 1. Descending");
+            if (int.TryParse(Console.ReadLine(), out int orderTypeNum))
+                if (Enum.IsDefined(typeof(OrderType), orderTypeNum))
+                    orderType = (OrderType)orderTypeNum;
+                else
+                    Console.WriteLine($"Input not found -> setting to {OrderType.Ascending}");
+            else
+                Console.WriteLine($"Input not found -> setting to {OrderType.Ascending}");
 
-            ConfigurationManager.SetConfiguration(orderBy, orderType);
+            var currentDateFormat = (ConfigurationManager.GetConfiguration().FirstOrDefault())?.dateFormat ?? "m";
+
+            ConfigurationManager.SetConfiguration(orderBy, orderType, currentDateFormat);
 
             DisplayConfiguration();
             Console.ReadKey(true);
         }
+
         public void Format()
         {
+            string[] formats = { "d", "g", "r", "m" };
+
             Console.Clear();
-            Console.WriteLine("Event search");
+            Console.WriteLine("--------- Datetime format setup ---------");
+            DisplayConfiguration();
+
+            var currentOrderBy = (ConfigurationManager.GetConfiguration().FirstOrDefault())?.orderBy ?? OrderBy.Id;
+
+            var currentOrderType = (ConfigurationManager.GetConfiguration().FirstOrDefault())?.orderType ?? OrderType.Ascending;
+
+            Console.WriteLine("\nInput desired date format: ");
+            foreach (var format in formats)
+                Console.WriteLine($" {format}. {DateTime.Now.ToString(format)}");
+
+            string dateFormat = Console.ReadLine() ?? "m";
+            if (!formats.Contains(dateFormat))
+            {
+                Console.WriteLine("Input not found -> setting to 'm'");
+                dateFormat = "m";
+            }
+
+            ConfigurationManager.SetConfiguration(currentOrderBy, currentOrderType, dateFormat);
+
+            DisplayConfiguration();
             Console.ReadKey(true);
         }
 

@@ -26,19 +26,22 @@ namespace BusinessCase.Models
 
     public class ConfigurationModel
     {
-        public ConfigurationModel(OrderBy orderBy, OrderType orderType)
+        public ConfigurationModel(OrderBy orderBy, OrderType orderType, string dateFormat)
         {
             this.orderBy = orderBy;
             this.orderType = orderType;
+            this.dateFormat = dateFormat;
         }
 
         public OrderBy orderBy { get; set; }
         public OrderType orderType { get; set; }
+        public string dateFormat { get; set; }
 
         public override string ToString()
         {
-            return $"\tOrderBy: {orderBy}\n" +
-                   $"\tSort: {orderType}";
+            return $"\tOrderBy:\t\t {this.orderBy}\n" +
+                   $"\tSort:\t\t\t {this.orderType}\n" +
+                   $"\tDatetime format:\t '{this.dateFormat}' - {DateTime.Now.ToString(this.dateFormat)}";
         }
     }
 

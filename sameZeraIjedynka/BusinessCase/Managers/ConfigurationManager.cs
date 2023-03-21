@@ -33,9 +33,9 @@ namespace BusinessCase.Managers
         }
 
         // set new configuration
-        public static void SetConfiguration(OrderBy orderBy, OrderType orderType)
+        public static void SetConfiguration(OrderBy orderBy, OrderType orderType, string dateFormat)
         {
-            ConfigurationModel configuration = new ConfigurationModel(orderBy, orderType);
+            ConfigurationModel configuration = new ConfigurationModel(orderBy, orderType, dateFormat);
             List<ConfigurationModel> configurationList = new List<ConfigurationModel>() { configuration };
 
             var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)

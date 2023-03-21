@@ -41,5 +41,15 @@ namespace BusinessCase.Helpers
 
             return sortedEvents;
         }
+
+        public static string GetDateFormat()
+        {
+            List<ConfigurationModel> currentConfiguration = ConfigurationManager.GetConfiguration();
+
+            var dateFormat = (currentConfiguration.FirstOrDefault())?.dateFormat ?? "dd/MM/yyyy";
+
+            return dateFormat;
+        }
+
     }
 }

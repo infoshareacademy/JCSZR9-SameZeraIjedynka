@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessCase.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,7 +44,7 @@ namespace BusinessCase.Model
         public override string ToString()
         {
             return $"#{Id} {Name} \n " +
-                        $"\t{Price}$ {Date} {Place}\n" +
+                        $"\t{Price}$ {Date.ToString(ConfigurationHelper.GetDateFormat())} {Place}\n" +
                         $"\tCapacity: {Capacity}\n" +
                         $"\tOrganizer: {Organizer}\n" +
                         $"\tTarget: {Target}";

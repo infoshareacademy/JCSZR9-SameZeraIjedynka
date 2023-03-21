@@ -138,7 +138,7 @@ namespace ConsoleApp
             Console.WriteLine("======================================================\n" +
                                      "||                   CHOOSE SUBMENU                 ||\n" +
                                      "||                                                  ||\n" +
-                                     "|| a) Add or config change.                         ||\n" +
+                                     "|| a) Show configuration.                           ||\n" +
                                      "|| b) Configure sorting.                            ||\n" +
                                      "|| c) Date format.                                  ||\n" +
                                      "======================================================");
