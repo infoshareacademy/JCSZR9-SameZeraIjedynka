@@ -62,7 +62,9 @@ namespace ConsoleApp
 
             //var favoriteEvent = new vFavorite();
             //favoriteEvent.AddFavorite(newEvent);
-            Console.WriteLine("Press any key to return.");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n Press any key to return.");
             Console.ReadKey(true);
             Console.Clear();
         }
@@ -71,7 +73,9 @@ namespace ConsoleApp
             //var favoriteEvent = new vFavorite();
             Console.Clear();
             Console.WriteLine("Display the event");
-            Console.WriteLine("Press any key to return.");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n Press any key to return.");
             Console.ReadKey(true);
             Console.Clear();
             //favoriteEvent.DisplayAllFavoriteEvents();
@@ -80,7 +84,9 @@ namespace ConsoleApp
         {
             Console.Clear();
             Console.WriteLine("Display next event");
-            Console.WriteLine("Press any key to return.");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n Press any key to return.");
             Console.ReadKey(true);
             Console.Clear();
         }

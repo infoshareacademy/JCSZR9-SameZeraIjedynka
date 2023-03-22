@@ -60,7 +60,9 @@ namespace ConsoleApp
         {
             Console.Clear();
             DisplayConfiguration();
-            Console.WriteLine("Press any key to return.");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n Press any key to return.");
             Console.ReadKey(true);
             Console.Clear();
         }
@@ -104,7 +106,9 @@ namespace ConsoleApp
             ConfigurationManager.SetConfiguration(orderBy, orderType, currentDateFormat);
 
             DisplayConfiguration();
-            Console.WriteLine("Press any key to return.");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n Press any key to return.");
             Console.ReadKey(true);
             Console.Clear();
         }
@@ -135,7 +139,9 @@ namespace ConsoleApp
             ConfigurationManager.SetConfiguration(currentOrderBy, currentOrderType, dateFormat);
 
             DisplayConfiguration();
-            Console.WriteLine("Press any key to return.");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n Press any key to return.");
             Console.ReadKey(true);
             Console.Clear();
         }

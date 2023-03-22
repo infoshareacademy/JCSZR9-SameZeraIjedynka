@@ -62,12 +62,13 @@ namespace ConsoleApp
         private static void EventList()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("--------- Events list ---------\n");
 
             var events = EventManager.GetEvents();
             DisplayEvents(events);
-
-            Console.WriteLine("Press any key to return.");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n Press any key to return.");
             Console.ReadKey(true);
             Console.Clear();
         }
@@ -75,6 +76,7 @@ namespace ConsoleApp
         private static void DateFilter()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("--------- Filter by date ---------\n");
 
             CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
@@ -93,7 +95,8 @@ namespace ConsoleApp
             Console.WriteLine();
             DisplayEvents(events);
 
-            Console.WriteLine("Press any key to return.");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n Press any key to return.");
             Console.ReadKey(true);
             Console.Clear();
         }
@@ -101,6 +104,7 @@ namespace ConsoleApp
         private static void EventFinder()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("--------- Event search ---------\n");
 
             Console.WriteLine("Input pattern:");
@@ -110,7 +114,8 @@ namespace ConsoleApp
             Console.WriteLine();
             DisplayEvents(events);
 
-            Console.WriteLine("Press any key to return.");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n Press any key to return.");
             Console.ReadKey(true);
             Console.Clear();
         }
