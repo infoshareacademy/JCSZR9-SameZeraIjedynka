@@ -15,13 +15,13 @@ namespace ConsoleApp
     
     public class Events
     {
-        private char _selection { get; set; }
+        private char Selection { get; set; }
 
         public Events(char Selection)
         {
-            _selection = Selection;
+            this.Selection = Selection;
 
-            switch (_selection)
+            switch (this.Selection)
             {
                 case 'a':
                     EventList();
@@ -42,7 +42,7 @@ namespace ConsoleApp
             }
         }
 
-        public static void DisplayEvents(List<Event> events)
+        public static void DisplayEvents(List<EventModel> events)
         {
             if (events.Count > 0)
                 foreach (var item in events)
@@ -50,33 +50,33 @@ namespace ConsoleApp
                     if (item.IsFavourite)
                         Console.ForegroundColor = ConsoleColor.Green;
 
-                    Console.WriteLine($"#{item.Id} {item.Name} \n " +
-                        $"\t{item.Price}$ {item.Date} {item.Place}\n" +
-                        $"\tCapacity: {item.Capacity}\n" +
-                        $"\tOrganizer: {item.Organizer}\n" +
-                        $"\tTarget: {item.Target}");
+                    Console.WriteLine(item);
 
                     if (item.IsFavourite)
-                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.ForegroundColor = ConsoleColor.Gray;
                 }
             else
                 Console.WriteLine("No events found");
         }
 
-        private void EventList()
+        private static void EventList()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("--------- Events list ---------\n");
 
-            var events = EventController.GetEvents();
+            var events = EventManager.GetEvents();
             DisplayEvents(events);
-
-            Console.Read();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n Press any key to return.");
+            Console.ReadKey(true);
+            Console.Clear();
         }
 
-        private void DateFilter()
+        private static void DateFilter()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("--------- Filter by date ---------\n");
 
             CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
@@ -91,33 +91,33 @@ namespace ConsoleApp
                 "MM/dd/yyyy", 
                 CultureInfo.CurrentUICulture);
 
-            var events = EventController.GetEvents().Where(e => 
-                (e.Date >= startDate) && 
-                (e.Date <= endDate)).ToList();
-            Console.Clear();
-            Console.WriteLine("--------- Filter by date ---------\n");
+            var events = EventManager.GetEvents(startDate, endDate);
+            Console.WriteLine();
             DisplayEvents(events);
 
-            Console.Read();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n Press any key to return.");
+            Console.ReadKey(true);
+            Console.Clear();
         }
 
-        private void EventFinder()
+        private static void EventFinder()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("--------- Event search ---------\n");
 
             Console.WriteLine("Input pattern:");
-            var searchPattern = Console.ReadLine();
+            var searchPattern = Console.ReadLine() ?? string.Empty;
 
-            var events = EventController.GetEvents().Where(e => 
-                (e.Name.Contains(searchPattern)) ||
-                (e.Place.Contains(searchPattern)) ||
-                (e.Organizer.Contains(searchPattern))).ToList();
-            Console.Clear();
-            Console.WriteLine("--------- Event search ---------\n");
+            var events = EventManager.GetEvents(searchPattern);
+            Console.WriteLine();
             DisplayEvents(events);
 
-            Console.Read();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n Press any key to return.");
+            Console.ReadKey(true);
+            Console.Clear();
         }
 
     }

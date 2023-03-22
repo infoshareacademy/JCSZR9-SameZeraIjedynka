@@ -70,7 +70,6 @@ namespace ConsoleApp
                     Environment.Exit(0);
                     break;
                 default:
-                  
                     Console.Clear();
                     PrintWelcomeScreen();
                     break;
@@ -87,9 +86,11 @@ namespace ConsoleApp
             Console.WriteLine("======================================================\n" +
                                      "||                  CHOOSE SUBMENU                  ||\n" +
                                      "||                                                  ||\n" +
-                                     "|| a) All event list.                               ||\n" +
-                                     "|| b) Event filter by date.                         ||\n" +
-                                     "|| c) Event search.                                 ||\n" +
+                                     "||       ( press key a, b, c, or 0 for EXIT )       ||\n" +
+                                     "||                                                  ||\n" +
+                                     "|| a) All events list.                              ||\n" +
+                                     "|| b) Filter events by date.                        ||\n" +
+                                     "|| c) Search events.                                ||\n" +
                                      "======================================================");
                 
             keyInfo = Console.ReadKey(true);
@@ -113,10 +114,9 @@ namespace ConsoleApp
                 Console.WriteLine("======================================================\n" +
                                          "||                  CHOOSE SUBMENU                  ||\n" +
                                          "||                                                  ||\n" +
-                                         "|| a) Add favorite event.                           ||\n" +
+                                         "|| a) Add or remove favorite.                       ||\n" +
                                          "|| b) Display favorite event.                       ||\n" +
-                                         "|| c) Search for your favorite event.               ||\n" +
-                                         "|| d) Remove favorite event.                        ||\n" +
+                                         "|| c) Search favorite event.                        ||\n" +
                                          "======================================================");
                 keyInfo = Console.ReadKey(true);
                 try
@@ -138,8 +138,8 @@ namespace ConsoleApp
             Console.WriteLine("======================================================\n" +
                                      "||                   CHOOSE SUBMENU                 ||\n" +
                                      "||                                                  ||\n" +
-                                     "|| a) Add or config change.                         ||\n" +
-                                     "|| b) Filter setup.                                 ||\n" +
+                                     "|| a) Show configuration.                           ||\n" +
+                                     "|| b) Configure sorting.                            ||\n" +
                                      "|| c) Date format.                                  ||\n" +
                                      "======================================================");
             keyInfo = Console.ReadKey(true);

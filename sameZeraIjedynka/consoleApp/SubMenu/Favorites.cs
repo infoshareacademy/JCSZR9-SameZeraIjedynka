@@ -12,22 +12,54 @@ namespace ConsoleApp
 {
     public class Favorites
     {
-        private char _selection { get; set; }
+        private char Selection { get; set; }
 
 
 
         public Favorites(char Selection)
         {
-            _selection = Selection;
+            this.Selection = Selection;
            
             {
-                switch (_selection)
+                switch (this.Selection)
                 {
                     case 'a':
-                        
+                        Console.WriteLine("Enter the name of the event you want to add to your favourites:");
+                        string name = Console.ReadLine();
+
+                        var selectedEvent = EventManager.GetEvents().FirstOrDefault(e => e.Name.Contains(name));
+                        if (selectedEvent != null)
+                        {
+                            Console.WriteLine($"Do you want to add an event '{selectedEvent.Name}' to your favourites? (y/n)");
+                            ConsoleKeyInfo key = Console.ReadKey();
+                            if (key.KeyChar == 'y')
+                            {
+                                selectedEvent.IsFavourite = true;
+                                Console.WriteLine($"Event '{selectedEvent.Name}' added to your favourites.");
+                            }
+                            else if (key.KeyChar == 'n')
+                            {
+                                selectedEvent.IsFavourite = false;
+                                Console.WriteLine($"Event '{selectedEvent.Name}' deleted from your favourites.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Unavailable move.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Can't find event '{name}'.");
+                        }
+
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\n Press any key to return.");
+                        Console.ReadKey(true);
+                        Console.Clear();
+
                         break;
                     case 'b':
-                        var fav = EventController.GetEvents().Where(f => f.IsFavourite == true).ToList();
+                        var fav = EventManager.GetEvents().Where(f => f.IsFavourite == true).ToList();
                         foreach (var a in fav)
                         {
                             Events.DisplayEvents(fav);
@@ -37,15 +69,16 @@ namespace ConsoleApp
                         break;
                     case 'c':
                         Console.WriteLine("Enter the search phrase");
-                        var searchEvent = Console.ReadLine();
-                        var matchingEvent = EventController.GetEvents().Where(c => c.Name.Contains(searchEvent));
+                        var searchPharse = Console.ReadLine() ?? string.Empty;
 
-                        foreach (var searchEv in matchingEvent)
-                        {
-                            Events.DisplayEvents(searchEv);
+                        var search = EventManager.GetEvents(searchPharse);
+                        Console.WriteLine();
+                        Events.DisplayEvents(search);
 
-                            Console.Read();
-                        }
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\n Press any key to return.");
+                        Console.ReadKey(true);
+                        Console.Clear();
                         break;
                     case '0':
                         Console.Clear();
@@ -58,34 +91,54 @@ namespace ConsoleApp
             }
            
         }
-        public void AddOrRemove()
-        {
+        //public void AddOrRemove()
+        //{
             
-            Console.Clear();
-            Console.WriteLine("Add or remove");
-            Console.WriteLine("Enter event details: title, date, organizer, type.");
-            var id = int.Parse(Console.ReadLine());
-            var name = Console.ReadLine();
-            DateTime.TryParse(Console.ReadLine(), out var date);
-            var organizer = Console.ReadLine();
-            var place = Console.ReadLine();
-            int.TryParse(Console.ReadLine(), out int price);
-            var capacity = int.Parse(Console.ReadLine());
-            Enum.TryParse(Console.ReadLine(), out TargetEnum target);
-            bool.TryParse(Console.ReadLine(), out bool isFavourite);
+        //    Console.Clear();
+        //    Console.WriteLine("Add or remove");
+        //    Console.WriteLine("Enter event details: title, date, organizer, type.");
+        //    var id = int.Parse(Console.ReadLine());
+        //    var name = Console.ReadLine();
+        //    DateTime.TryParse(Console.ReadLine(), out var date);
+        //    var organizer = Console.ReadLine();
+        //    var place = Console.ReadLine();
+        //    int.TryParse(Console.ReadLine(), out int price);
+        //    var capacity = int.Parse(Console.ReadLine());
+        //    Enum.TryParse(Console.ReadLine(), out Target target);
+        //    bool.TryParse(Console.ReadLine(), out bool isFavourite);
  
-            var newEvent = new vFavorite(id, name, date, organizer, place, price, capacity, target, isFavourite);
+        //    var newEvent = new vFavorite(id, name, date, organizer, place, price, capacity, target, isFavourite);
 
-            //var favoriteEvent = new vFavorite();
-            //favoriteEvent.AddFavorite(newEvent);
-        }
-       
-        public void ShowNextEvent()
-        {
-            Console.Clear();
-            Console.WriteLine("Display next event");
-            Console.Read();
-        }
+        //    //var favoriteEvent = new vFavorite();
+        //    //favoriteEvent.AddFavorite(newEvent);
+
+        //    Console.ForegroundColor = ConsoleColor.Yellow;
+        //    Console.WriteLine("\n Press any key to return.");
+        //    Console.ReadKey(true);
+        //    Console.Clear();
+        //}
+        //public void FavoriteDisplay()
+        //{
+        //    //var favoriteEvent = new vFavorite();
+        //    Console.Clear();
+        //    Console.WriteLine("Display the event");
+
+        //    Console.ForegroundColor = ConsoleColor.Yellow;
+        //    Console.WriteLine("\n Press any key to return.");
+        //    Console.ReadKey(true);
+        //    Console.Clear();
+        //    //favoriteEvent.DisplayAllFavoriteEvents();
+        //}
+        //public void ShowNextEvent()
+        //{
+        //    Console.Clear();
+        //    Console.WriteLine("Display next event");
+
+        //    Console.ForegroundColor = ConsoleColor.Yellow;
+        //    Console.WriteLine("\n Press any key to return.");
+        //    Console.ReadKey(true);
+        //    Console.Clear();
+        //}
 
     }
 }
