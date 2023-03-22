@@ -53,7 +53,7 @@ namespace ConsoleApp
                     Console.WriteLine(item);
 
                     if (item.IsFavourite)
-                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.ForegroundColor = ConsoleColor.Green;
                 }
             else
                 Console.WriteLine("No events found");
@@ -67,6 +67,7 @@ namespace ConsoleApp
             var events = EventManager.GetEvents();
             DisplayEvents(events);
 
+            Console.WriteLine("Press any key to return.");
             Console.ReadKey(true);
             Console.Clear();
         }
@@ -92,7 +93,9 @@ namespace ConsoleApp
             Console.WriteLine();
             DisplayEvents(events);
 
+            Console.WriteLine("Press any key to return.");
             Console.ReadKey(true);
+            Console.Clear();
         }
 
         private static void EventFinder()
@@ -107,7 +110,9 @@ namespace ConsoleApp
             Console.WriteLine();
             DisplayEvents(events);
 
+            Console.WriteLine("Press any key to return.");
             Console.ReadKey(true);
+            Console.Clear();
         }
 
     }

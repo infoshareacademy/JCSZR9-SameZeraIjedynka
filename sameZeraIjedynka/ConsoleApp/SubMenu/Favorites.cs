@@ -62,19 +62,27 @@ namespace ConsoleApp
 
             //var favoriteEvent = new vFavorite();
             //favoriteEvent.AddFavorite(newEvent);
+            Console.WriteLine("Press any key to return.");
+            Console.ReadKey(true);
+            Console.Clear();
         }
         public void FavoriteDisplay()
         {
             //var favoriteEvent = new vFavorite();
             Console.Clear();
             Console.WriteLine("Display the event");
+            Console.WriteLine("Press any key to return.");
+            Console.ReadKey(true);
+            Console.Clear();
             //favoriteEvent.DisplayAllFavoriteEvents();
         }
         public void ShowNextEvent()
         {
             Console.Clear();
             Console.WriteLine("Display next event");
-            Console.Read();
+            Console.WriteLine("Press any key to return.");
+            Console.ReadKey(true);
+            Console.Clear();
         }
 
     }

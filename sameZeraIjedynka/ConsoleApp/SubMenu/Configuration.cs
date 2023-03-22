@@ -52,14 +52,17 @@ namespace ConsoleApp
                 Console.WriteLine(configuration.FirstOrDefault()?.ToString() ?? string.Empty);
                 Console.WriteLine("-----------------------------------------------------");
 
-                Console.ForegroundColor = ConsoleColor.Yellow;
+               
+          
         }
 
         public void ShowConfiguration()
         {
             Console.Clear();
             DisplayConfiguration();
+            Console.WriteLine("Press any key to return.");
             Console.ReadKey(true);
+            Console.Clear();
         }
 
         public void Sort()
@@ -101,7 +104,9 @@ namespace ConsoleApp
             ConfigurationManager.SetConfiguration(orderBy, orderType, currentDateFormat);
 
             DisplayConfiguration();
+            Console.WriteLine("Press any key to return.");
             Console.ReadKey(true);
+            Console.Clear();
         }
 
         public void Format()
@@ -130,7 +135,9 @@ namespace ConsoleApp
             ConfigurationManager.SetConfiguration(currentOrderBy, currentOrderType, dateFormat);
 
             DisplayConfiguration();
+            Console.WriteLine("Press any key to return.");
             Console.ReadKey(true);
+            Console.Clear();
         }
 
     }
