@@ -53,7 +53,7 @@ namespace ConsoleApp
                     Console.WriteLine(item);
 
                     if (item.IsFavourite)
-                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.ForegroundColor = ConsoleColor.Gray;
                 }
             else
                 Console.WriteLine("No events found");
@@ -62,7 +62,7 @@ namespace ConsoleApp
         private static void EventList()
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("--------- Events list ---------\n");
 
             var events = EventManager.GetEvents();
@@ -76,7 +76,7 @@ namespace ConsoleApp
         private static void DateFilter()
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("--------- Filter by date ---------\n");
 
             CultureInfo.CurrentUICulture = new CultureInfo("en-US", false);
@@ -104,7 +104,7 @@ namespace ConsoleApp
         private static void EventFinder()
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("--------- Event search ---------\n");
 
             Console.WriteLine("Input pattern:");
