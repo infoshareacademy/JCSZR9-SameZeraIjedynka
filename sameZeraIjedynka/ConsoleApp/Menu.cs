@@ -168,11 +168,15 @@ namespace ConsoleApp
         public void DataEntry()
         {
             DataEntry dataEntry = new DataEntry();
+            Console.Clear();
+            dataEntry.returnFunction();
         }
 
         public void DataAmendment()
         {
             DataAmendment dataAmendment = new DataAmendment();
+            Console.Clear();
+            dataAmendment.returnFunction();
         }
     }
 }

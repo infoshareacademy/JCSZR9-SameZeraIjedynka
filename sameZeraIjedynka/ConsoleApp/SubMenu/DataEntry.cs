@@ -8,5 +8,14 @@ namespace ConsoleApp.SubMenu
 {
     public class DataEntry
     {
+        
+
+        public void returnFunction()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n Press any key to return.");
+            Console.ReadKey(true);
+            Console.Clear();
+        }
     }
 }
