@@ -7,6 +7,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using BusinessCase.Controllers;
+using BusinessCase.Model;
 using ConsoleApp;
 using ConsoleApp.SubMenu;
 
@@ -107,7 +109,12 @@ namespace ConsoleApp
             keyInfo = Console.ReadKey(true);
             try
             {
-                Events events = new(Convert.ToChar(keyInfo.KeyChar.ToString()));
+               
+                List<EventModel> events = new List<EventModel>();
+                Events.DisplayEvents(events);
+                string selection = Console.ReadKey(true).KeyChar.ToString();  // get the user input as a char
+                Events.DisplayEvents(EventManager.GetEvents()); // call the static method to display the events
+                Events.DisplayEvents(EventManager.GetEvents(selection)); // call the static method to display filtered events based on the user's selection
             }
             catch
             {
@@ -175,6 +182,9 @@ namespace ConsoleApp
         public void DataAmendment()
         {
             DataAmendment dataAmendment = new DataAmendment();
+
+            dataAmendment.CollectData();
+            Console.ReadLine();
             Console.Clear();
             dataAmendment.returnFunction();
         }

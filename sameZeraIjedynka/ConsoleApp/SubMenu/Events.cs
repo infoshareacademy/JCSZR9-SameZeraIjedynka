@@ -13,15 +13,15 @@ using static System.IO.Directory;
 namespace ConsoleApp
 {
     
-    public class Events
+    public static class Events
     {
-        private char Selection { get; set; }
+        private static char Selection { get; set; }
 
-        public Events(char Selection)
+        public static void Main(char Selection)
         {
-            this.Selection = Selection;
+            Events.Selection = Selection;
 
-            switch (this.Selection)
+            switch (Events.Selection)
             {
                 case 'a':
                     EventList();
