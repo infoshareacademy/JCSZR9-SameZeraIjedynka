@@ -35,7 +35,7 @@ namespace ConsoleApp
                                      "||               2) Favorite.                ||\n" +
                                      "||             3) Configuration.             ||\n" +
                                      "||               4) Data entry.              ||\n" +
-                                     "||             3) Data amendment.            ||\n" +
+                                     "||             5) Data amendment.            ||\n" +
                                      "===============================================");
             keyInfo = Console.ReadKey(true);
             try
