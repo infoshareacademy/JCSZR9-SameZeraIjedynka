@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using ConsoleApp;
+using ConsoleApp.SubMenu;
 
 namespace ConsoleApp
 {
@@ -26,11 +27,13 @@ namespace ConsoleApp
             Console.WriteLine("===============================================\n" +
                                      "||           Select from Main Menu:          ||\n" +
                                      "||                                           ||\n" +
-                                     "||   ( press key 1, 2, 3, or 0 for EXIT )    ||\n" +
+                                     "||   ( press key 1, to 5, or 0 for EXIT )    ||\n" +
                                      "||                                           ||\n" +
                                      "||           1) Display all event.           ||\n" +
                                      "||               2) Favorite.                ||\n" +
                                      "||             3) Configuration.             ||\n" +
+                                     "||               4) Data entry.              ||\n" +
+                                     "||             3) Data amendment.            ||\n" +
                                      "===============================================");
             keyInfo = Console.ReadKey(true);
             try
@@ -62,6 +65,14 @@ namespace ConsoleApp
                     break;
                 case 3:
                     ConfigureEvent();
+                    PrintWelcomeScreen();
+                    break;
+                case 4:
+                    DataEntry();
+                    PrintWelcomeScreen();
+                    break;
+                case 5:
+                    DataAmendment();
                     PrintWelcomeScreen();
                     break;
                 case 0:
@@ -153,6 +164,15 @@ namespace ConsoleApp
                 ConfigureEvent();
             }
 
+        }
+        public void DataEntry()
+        {
+            DataEntry dataEntry = new DataEntry();
+        }
+
+        public void DataAmendment()
+        {
+            DataAmendment dataAmendment = new DataAmendment();
         }
     }
 }
