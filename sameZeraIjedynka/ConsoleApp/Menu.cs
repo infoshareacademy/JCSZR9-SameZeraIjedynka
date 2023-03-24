@@ -109,12 +109,8 @@ namespace ConsoleApp
             keyInfo = Console.ReadKey(true);
             try
             {
+               Events events = new(Convert.ToChar(keyInfo.KeyChar.ToString()));
                
-                List<EventModel> events = new List<EventModel>();
-                Events.DisplayEvents(events);
-                string selection = Console.ReadKey(true).KeyChar.ToString();  // get the user input as a char
-                Events.DisplayEvents(EventManager.GetEvents()); // call the static method to display the events
-                Events.DisplayEvents(EventManager.GetEvents(selection)); // call the static method to display filtered events based on the user's selection
             }
             catch
             {
