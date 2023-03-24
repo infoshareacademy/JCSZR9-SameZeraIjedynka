@@ -39,11 +39,33 @@ namespace ConsoleApp.SubMenu
             Console.WriteLine("\n Write name of the event you would like to edit:");
             string ?nameToBeAmend = Console.ReadLine();
             Console.WriteLine(events.FirstOrDefault(a=>a.Name.Contains(nameToBeAmend)));
-            Console.WriteLine("\n Which parametre you would like to change: name, capacity, organiser, or terget ?");
+            Console.WriteLine("\n Which parametre you would like to change: name, capacity, organiser ?");
             string ?parameter = Console.ReadLine();
             Console.WriteLine("\n What is new value of this parameter ?"); 
             string ?newValue = Console.ReadLine();
             Console.ReadLine();
+            int index = events.FindIndex(a => a.Name.Contains(nameToBeAmend));
+        
+            switch (parameter)
+            {
+                case "name":
+                    events[index].Name = newValue;
+                    Console.WriteLine(events.FirstOrDefault(a => a.Name.Contains(nameToBeAmend)));
+                    break;
+                case "capacity":
+                    events[index].Capacity = Convert.ToInt16(newValue);
+                    Console.WriteLine(events.FirstOrDefault(a => a.Name.Contains(nameToBeAmend)));
+
+                    break;
+                case "organiser":
+                    events[index].Organizer = newValue;
+                    Console.WriteLine(events.FirstOrDefault(a => a.Name.Contains(nameToBeAmend)));
+                    break;
+              
+                default:
+                    break;
+
+            }
         }
 
 
