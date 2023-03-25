@@ -180,8 +180,8 @@ namespace ConsoleApp
             DataAmendment dataAmendment = new DataAmendment();
 
             dataAmendment.CollectData();
-            Console.ReadLine();
-            Console.Clear();
+       
+          
             dataAmendment.returnFunction();
         }
     }
