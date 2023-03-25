@@ -72,7 +72,7 @@ namespace ConsoleApp.SubMenu
                     Console.WriteLine("\nYou enetred wrong parameter");
                     break;
 
-
+                  EventManager.WriteNewEvent(events);
                     
             }
         }

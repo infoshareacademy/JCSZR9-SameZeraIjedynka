@@ -30,13 +30,16 @@ namespace BusinessCase.Controllers
         { 
             using var reader = new StreamReader(_fullPath);
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-
+           
             csv.Context.TypeConverterOptionsCache.AddOptions<DateTime>(_options);
             csv.Read();
+            
             csv.ReadHeader();
             var events = ConfigurationHelper.SortEvents(csv.GetRecords<EventModel>());
-            return events;
+            return events; 
         }
+
+    
 
         // get events list matching pattern
         public static List<EventModel> GetEvents(string pattern)
@@ -69,5 +72,12 @@ namespace BusinessCase.Controllers
             return events.ToList();
         }
 
+        public static void WriteNewEvent(List<EventModel> events)
+        {
+            using var writer = new StreamWriter(_fullPath);
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.WriteRecords(events);
+        
+        }
     }
 }
