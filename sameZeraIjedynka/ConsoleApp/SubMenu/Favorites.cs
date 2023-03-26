@@ -58,9 +58,9 @@ namespace ConsoleApp
 
                         break;
                     case 'b':
-                        var fav = EventManager.GetEvents().Where(f => f.IsFavourite == true).ToList();
+                        var favouriteEvent = EventManager.GetEvents().Where(f => f.IsFavourite == true).ToList();
 
-                        Events.DisplayEvents(fav);
+                        Events.DisplayEvents(favouriteEvent);
 
 
                         Console.ForegroundColor = ConsoleColor.Yellow;
