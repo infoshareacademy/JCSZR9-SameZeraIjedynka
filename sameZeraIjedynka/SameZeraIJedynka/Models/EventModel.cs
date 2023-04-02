@@ -4,19 +4,6 @@ namespace SameZeraIJedynka.Models
 {
     public class EventModel
     {
-        public EventModel(int Id, string Name, DateTime Date, string Organizer, string Place, int Price, int Capacity, Target Target, bool IsFavourite)
-        {
-            this.Id = Id;
-            this.Name = Name;
-            this.Date = Date;
-            this.Organizer = Organizer;
-            this.Place = Place;
-            this.Price = Price;
-            this.Capacity = Capacity;
-            this.Target = Target;
-            this.IsFavourite = IsFavourite;
-        }
-
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
