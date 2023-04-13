@@ -55,11 +55,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\REPOSITORY\\PROJEKT\\JCSZR9-SameZeraIjedynka\\sameZeraIjedynka\\BusinessCase\\BusinessCase.csproj",
+      "projectUniqueName": "C:\\REPOSITORY\\PROJEKT\\Sprint_2_2023_04_12\\JCSZR9-SameZeraIjedynka\\SameZeraIJedynka\\BusinessCase\\BusinessCase.csproj",
       "projectName": "BusinessCase",
-      "projectPath": "C:\\REPOSITORY\\PROJEKT\\JCSZR9-SameZeraIjedynka\\sameZeraIjedynka\\BusinessCase\\BusinessCase.csproj",
+      "projectPath": "C:\\REPOSITORY\\PROJEKT\\Sprint_2_2023_04_12\\JCSZR9-SameZeraIjedynka\\SameZeraIJedynka\\BusinessCase\\BusinessCase.csproj",
       "packagesPath": "C:\\Users\\INFOSHARE\\.nuget\\packages\\",
-      "outputPath": "C:\\REPOSITORY\\PROJEKT\\JCSZR9-SameZeraIjedynka\\sameZeraIjedynka\\BusinessCase\\obj\\",
+      "outputPath": "C:\\REPOSITORY\\PROJEKT\\Sprint_2_2023_04_12\\JCSZR9-SameZeraIjedynka\\SameZeraIJedynka\\BusinessCase\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

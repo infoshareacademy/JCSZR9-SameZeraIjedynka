@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7TtF+mM/7+/+6ZKn5yic0k4fJ7oCq/CIZp+W5rsMn8ZzF+COkIM5uNQ7zQ7220S1Q2sCTWTN6blQaHL6bzcaig==",
+  "dgSpecHash": "BrjS6SFZNyCeziiAcpX+K8Nh3QQSSB4EIHYVSRUpQCdfB9dQKBuruR/Tls76WGb6YszJ802wE4tu4UEJKGm0BQ==",
   "success": true,
-  "projectFilePath": "C:\\REPOSITORY\\PROJEKT\\JCSZR9-SameZeraIjedynka\\sameZeraIjedynka\\BusinessCase\\BusinessCase.csproj",
+  "projectFilePath": "C:\\REPOSITORY\\PROJEKT\\Sprint_2_2023_04_12\\JCSZR9-SameZeraIjedynka\\SameZeraIJedynka\\BusinessCase\\BusinessCase.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\INFOSHARE\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512"
   ],
