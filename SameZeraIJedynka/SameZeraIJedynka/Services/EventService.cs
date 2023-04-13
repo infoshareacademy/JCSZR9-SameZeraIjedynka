@@ -1,5 +1,5 @@
 ﻿using SameZeraIJedynka.Models;
-using static SameZeraIJedynka.Models.EventModel;
+
 
 namespace SameZeraIJedynka.Services
 {
@@ -84,7 +84,7 @@ namespace SameZeraIJedynka.Services
         };
 
         // return all events
-        public List<EventModel> GetAll()
+        public List<EventModel> ABC()
         {
             return _events;
         }
