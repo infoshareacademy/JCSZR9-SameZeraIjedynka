@@ -12,9 +12,9 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            @*<th>
                 <label asp-for="First().Id"></label>
-            </th>
+            </th>*@
             <th>
                 <label asp-for="First().Name"></label>
             </th>
@@ -45,9 +45,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+          @*  <td>
                 @item.Id
-            </td>
+            </td>*@
             <td>
                 @item.Name
             </td>

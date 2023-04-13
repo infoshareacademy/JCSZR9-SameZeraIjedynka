@@ -16,7 +16,7 @@ namespace SameZeraIJedynka.Controllers
         // GET: UlubioneController
         public ActionResult Index()
         {
-            var model = _eventService.ABC();
+            var model = _eventService.isFavorite();
             return View(model);
         }
 
