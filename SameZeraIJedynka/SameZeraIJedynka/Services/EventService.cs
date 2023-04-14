@@ -89,6 +89,9 @@ namespace SameZeraIJedynka.Services
             return _events.Where(m => m.IsFavourite == true).ToList();
         }
 
-
+        public List<EventModel> allEvents()
+        {
+            return _events;
+        }
     }
 }

@@ -21,9 +21,10 @@ namespace SameZeraIJedynka.Controllers
         }
 
         // GET: UlubioneController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
-            return View();
+            var model = _eventService.allEvents();
+            return View(model);
         }
 
         // GET: UlubioneController/Create
