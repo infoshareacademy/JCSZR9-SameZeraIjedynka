@@ -1,31 +1,38 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SameZeraIJedynka.Models;
+using SameZeraIJedynka.Services;
 
 namespace SameZeraIJedynka.Controllers
 {
-    public class EventsController : Controller
+    public class UlubioneController : Controller
     {
-        // GET: EventsController
-        [Route("")]
+        private EventService _eventService;
+
+        public UlubioneController()
+        {
+            _eventService = new EventService();
+        }
+        // GET: UlubioneController
         public ActionResult Index()
         {
-            var model = 
-            return View();
+            var model = _eventService.ABC();
+            return View(model);
         }
 
-        // GET: EventsController/Details/5
+        // GET: UlubioneController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: EventsController/Create
+        // GET: UlubioneController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: EventsController/Create
+        // POST: UlubioneController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -40,13 +47,13 @@ namespace SameZeraIJedynka.Controllers
             }
         }
 
-        // GET: EventsController/Edit/5
+        // GET: UlubioneController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: EventsController/Edit/5
+        // POST: UlubioneController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -61,13 +68,13 @@ namespace SameZeraIJedynka.Controllers
             }
         }
 
-        // GET: EventsController/Delete/5
+        // GET: UlubioneController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: EventsController/Delete/5
+        // POST: UlubioneController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
