@@ -1,0 +1,91 @@
+﻿@model IEnumerable<SameZeraIJedynka.Models.Event>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="First().Id"></label>
+            </th>
+            <th>
+                <label asp-for="First().Name"></label>
+            </th>
+            <th>
+                <label asp-for="First().Date"></label>
+            </th>
+            <th>
+                <label asp-for="First().Organizer"></label>
+            </th>
+            <th>
+                <label asp-for="First().Place"></label>
+            </th>
+            <th>
+                <label asp-for="First().Price"></label>
+            </th>
+            <th>
+                <label asp-for="First().Capacity"></label>
+            </th>
+            <th>
+                <label asp-for="First().Target"></label>
+            </th>
+            <th>
+                <label asp-for="First().IsFavourite"></label>
+            </th>
+            <th></th>
+        </tr>
+         <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+            <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+        </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Organizer)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Place)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Capacity)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Target)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.IsFavourite)
+                </td>
+                <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+            }
+    </tbody>
+    </thead>
+@*    <tbody>
+        @foreach (var item in Model)
+        {
+            <partial name="_MeetingRow" , model="item" />
+
+        }
+    </tbody>*@
+</table>
