@@ -1,39 +1,39 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SameZeraIJedynka.Models;
 using SameZeraIJedynka.Services;
 
 namespace SameZeraIJedynka.Controllers
 {
-    public class UlubioneController : Controller
+    public class FavoriteController : Controller
     {
         private EventService _eventService;
 
-        public UlubioneController()
+        public FavoriteController()
         {
             _eventService = new EventService();
         }
-        // GET: UlubioneController
+        // GET: FavoriteController
+
         public ActionResult Index()
         {
             var model = _eventService.isFavorite();
             return View(model);
         }
 
-        // GET: UlubioneController/Details/5
-        public ActionResult Details()
+        // GET: FavoriteController/Details/5
+        public ActionResult Details(int id)
         {
             var model = _eventService.allEvents();
             return View(model);
         }
 
-        // GET: UlubioneController/Create
+        // GET: FavoriteController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: UlubioneController/Create
+        // POST: FavoriteController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -48,13 +48,13 @@ namespace SameZeraIJedynka.Controllers
             }
         }
 
-        // GET: UlubioneController/Edit/5
+        // GET: FavoriteController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: UlubioneController/Edit/5
+        // POST: FavoriteController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -69,13 +69,13 @@ namespace SameZeraIJedynka.Controllers
             }
         }
 
-        // GET: UlubioneController/Delete/5
+        // GET: FavoriteController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: UlubioneController/Delete/5
+        // POST: FavoriteController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

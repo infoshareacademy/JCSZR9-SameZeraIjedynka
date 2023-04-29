@@ -1,4 +1,5 @@
-﻿using static SameZeraIJedynka.Helpers.Enums.TargetEnum;
+﻿using System.ComponentModel.DataAnnotations;
+using static SameZeraIJedynka.Helpers.Enums.TargetEnum;
 
 namespace SameZeraIJedynka.Models
 {
@@ -6,7 +7,7 @@ namespace SameZeraIJedynka.Models
     {
         public int? Id { get; set; }
         public string? Name { get; set; }
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
         public string? Organizer { get; set; }
         public string? Place { get; set; }
         public int? Price { get; set; }
