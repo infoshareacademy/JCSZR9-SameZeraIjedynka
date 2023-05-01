@@ -1,0 +1,43 @@
+﻿@model IEnumerable<StudentModel>
+
+@{
+    ViewData["Title"] = "Index";
+
+
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Edit">Edit</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="First().StudentId"></label>
+            </th>
+            <th>
+                <label asp-for="First().StudentName"></label>
+            </th>
+          
+         </tr>
+    </thead>
+<tbody>
+
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @item.StudentId
+                </td>
+                <td>
+                    @item.StudentName
+                </td>
+              
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+

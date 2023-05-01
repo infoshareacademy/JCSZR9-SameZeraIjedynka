@@ -1,0 +1,92 @@
+﻿@model IEnumerable<EventModel>
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+<p>
+    <a asp-action="Index">Ulubione</a>
+</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <label asp-for="First().Name"></label>
+                </th>
+                <th>
+                    <label asp-for="First().Date"></label>
+                </th>
+                <th>
+                    <label asp-for="First().Organizer"></label>
+                </th>
+                <th>
+                    <label asp-for="First().Place"></label>
+                </th>
+                <th>
+                    <label asp-for="First().Price"></label>
+                </th>
+                <th>
+                    <label asp-for="First().Capacity"></label>
+                </th>
+                <th>
+                    <label asp-for="First().Target"></label>
+                </th>
+                <th>
+                    <label asp-for="First().IsFavourite"></label>
+                </th>
+                </dl>
+
+<tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Date
+            </td>
+            <td>
+                @item.Organizer
+            </td>
+            <td>
+                @item.Place
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>
+                @item.Capacity
+            </td>
+            <td>
+                @item.Target
+            </td>
+            <td>
+                            @item.IsFavourite
+                            @*@Html.CheckBox("IsFavourite",  @item.IsFavourite)*@
+
+                           
+
+
+
+
+                   @* <input id="IsFavourite" name="IsFavourite" type="checkbox" value="@item.IsFavourite" />*@
+@*
+                    <input asp-for="First().IsFavourite">*@
+                            @*@Html.CheckBox("IsFavourite")*@
+                            @*@Html.CheckBox("IsFavourite", new { @class = "form-control" })*@
+
+                
+
+
+            </td>
+            <td>
+                
+
+            </td>
+        </tr>
+    }
+</tbody>
+</table>

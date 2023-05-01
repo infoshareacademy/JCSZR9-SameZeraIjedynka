@@ -93,5 +93,18 @@ namespace SameZeraIJedynka.Services
         {
             return _events;
         }
+
+        public List<EventModel> GetById(int id)
+        {
+            return _events.Where(m => m.Id==id).ToList();
+        }
+
+
+        public void Update(EventModel model)
+        {
+            var _event = GetById(model.Id);
+            
+        }
+   
     }
 }

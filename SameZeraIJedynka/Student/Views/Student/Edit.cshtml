@@ -1,0 +1,44 @@
+﻿@model IEnumerable<StudentModel>
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Index">Edit</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="First().StudentId"></label>
+            </th>
+            <th>
+                <label asp-for="First().StudentName"></label>
+            </th>
+            <th>
+                checkbox
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.StudentId
+                </td>
+                <td>
+                    @item.StudentName
+                </td>
+                <td>
+                    <input type="checkbox" asp-for="@item.isActive" checked="checked" />
+                
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

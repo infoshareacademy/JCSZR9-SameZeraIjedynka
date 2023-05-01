@@ -1,40 +1,43 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SameZeraIJedynka.Models;
-using SameZeraIJedynka.Services;
+using Student.Models;
+using Student.Service;
 
-namespace SameZeraIJedynka.Controllers
+namespace Student.Controllers
 {
-    public class FavoriteController : Controller
+    public class StudentController : Controller
     {
-        private EventService _eventService;
 
-        public FavoriteController()
+        private StudentService _studentService;
+
+        public StudentController()
         {
-            _eventService = new EventService();
+            _studentService = new StudentService();
         }
-        // GET: FavoriteController
 
+
+
+        // GET: StudentController
         public ActionResult Index()
         {
-            var model = _eventService.isFavorite();
+            var model = _studentService.GetById(1);
             return View(model);
         }
 
-        // GET: FavoriteController/Details/5
-        public ActionResult Details(int id)
+        // GET: StudentController/Details/5
+        public ActionResult Details()
         {
-            var model = _eventService.allEvents();
-            return View(model);
+            
+            return View();
         }
 
-        // GET: FavoriteController/Create
+        // GET: StudentController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: FavoriteController/Create
+        // POST: StudentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -49,21 +52,21 @@ namespace SameZeraIJedynka.Controllers
             }
         }
 
-        // GET: FavoriteController/Edit/5
+        // GET: StudentController/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = _eventService.GetById(id);
+            var model = _studentService.GetAll();
             return View(model);
         }
 
-        // POST: FavoriteController/Edit/5
+        // POST: StudentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, EventModel model)
+        public ActionResult Edit(int id, StudentModel model)
         {
             try
             {
-                _eventService.Update(model);
+                _studentService.Update(model);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -72,13 +75,13 @@ namespace SameZeraIJedynka.Controllers
             }
         }
 
-        // GET: FavoriteController/Delete/5
+        // GET: StudentController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: FavoriteController/Delete/5
+        // POST: StudentController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
