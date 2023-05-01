@@ -36,9 +36,13 @@
                 </td>
                 <td>
                     <input type="checkbox" asp-for="@item.isActive" checked="checked" />
-                
+                    <span asp-validation-for="@item.isActive" class="text-danger"></span>
                 </td>
+                
             </tr>
-        }
+           
+        } <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
     </tbody>
 </table>
