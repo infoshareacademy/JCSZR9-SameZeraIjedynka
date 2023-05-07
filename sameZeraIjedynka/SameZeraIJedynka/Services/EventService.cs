@@ -107,5 +107,28 @@ namespace SameZeraIJedynka.Services
             return _idCounter;
         }
 
+        // return all events
+        public List<EventModel> isFavorite()
+        {
+            return _events.Where(m => m.IsFavourite == true).ToList();
+        }
+
+        public List<EventModel> allEvents()
+        {
+            return _events;
+        }
+
+        public EventModel GetById(int id)
+        {
+            return _events.FirstOrDefault(m => m.Id == id);
+        }
+
+
+        public void Update(EventModel model, int id)
+        {
+            var events = GetById(id);
+            events.IsFavourite = model.IsFavourite;
+
+        }
     }
 }
