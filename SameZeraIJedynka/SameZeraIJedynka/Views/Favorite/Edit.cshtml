@@ -35,8 +35,8 @@
                 <th>
                     <label asp-for="First().IsFavourite"></label>
                 </th>
-                </dl>
-
+            </tr>
+    </thead>
 <tbody>
     @foreach (var item in Model)
     {
@@ -64,21 +64,7 @@
                 @item.Target
             </td>
             <td>
-                            @item.IsFavourite
-                            @*@Html.CheckBox("IsFavourite",  @item.IsFavourite)*@
-
-                           
-
-
-
-
-                   @* <input id="IsFavourite" name="IsFavourite" type="checkbox" value="@item.IsFavourite" />*@
-@*
-                    <input asp-for="First().IsFavourite">*@
-                            @*@Html.CheckBox("IsFavourite")*@
-                            @*@Html.CheckBox("IsFavourite", new { @class = "form-control" })*@
-
-                
+                 
 
 
             </td>

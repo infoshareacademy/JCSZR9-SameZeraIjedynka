@@ -19,25 +19,11 @@
             <label asp-for="First().Date"></label>
         </th>
         <th>
-            <label asp-for="First().Organizer"></label>
-        </th>
-        <th>
-            <label asp-for="First().Place"></label>
-        </th>
-        <th>
-            <label asp-for="First().Price"></label>
-        </th>
-        <th>
-            <label asp-for="First().Capacity"></label>
-        </th>
-        <th>
-            <label asp-for="First().Target"></label>
-        </th>
-        <th>
             <label asp-for="First().IsFavourite"></label>
         </th>
-    </dl>
-</div>
+        </tr>
+    </thead>
+
 <tbody>
     @foreach (var item in Model)
     {
@@ -50,28 +36,15 @@
                 @item.Date
             </td>
             <td>
-                @item.Organizer
-            </td>
-            <td>
-                @item.Place
-            </td>
-            <td>
-                @item.Price
-            </td>
-            <td>
-                @item.Capacity
-            </td>
-            <td>
-                @item.Target
-            </td>
-            <td>
                 @item.IsFavourite
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Details" /> @Html.DisplayNameFor(model => model.IsFavourite)
+                        </label>
+                    </div>
             </td>
             <td>
-                <a asp-action="Details" asp-route-data="@item.Id">Details</a>
                 <a asp-action="Edit" asp-route-data="@item.Id">Edit</a>
-                <a asp-action="Delete" asp-route-data="@item.Id">Delete</a>
-
             </td>
         </tr>
     }

@@ -37,7 +37,7 @@ namespace Test_2.Services
                   isActive= true
             }
         };  
-        // return all events
+        // return all student
         public List<Model> isFavorite()
         {
             //return _students.Where(m => m.isActive == true).Where(n=>n.StudentId==1).ToList();
@@ -58,10 +58,8 @@ namespace Test_2.Services
 
         public void Update(Model model,int id)
         {
-            var events = GetById(model.StudentId);
-            events.StudentName = model.StudentName;
-            events.StudentId = model.StudentId;
-            events.isActive =! model.isActive;
+            var student = GetById(id);
+            student.isActive =! model.isActive;
         }
 
     }

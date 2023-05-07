@@ -94,15 +94,16 @@ namespace SameZeraIJedynka.Services
             return _events;
         }
 
-        public List<EventModel> GetById(int id)
+        public EventModel GetById(int id)
         {
-            return _events.Where(m => m.Id==id).ToList();
+            return _events.FirstOrDefault(m => m.Id == id);
         }
 
 
-        public void Update(EventModel model)
+        public void Update(EventModel model,int id)
         {
-            var _event = GetById(model.Id);
+            var events = GetById(id);
+            events.IsFavourite= model.IsFavourite;
             
         }
    

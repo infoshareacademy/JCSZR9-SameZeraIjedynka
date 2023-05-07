@@ -53,7 +53,7 @@ namespace SameZeraIJedynka.Controllers
         public ActionResult Edit(int id)
         {
             var model = _eventService.GetById(id);
-            return View(model);
+            return View();
         }
 
         // POST: FavoriteController/Edit/5
@@ -63,7 +63,7 @@ namespace SameZeraIJedynka.Controllers
         {
             try
             {
-                _eventService.Update(model);
+                _eventService.Update(model,id);
                 return RedirectToAction(nameof(Index));
             }
             catch
