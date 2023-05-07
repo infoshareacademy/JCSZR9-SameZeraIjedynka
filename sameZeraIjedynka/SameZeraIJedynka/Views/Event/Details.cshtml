@@ -1,0 +1,72 @@
+﻿@model SameZeraIJedynka.Models.EventModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>EventModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            <label asp-for="Id"></label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Id
+        </dd>
+        <dt class = "col-sm-2">
+            <label asp-for="Name"></label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Name
+        </dd>
+        <dt class = "col-sm-2">
+            <label asp-for="Date"></label>
+        </dt>
+        <dd class = "col-sm-10">
+            Model.Date
+        </dd>
+        <dt class = "col-sm-2">
+            <label asp-for="Organizer"></label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Organizer
+        </dd>
+        <dt class = "col-sm-2">
+            <label asp-for="Place"></label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Place
+        </dd>
+        <dt class = "col-sm-2">
+            <label asp-for="Price"></label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Price
+        </dd>
+        <dt class = "col-sm-2">
+            <label asp-for="Capacity"></label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Capacity
+        </dd>
+        <dt class = "col-sm-2">
+            <label asp-for="Target"></label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Target
+        </dd>
+        <dt class = "col-sm-2">
+            <label asp-for="IsFavourite"></label>
+        </dt>
+        <dd class = "col-sm-10">
+            model.IsFavourite
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

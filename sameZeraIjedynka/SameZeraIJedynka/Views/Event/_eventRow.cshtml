@@ -1,0 +1,35 @@
+﻿@using SameZeraIJedynka.Models
+@model SameZeraIJedynka.Models.EventModel
+
+<tr>
+    <td>
+        @Model.Name
+    </td>
+    <td>
+        @Model.Date
+    </td>
+    <td>
+        @Model.Organizer
+    </td>
+    <td>
+        @Model.Place
+    </td>
+    <td>
+        @Model.Price
+    </td>
+    <td>
+        @Model.Capacity
+    </td>
+    <td>
+        @Model.Target
+    </td>
+    <td>
+        @Model.IsFavourite
+    </td>
+
+    <td>
+        <a asp-action="Details" asp-route-id="@Model.Id">Details</a> |
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+    </td>
+</tr>

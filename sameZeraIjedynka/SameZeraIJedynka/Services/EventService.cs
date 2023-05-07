@@ -7,6 +7,7 @@ namespace SameZeraIJedynka.Services
     {
 
         // provisional list of events, delete after enabling database
+        private static int _idCounter;
         private static List<EventModel> _events = new List<EventModel>
         {
             new EventModel
@@ -89,6 +90,22 @@ namespace SameZeraIJedynka.Services
             return _events;
         }
 
+        public EventModel GetEventById(int id)
+        {
+            return _events.FirstOrDefault(e => e.Id == 1);
+        }
+        public void Create(EventModel eventModel)
+        {
+            eventModel.Id = GetNextId();
+            _events.Add(eventModel);
+        }
+
+        private int GetNextId()
+        {
+            _idCounter++;
+
+            return _idCounter;
+        }
 
     }
 }
