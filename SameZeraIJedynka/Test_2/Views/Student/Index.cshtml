@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Model>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Details">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="First().StudentId"></label>
+            </th>
+            <th>
+                <label asp-for="First().StudentName"></label>
+            </th>
+            <th>
+                <label asp-for="First().isActive"></label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @item.StudentId
+            </td>
+            <td>
+                    @item.StudentName
+            </td>
+            <td>
+                    @item.isActive
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

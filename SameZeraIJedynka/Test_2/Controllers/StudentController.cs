@@ -1,34 +1,28 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Student.Models;
-using Student.Service;
-using System.Text;
+using Test_2.Models;
+using Test_2.Services;
 
-namespace Student.Controllers
+namespace Test_2.Controllers
 {
     public class StudentController : Controller
     {
-
-        private StudentService _studentService;
+        private StudentServices _studentService;
 
         public StudentController()
         {
-            _studentService = new StudentService();
+            _studentService = new StudentServices();
         }
-
-
-
         // GET: StudentController
         public ActionResult Index()
         {
-            var model = _studentService.GetById(1);
+            var model = _studentService.isFavorite();
             return View(model);
         }
 
         // GET: StudentController/Details/5
-        public ActionResult Details()
+        public ActionResult Details(int id)
         {
-            
             return View();
         }
 
@@ -56,24 +50,19 @@ namespace Student.Controllers
         // GET: StudentController/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = _studentService.GetAll();
-            return View(model);
+            var model = _studentService.GetById(id);
+            return View();
         }
 
         // POST: StudentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, List<StudentModel> _students)
+        public ActionResult Edit(int id, Model model)
         {
             try
             {
-                StringBuilder sb = new StringBuilder();
-                foreach(var item in _studentService.GetAll())
-                {
-                    return View();
-                }
-
-                
+                _studentService.Update(model);
+                return RedirectToAction(nameof(Index));
             }
             catch
             {

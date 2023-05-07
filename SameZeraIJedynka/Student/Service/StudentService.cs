@@ -37,13 +37,10 @@ namespace Student.Service
 
         public void Update(StudentModel model)
         {
-            var student = GetById(model.StudentId).FirstOrDefault();
-            if (student != null)
-            {
-                student.StudentId = model.StudentId;
-                student.StudentName = model.StudentName;
-                student.isActive = model.isActive;
-            }
+            
+         
         }
+
+       
     }
 }
