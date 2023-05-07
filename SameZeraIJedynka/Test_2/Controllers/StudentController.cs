@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 using Test_2.Models;
 using Test_2.Services;
 
@@ -14,9 +15,9 @@ namespace Test_2.Controllers
             _studentService = new StudentServices();
         }
         // GET: StudentController
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            var model = _studentService.isFavorite();
+            var model = _studentService.isFavorite(id);
             return View(model);
         }
 
@@ -47,10 +48,17 @@ namespace Test_2.Controllers
             }
         }
 
+        public ActionResult AAA(int id, Model model)
+        {
+            _studentService.GetById(id);
+            _studentService.Update(model, id);
+            return View();
+        }
+
         // GET: StudentController/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = _studentService.GetById(id);
+            _studentService.GetById(id);
             return View();
         }
 

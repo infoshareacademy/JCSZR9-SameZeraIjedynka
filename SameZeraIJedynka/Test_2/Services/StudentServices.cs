@@ -38,11 +38,19 @@ namespace Test_2.Services
             }
         };  
         // return all student
-        public List<Model> isFavorite()
-        {
-            //return _students.Where(m => m.isActive == true).Where(n=>n.StudentId==1).ToList();
-            return _students.Where(m => m.isActive == true).ToList();
-        }
+      public List<Model> isFavorite(int id)
+{
+    var student = _students.SingleOrDefault(m => m.StudentId == id);
+
+    if (student != null)
+    {
+        student.isActive = !student.isActive;
+        //_context.SaveChanges();
+    }
+
+    return _students.ToList();
+}
+
 
         public List<Model> allEvents()
         {

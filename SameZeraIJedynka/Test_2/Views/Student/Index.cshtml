@@ -34,11 +34,10 @@
                     @item.StudentName
             </td>
             <td>
-                    @item.isActive
+                  
+                    @Html.ActionLink(@item.isActive.ToString(), "Index", new { id = item.StudentId })
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.StudentId  }) 
-            </td>
+      
         </tr>
 }
     </tbody>
