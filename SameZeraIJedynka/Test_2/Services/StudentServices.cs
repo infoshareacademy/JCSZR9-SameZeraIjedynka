@@ -52,6 +52,7 @@ namespace Test_2.Services
         public Model GetById(int id)
         {
             return _students.FirstOrDefault(m => m.StudentId == id);
+
         }
 
 
@@ -59,7 +60,7 @@ namespace Test_2.Services
         {
             var events = GetById(model.StudentId);
             events.StudentName = model.StudentName;
-            events.StudentId = id;
+            events.StudentId = model.StudentId;
             events.isActive =! model.isActive;
         }
 
