@@ -61,7 +61,7 @@ namespace Test_2.Controllers
         {
             try
             {
-                _studentService.Update(model);
+                _studentService.Update(model,id);
                 return RedirectToAction(nameof(Index));
             }
             catch

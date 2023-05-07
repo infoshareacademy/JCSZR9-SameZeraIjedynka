@@ -40,6 +40,7 @@ namespace Test_2.Services
         // return all events
         public List<Model> isFavorite()
         {
+            //return _students.Where(m => m.isActive == true).Where(n=>n.StudentId==1).ToList();
             return _students.Where(m => m.isActive == true).ToList();
         }
 
@@ -54,12 +55,12 @@ namespace Test_2.Services
         }
 
 
-        public void Update(Model model)
+        public void Update(Model model,int id)
         {
             var events = GetById(model.StudentId);
             events.StudentName = model.StudentName;
-            events.StudentId = model.StudentId;
-            events.isActive = model.isActive;
+            events.StudentId = id;
+            events.isActive =! model.isActive;
         }
 
     }
