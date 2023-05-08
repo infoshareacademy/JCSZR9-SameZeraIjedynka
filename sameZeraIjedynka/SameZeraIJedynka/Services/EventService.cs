@@ -1,4 +1,5 @@
 ﻿using SameZeraIJedynka.Models;
+using System.Reflection;
 
 
 namespace SameZeraIJedynka.Services
@@ -60,7 +61,7 @@ namespace SameZeraIJedynka.Services
             },
             new EventModel
             {
-                  Id = 4,
+                  Id = 5,
                   Name = "Event5",
                   Date = new DateTime(2023,08,12),
                   Organizer = "Organizer5",
@@ -72,7 +73,7 @@ namespace SameZeraIJedynka.Services
             },
             new EventModel
             {
-                  Id = 4,
+                  Id = 6,
                   Name = "Event6",
                   Date = new DateTime(2023,07,05),
                   Organizer = "Organizer4",
@@ -124,11 +125,16 @@ namespace SameZeraIJedynka.Services
         }
 
 
-        public void Update(EventModel model, int id)
+        public List<EventModel> ReverseIsFavorite(int id)
         {
-            var events = GetById(id);
-            events.IsFavourite = model.IsFavourite;
-
+            var events 
+                = _events.SingleOrDefault(m => m.Id == id);
+            if (events != null)
+            {
+                events.IsFavourite = !events.IsFavourite;
+                //_context.SaveChanges();
+            }
+            return _events.ToList();
         }
     }
 }

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<EventModel>
+
+@{
+    ViewData["Title"] = "FavoritesEdit";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Favorites">Ulubione</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="First().Id"></label>
+            </th>
+            <th>
+                <label asp-for="First().Name"></label>
+            </th>
+            <th>
+                <label asp-for="First().IsFavourite"></label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+
+                    @Html.ActionLink(@item.IsFavourite.ToString(), "FavoritesEdit", new { id = item.Id })
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+

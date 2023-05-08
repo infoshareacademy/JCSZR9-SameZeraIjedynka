@@ -16,82 +16,16 @@ namespace SameZeraIJedynka.Controllers
         }
         // GET: FavoriteController
 
-        public ActionResult Index()
+        public ActionResult Favorites()
         {
             var model = _eventService.isFavorite();
             return View(model);
         }
 
-        // GET: FavoriteController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult FavoritesEdit(int id)
         {
-            var model = _eventService.allEvents();
+            var model = _eventService.ReverseIsFavorite(id);
             return View(model);
-        }
-
-        // GET: FavoriteController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: FavoriteController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: FavoriteController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            var model = _eventService.GetById(id);
-            return View();
-        }
-
-        // POST: FavoriteController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, EventModel model)
-        {
-            try
-            {
-                _eventService.Update(model, id);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: FavoriteController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: FavoriteController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
