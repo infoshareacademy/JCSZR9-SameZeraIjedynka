@@ -14,14 +14,11 @@ namespace SameZeraIJedynka.Controllers
         {
             _eventService = new EventService();
         }
-        // GET: FavoriteController
-
         public ActionResult Favorites()
         {
             var model = _eventService.isFavorite();
             return View(model);
         }
-
         public ActionResult FavoritesEdit(int id)
         {
             var model = _eventService.ReverseIsFavorite(id);
