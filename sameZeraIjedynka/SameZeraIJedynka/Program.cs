@@ -1,3 +1,6 @@
+using SameZeraIjedynka.Database.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace SameZeraIJedynka
 {
     public class Program
@@ -8,6 +11,8 @@ namespace SameZeraIJedynka
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<DatabaseContext>(c => c.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseContextConnectionString")));
 
             var app = builder.Build();
 
