@@ -31,7 +31,7 @@ namespace SameZeraIJedynka.Controllers
         }
 
         // GET: EventController/Create
-       // [Route("create")]
+        [Route("create")]
         public ActionResult Create()
         {
             return View();
