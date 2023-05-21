@@ -34,6 +34,7 @@ namespace SameZeraIjedynka.Database.Context
                     new Event
                     {
                         EventId = 2,
+                        Name = "Event2",
                         Date = new DateTime(2024, 09, 22),
                         Organizer = "Organizer2",
                         Place = "Gdynia, Zielona 31",
@@ -105,7 +106,7 @@ namespace SameZeraIjedynka.Database.Context
                                 LastName="CCC",
                                 UserName="DDD",
                                 Email="BCD@CDE.com"
-                              //  UsersFavorites=
+                              //UsersFavorites=
                             },
                         new User
                             {
@@ -122,15 +123,15 @@ namespace SameZeraIjedynka.Database.Context
             modelBuilder.Entity<UserFavorite>().HasData(new UserFavorite[]
                         { new UserFavorite
                             {   EventId = 1,
-                                //Event ="Event1",
+                                
                                 UserId = 1,
-                                //User
+                               
                             },
                             new UserFavorite
                             {   EventId = 2,
-                                //Event ="Event1",
+                                
                                 UserId = 2,
-                                //User
+                               
                             }
 
               });
@@ -145,7 +146,7 @@ namespace SameZeraIjedynka.Database.Context
 
 
 
-public DbSet<Event> Events { get; set; }
+        public DbSet<Event> Events { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserFavorite> Favorites { get; set; }
     }

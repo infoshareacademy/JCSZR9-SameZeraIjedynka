@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SameZeraIjedynka.Database.Context;
 
@@ -11,9 +12,11 @@ using SameZeraIjedynka.Database.Context;
 namespace SameZeraIjedynka.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230521113845_AddSeed_")]
+    partial class AddSeed_
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -195,18 +198,6 @@ namespace SameZeraIjedynka.Database.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Favorites");
-
-                    b.HasData(
-                        new
-                        {
-                            EventId = 1,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            EventId = 2,
-                            UserId = 2
-                        });
                 });
 
             modelBuilder.Entity("SameZeraIjedynka.Database.Entities.UserFavorite", b =>
