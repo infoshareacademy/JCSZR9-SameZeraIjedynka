@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace SameZeraIjedynka.Database.Entities
 {
-    public class TargetEnum
-    {
-        public enum Target
+    
+        public enum TargetEnum
         {
             kids,
             adults,
             grandpas,
             all
         }
-    }
-}
+ }
+

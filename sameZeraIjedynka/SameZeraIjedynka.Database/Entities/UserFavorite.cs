@@ -10,10 +10,10 @@ namespace SameZeraIjedynka.Database.Entities
 {
     public class UserFavorite
     {
-        [ForeignKey("Event")]
+       // [ForeignKey("Event")]
         public int EventId { get; set; }
         public virtual Event Event { get; set; }
-        [ForeignKey("User")]
+       // [ForeignKey("User")]
         public int UserId { get; set; }
         public virtual User User { get; set; }
     }

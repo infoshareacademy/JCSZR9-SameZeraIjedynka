@@ -18,9 +18,9 @@ namespace SameZeraIjedynka.Database.Context
             modelBuilder.Entity<UserFavorite>().HasKey(x => new {x.EventId, x.UserId});
             base.OnModelCreating(modelBuilder);
         }
-        public DbSet<Entities.Event> Events { get; set; }
-        public DbSet<Entities.User> Users { get; set; }
-        public DbSet<Entities.UserFavorite> Favorites { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserFavorite> Favorites { get; set; }
     }
 
 }

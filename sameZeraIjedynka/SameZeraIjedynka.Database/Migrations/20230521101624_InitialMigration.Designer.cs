@@ -12,8 +12,8 @@ using SameZeraIjedynka.Database.Context;
 namespace SameZeraIjedynka.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230514112228_CreateDatabase")]
-    partial class CreateDatabase
+    [Migration("20230521101624_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

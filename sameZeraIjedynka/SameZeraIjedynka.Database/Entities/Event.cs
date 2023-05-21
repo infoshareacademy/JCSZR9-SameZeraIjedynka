@@ -17,7 +17,7 @@ namespace SameZeraIjedynka.Database.Entities
         public string Place { get; set; }
         public int Price { get; set; }
         public int Capacity { get; set; }
-        public Target Target { get; set; }
+        public TargetEnum Target { get; set; }
       //  public bool IsFavourite { get; set; }
     
     }
