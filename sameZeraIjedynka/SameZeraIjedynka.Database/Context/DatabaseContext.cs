@@ -121,15 +121,15 @@ namespace SameZeraIjedynka.Database.Context
             //Adding values to DB Users data
             modelBuilder.Entity<UserFavorite>().HasData(new UserFavorite[]
                         { new UserFavorite
-                            { EventId = 1,
+                            {   EventId = 1,
                                 //Event ="Event1",
                                 UserId = 1,
                                 //User
                             },
                             new UserFavorite
-                            { EventId = 1,
+                            {   EventId = 2,
                                 //Event ="Event1",
-                                UserId = 1,
+                                UserId = 2,
                                 //User
                             }
 
