@@ -19,6 +19,7 @@ namespace SameZeraIjedynka.Database.Entities
         public int Capacity { get; set; }
         public Target Target { get; set; }
       //  public bool IsFavourite { get; set; }
+      public virtual ICollection<User> Users { get; set; } = null!;
     
     }
 }

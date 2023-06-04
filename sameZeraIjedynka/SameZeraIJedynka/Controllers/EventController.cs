@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SameZeraIjedynka.Database.Entities;
 using SameZeraIJedynka.Models;
 using SameZeraIJedynka.Services;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace SameZeraIJedynka.Controllers
 {
@@ -14,6 +18,14 @@ namespace SameZeraIJedynka.Controllers
         {
             _eventService = new EventService();
         }
+
+        //private readonly Event _context;
+
+        //public EventController(Event context)
+        //{
+        //    _context = context;
+        //}
+
         // GET: EventController
         [Route("")]
         public ActionResult Index()

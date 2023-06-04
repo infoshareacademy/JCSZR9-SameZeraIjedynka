@@ -1,11 +1,11 @@
-﻿using static SameZeraIJedynka.Helpers.Enums.TargetEnum;
+﻿using System.ComponentModel;
+using static SameZeraIJedynka.Helpers.Enums.TargetEnum;
 
 namespace SameZeraIJedynka.Models
 {
     public class EventModel
     {
         public int? Id { get; set; }
-
         public string? Name { get; set; }
         public DateTime? Date { get; set; }
         public string? Organizer { get; set; }

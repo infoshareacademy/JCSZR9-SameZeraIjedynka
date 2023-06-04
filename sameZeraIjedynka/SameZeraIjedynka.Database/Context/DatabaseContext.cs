@@ -15,8 +15,127 @@ namespace SameZeraIjedynka.Database.Context
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserFavorite>().HasKey(x => new {x.EventId, x.UserId});
+            modelBuilder.Entity<UserFavorite>().HasKey(x => new { x.EventId, x.UserId });
             base.OnModelCreating(modelBuilder);
+
+            //Adding values to DB Events data
+            modelBuilder.Entity<Event>().HasData(new Event[]
+                {
+                new Event
+                { EventId = 1,
+                    Name = "Event1",
+                    Date = new DateTime(2023,10,12),
+                    Organizer = "Organizer1",
+                    Place = "Gdansk, Zielona 23",
+                    Price = 0,
+                    Capacity = 100,
+                    Target = TargetEnum.Target.adults
+                },
+                new Event
+                {
+                    EventId = 2,
+                    Name = "Event2",
+                    Date = new DateTime(2024, 09, 22),
+                    Organizer = "Organizer2",
+                    Place = "Gdynia, Zielona 31",
+                    Price = 10,
+                    Capacity = 1200,
+                    Target = TargetEnum.Target.all
+                },
+                new Event
+                {
+                    EventId = 3,
+                    Name = "Event3",
+                    Date = new DateTime(2023, 05, 22),
+                    Organizer = "Organizer3",
+                    Place = "Gdańsk, Czerwona 1",
+                    Price = 0,
+                    Capacity = 200,
+                    Target = TargetEnum.Target.all
+                },
+                new Event
+                {
+                    EventId = 4,
+                    Name = "Event4",
+                    Date = new DateTime(2023, 05, 05),
+                    Organizer = "Organizer4",
+                    Place = "Sopot, Zolta 5",
+                    Price = 0,
+                    Capacity = 40,
+                    Target = TargetEnum.Target.all
+                },
+                new Event
+                {
+                    EventId = 5,
+                    Name = "Event5",
+                    Date = new DateTime(2023, 08, 12),
+                    Organizer = "Organizer5",
+                    Place = "Gdansk, Czerwona 123",
+                    Price = 100,
+                    Capacity = 70,
+                    Target = TargetEnum.Target.grandpas
+                },
+                new Event
+                {
+                    EventId = 6,
+                    Name = "Event6",
+                    Date = new DateTime(2023, 07, 05),
+                    Organizer = "Organizer4",
+                    Place = "Gdansk, Niebieska 20",
+                    Price = 10,
+                    Capacity = 700,
+                    Target = TargetEnum.Target.adults
+                }
+            });
+
+            //Adding values to DB Users data
+            modelBuilder.Entity<User>().HasData(new User[]
+                {new User
+                {
+                    UserId=1,
+                    FirstName="AAA",
+                    LastName="BBB",
+                    UserName="CCC",
+                    Email="ABC@CDE.com"
+                    //  UsersFavorites=
+                },
+                new User
+                {
+                    UserId=2,
+                    FirstName="BBB",
+                    LastName="CCC",
+                    UserName="DDD",
+                    Email="BCD@CDE.com"
+                    //UsersFavorites=
+                },
+                new User
+                {
+                    UserId=3,
+                    FirstName="CCC",
+                    LastName="DDD",
+                    UserName="EEE",
+                    Email="BCD@CDE.com"
+                    //  UsersFavorites=
+                }
+            });
+
+            //Adding values to DB Users data
+            modelBuilder.Entity<UserFavorite>().HasData(new UserFavorite[]
+                { new UserFavorite
+                {   
+                    EventId = 1,
+
+                    UserId = 1
+
+                },
+                new UserFavorite
+                {   
+                    EventId = 2,
+
+                    UserId = 2,
+                }
+
+              });
         }
         public DbSet<Entities.Event> Events { get; set; }
         public DbSet<Entities.User> Users { get; set; }

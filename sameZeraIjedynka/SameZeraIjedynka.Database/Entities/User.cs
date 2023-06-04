@@ -13,6 +13,7 @@ namespace SameZeraIjedynka.Database.Entities
         public string LastName { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
-        public virtual ICollection<UserFavorite> UsersFavorites { get; set;}
+        public virtual ICollection<UserFavorite> UsersFavorites { get; set;} = new List<UserFavorite>();
+        public virtual ICollection<Event> UsersEvents { get; set; } = null!;
     }
 }
