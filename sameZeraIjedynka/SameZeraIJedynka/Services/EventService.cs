@@ -1,4 +1,7 @@
-﻿using SameZeraIJedynka.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SameZeraIjedynka.Database.Context;
+using SameZeraIjedynka.Database.Entities;
+using SameZeraIJedynka.Models;
 using System.Reflection;
 
 
@@ -6,7 +9,10 @@ namespace SameZeraIJedynka.Services
 {
     public class EventService
     {
-
+        public EventService(DatabaseContext _context)
+        {
+            context = _context;
+        }
         // provisional list of events, delete after enabling database
         private static int _idCounter;
         private static List<EventModel> _events = new List<EventModel>
@@ -21,7 +27,7 @@ namespace SameZeraIJedynka.Services
                   Price = 0,
                   Capacity = 100,
                   Target = Helpers.Enums.TargetEnum.Target.kids,
-                  IsFavourite = true
+                  
             },
             new EventModel
             {
@@ -33,7 +39,7 @@ namespace SameZeraIJedynka.Services
                   Price = 10,
                   Capacity = 1200,
                   Target = Helpers.Enums.TargetEnum.Target.all,
-                  IsFavourite = false
+                  
             },
             new EventModel
             {
@@ -45,7 +51,7 @@ namespace SameZeraIJedynka.Services
                   Price = 0,
                   Capacity = 200,
                   Target = Helpers.Enums.TargetEnum.Target.all,
-                  IsFavourite = false
+                  
             },
             new EventModel
             {
@@ -57,7 +63,7 @@ namespace SameZeraIJedynka.Services
                   Price = 0,
                   Capacity = 40,
                   Target = Helpers.Enums.TargetEnum.Target.all,
-                  IsFavourite = true
+                 
             },
             new EventModel
             {
@@ -69,7 +75,7 @@ namespace SameZeraIJedynka.Services
                   Price = 100,
                   Capacity = 70,
                   Target = Helpers.Enums.TargetEnum.Target.grandpas,
-                  IsFavourite = false
+                 
             },
             new EventModel
             {
@@ -81,9 +87,10 @@ namespace SameZeraIJedynka.Services
                   Price = 10,
                   Capacity = 700,
                   Target = Helpers.Enums.TargetEnum.Target.adults,
-                  IsFavourite = false
+                 
             }
         };
+        private readonly DatabaseContext context;
 
         // return all events
         public List<EventModel> ABC()
@@ -109,9 +116,20 @@ namespace SameZeraIJedynka.Services
         }
 
         // return all events
-        public List<EventModel> isFavorite()
+        public List<EventModel> GetUserFavorites(int id)
         {
-            return _events.Where(m => m.IsFavourite == true).ToList();
+            var user = context.Users.FirstOrDefault(m => m.UserId == id);
+            var userFavorites = user.UsersFavorites.ToList();
+            List<EventModel> events = new List<EventModel>();
+          
+            foreach(var item in userFavorites) //linq
+            {
+                var favoriteEvent = new EventModel() { Name = item.Event.Name };//dopisac pola
+               events.Add(favoriteEvent);
+            }
+
+            return events;
+              
         }
 
         public List<EventModel> allEvents()
@@ -119,20 +137,21 @@ namespace SameZeraIJedynka.Services
             return _events;
         }
 
-        public EventModel GetById(int id)
+        public Event GetById(int id)
         {
-            return _events.FirstOrDefault(m => m.Id == id);
+           
+            return context.Events.FirstOrDefault(m => m.EventId == id);
         }
 
 
         public List<EventModel> ReverseIsFavorite(int id)
         {
             var events 
-                = _events.SingleOrDefault(m => m.Id == id);
+                = context.Events.SingleOrDefault(m => m.EventId == id);
             if (events != null)
             {
-                events.IsFavourite = !events.IsFavourite;
-                //_context.SaveChanges();
+                //events.IsFavorite = !events.IsFavorite;
+                context.SaveChanges();
             }
             return _events.ToList();
         }

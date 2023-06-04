@@ -13,6 +13,6 @@ namespace SameZeraIJedynka.Models
         public int? Price { get; set; }
         public int? Capacity { get; set; }
         public Target? Target { get; set; }
-        public bool? IsFavourite { get; set; }
+
     }
 }

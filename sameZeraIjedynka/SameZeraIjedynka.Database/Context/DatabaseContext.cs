@@ -93,28 +93,22 @@ namespace SameZeraIjedynka.Database.Context
                         {new User
                             {
                                 UserId=1,
-                                FirstName="AAA",
-                                LastName="BBB",
-                                UserName="CCC",
-                                Email="ABC@CDE.com"
+                                Name="AAA",
+                                Password="BBB"
                               //  UsersFavorites=
                             },
                         new User
                             {
                                 UserId=2,
-                                FirstName="BBB",
-                                LastName="CCC",
-                                UserName="DDD",
-                                Email="BCD@CDE.com"
+                                Name="BBB",
+                                Password="CCC"
                               //UsersFavorites=
                             },
                         new User
                             {
                                 UserId=3,
-                                FirstName="CCC",
-                                LastName="DDD",
-                                UserName="EEE",
-                                Email="BCD@CDE.com"
+                                Name="CCC",
+                                Password="DDD"
                               //  UsersFavorites=
                             }
             });

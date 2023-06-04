@@ -18,9 +18,7 @@
             <th>
                 <label asp-for="First().Name"></label>
             </th>
-            <th>
-                <label asp-for="First().IsFavourite"></label>
-            </th>
+     
             <th></th>
         </tr>
     </thead>
@@ -36,7 +34,7 @@
                 </td>
                 <td>
 
-                    @Html.ActionLink(@item.IsFavourite.ToString(), "FavoritesEdit", new { id = item.Id })
+   @*                 @Html.ActionLink(@item.IsFavourite.ToString(), "FavoritesEdit", new { id = item.Id })*@
                 </td>
 
             </tr>
