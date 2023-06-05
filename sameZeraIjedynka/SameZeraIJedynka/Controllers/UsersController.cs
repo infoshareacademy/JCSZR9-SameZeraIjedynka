@@ -5,6 +5,7 @@ using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
 
 
+
 namespace SameZeraIJedynka.Controllers
 {
     public class UsersController : Controller
@@ -45,9 +46,9 @@ namespace SameZeraIJedynka.Controllers
         }
 
         [HttpGet]
-        public IActionResult View(int id)
+        public async Task<IActionResult> View(int id)
         {
-            var user = mvcDbContext.Users.FirstOrDefault(x => x.UserId == id);
+            var user = await mvcDbContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
       
             if (user != null)
             {
@@ -57,12 +58,26 @@ namespace SameZeraIJedynka.Controllers
                     Name = user.Name,
                     Password = user.Password
                 };
-                return  View(viewModel);
+                return  await Task.Run(() => View(viewModel));
             }
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> View(UpdateUserViewModel model)
+        {
+            var user = await mvcDbContext.Users.FindAsync(model.UserId);
+            if (user != null)
+            {
+                user.UserId = model.UserId;
+                user.Name = model.Name;
+                user.Password = model.Password;
 
+                await mvcDbContext.SaveChangesAsync();
+                return RedirectToAction("View");
+            }
+            return RedirectToAction("Add");
+        }
 
 
     }
