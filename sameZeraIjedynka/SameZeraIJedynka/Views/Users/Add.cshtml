@@ -1,0 +1,16 @@
+﻿@model SameZeraIJedynka.Models.AddUserModel
+
+<h1>Add Employee</h1>
+<form method="post" action="Add" class="mt-5">
+    <div class="mb-3">
+        <label for=" " class="form-label">Name</label>
+        <input type="text" class="form-control" asp-for="Name" />
+    </div>
+    <div class="mb-3">
+        <label for=" " class="form-label">Password</label>
+        <input type="text" class="form-control" asp-for="Password" />
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
