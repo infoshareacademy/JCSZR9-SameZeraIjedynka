@@ -76,9 +76,21 @@ namespace SameZeraIJedynka.Controllers
                 await mvcDbContext.SaveChangesAsync();
                 return RedirectToAction("View");
             }
-            return RedirectToAction("Indexd");
+            return RedirectToAction("Index");
         }
 
 
+        [HttpPost]
+        public async Task<IActionResult> Delete(UpdateUserViewModel model)
+        {
+            var user = await mvcDbContext.Users.FindAsync(model.Id);
+            if(user!= null)
+            {
+                mvcDbContext.Users.Remove(user);
+                await mvcDbContext.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
