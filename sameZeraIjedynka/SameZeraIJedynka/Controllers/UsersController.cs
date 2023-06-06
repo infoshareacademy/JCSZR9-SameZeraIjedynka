@@ -54,11 +54,11 @@ namespace SameZeraIJedynka.Controllers
             {
                 var viewModel = new UpdateUserViewModel()
                 {
-                    UserId = user.UserId,
+                    Id = user.UserId,
                     Name = user.Name,
                     Password = user.Password
                 };
-                return  await Task.Run(() => View(viewModel));
+                return  await Task.Run(() => View("View",viewModel));
             }
             return RedirectToAction("Index");
         }
@@ -66,17 +66,17 @@ namespace SameZeraIJedynka.Controllers
         [HttpPost]
         public async Task<IActionResult> View(UpdateUserViewModel model)
         {
-            var user = await mvcDbContext.Users.FindAsync(model.UserId);
+           var user = await mvcDbContext.Users.FindAsync(model.Id);
             if (user != null)
             {
-                user.UserId = model.UserId;
+                user.UserId = model.Id;
                 user.Name = model.Name;
                 user.Password = model.Password;
 
                 await mvcDbContext.SaveChangesAsync();
                 return RedirectToAction("View");
             }
-            return RedirectToAction("Add");
+            return RedirectToAction("Indexd");
         }
 
 
