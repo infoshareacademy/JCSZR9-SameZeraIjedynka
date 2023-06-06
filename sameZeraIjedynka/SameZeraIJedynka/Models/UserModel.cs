@@ -1,6 +1,6 @@
 ﻿namespace SameZeraIJedynka.Models
 {
-    public class AddUserModel
+    public class UserModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

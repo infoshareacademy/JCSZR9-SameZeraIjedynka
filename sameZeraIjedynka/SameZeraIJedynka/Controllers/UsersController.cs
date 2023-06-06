@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SameZeraIJedynka.Models;
 using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
-
-
+using SameZeraIJedynka.Models;
 
 namespace SameZeraIJedynka.Controllers
 {
@@ -25,7 +23,7 @@ namespace SameZeraIJedynka.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddUserModel addUserRequest)
+        public async Task<IActionResult> Add(UserModel addUserRequest)
         {
             var user = new User() //conversion between models
             {
@@ -52,7 +50,7 @@ namespace SameZeraIJedynka.Controllers
       
             if (user != null)
             {
-                var viewModel = new UpdateUserViewModel()
+                var viewModel = new UserModel()
                 {
                     Id = user.UserId,
                     Name = user.Name,
@@ -64,7 +62,7 @@ namespace SameZeraIJedynka.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> View(UpdateUserViewModel model)
+        public async Task<IActionResult> View(UserModel model)
         {
            var user = await mvcDbContext.Users.FindAsync(model.Id);
             if (user != null)
@@ -81,7 +79,7 @@ namespace SameZeraIJedynka.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Delete(UpdateUserViewModel model)
+        public async Task<IActionResult> Delete(UserModel model)
         {
             var user = await mvcDbContext.Users.FindAsync(model.Id);
             if(user!= null)
