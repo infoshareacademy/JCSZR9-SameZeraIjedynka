@@ -23,7 +23,7 @@ namespace SameZeraIJedynka.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(EventModel addEventRequest)
+        public async Task<IActionResult> Add(EventModel addEventRequest)
         {
             var newEvent = new Event()
             {
@@ -36,9 +36,9 @@ namespace SameZeraIJedynka.Controllers
                 Capacity = addEventRequest.Capacity,
                 Target = addEventRequest.Target
             };
-            mvcDbContext.Events.Add(newEvent);
-            mvcDbContext.SaveChanges();
-            return RedirectToAction("Add");
+            await mvcDbContext.Events.AddAsync(newEvent);
+            await mvcDbContext.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
 
