@@ -1,11 +1,9 @@
-﻿
-
-@model List<SameZeraIjedynka.Database.Entities.Event>
+﻿@model List<SameZeraIjedynka.Database.Entities.Event>
 
 @{
 }
 
-<h1>Users</h1>
+<h1>Events</h1>
 <table class="table">
     <thread>
         <tr>
@@ -21,18 +19,19 @@
         </tr>
     </thread>
     <tbody>
-        @foreach (var even in Model)
+        @foreach (var events in Model)
         {
             <tr>
-                <td>@even.EventId</td>
-                <td>@even.Name</td>
-                <td>@even.Date</td>
-                <td>@even.Organizer</td>
-                <td>@even.Place</td>
-                <td>@even.Price</td>
-                <td>@even.Capacity</td>
-                <td>@even.Target</td>
-                <td><a href="Events/View/@even.UserId">View</a></td>
+                <td>@events.EventId</td>
+                <td>@events.Name</td>
+                <td>@events.Date</td>
+                <td>@events.Organizer</td>
+                <td>@events.Place</td>
+                <td>@events.Price</td>
+                <td>@events.Capacity</td>
+                <td>@events.Target</td>
+
+                  <td><a href="Event/View/@events.EventId">View</a></td>
             </tr>
         }
     </tbody>

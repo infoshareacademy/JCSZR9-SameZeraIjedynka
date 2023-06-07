@@ -1,4 +1,4 @@
-﻿@model SameZeraIJedynka.Models.EventModel
+﻿@model EventModel
 @{
 
 }
@@ -6,7 +6,6 @@
 <h1>View</h1>
 
 <form method="post" action="View" class="mt-5">
-
     <div class="mb-3">
         <label for="" class="form-label">EventId</label>
         <input type="numer" class="form-control" asp-for="Id">
@@ -40,13 +39,12 @@
         <input type="text" class="form-control" asp-for="Target">
     </div>
 
- 
 
     <button type="submit" class="btn btn-primary">Submit</button>
 
     <button type="subbmit" class="btn btn-danger"
             asp-action="Delete"
-            asp-controller="Users">
+            asp-controller="Event">
         Delete
     </button>
 

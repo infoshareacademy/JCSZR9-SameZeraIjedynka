@@ -73,10 +73,44 @@ namespace SameZeraIJedynka.Controllers
             }
             return RedirectToAction("Index");
         }
-        
+
+
+        //[HttpPost]
+
+        //public async Task<IActionResult> View(EventModel model)
+        //{
+        //    var events = await mvcDbContext.Events.FindAsync(model.Id);
+        //    if (events != null)
+        //    {
+        //        events.EventId = model.Id;
+        //        events.Name = model.Name;
+        //        events.Date = model.Date;
+        //        events.Organizer = model.Organizer;
+        //        events.Place = model.Place;
+        //        events.Price = model.Price;
+        //        events.Capacity = model.Capacity;
+        //        events.Target = model.Target;
+
+        //        await mvcDbContext.SaveChangesAsync();
+        //        return RedirectToAction("View");
+        //    }
+        //    return RedirectToAction("View");
+        //}
 
 
 
+        [HttpPost]
+        public async Task<IActionResult> Delete(EventModel model)
+        {
+            var events = await mvcDbContext.Events.FindAsync(model.Id);
+            if (events != null)
+            {
+                mvcDbContext.Events.Remove(events);
+                await mvcDbContext.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
 
 
 
