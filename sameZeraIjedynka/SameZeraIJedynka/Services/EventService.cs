@@ -2,8 +2,9 @@
 using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
 using SameZeraIJedynka.Models;
+using SameZeraIJedynka.Helpers.Enums;
 using System.Reflection;
-
+using SameZeraIJedynka.Helpers.Enums;
 
 namespace SameZeraIJedynka.Services
 {
@@ -26,7 +27,7 @@ namespace SameZeraIJedynka.Services
                   Place = "Gdansk, Zielona 23",
                   Price = 0,
                   Capacity = 100,
-                  Target = Helpers.Enums.TargetEnum.Target.kids,
+                  Target = SameZeraIjedynka.Database.Entities.TargetEnum.kids,
                   
             },
             new EventModel
@@ -38,7 +39,7 @@ namespace SameZeraIJedynka.Services
                   Place = "Gdynia, Zielona 31",
                   Price = 10,
                   Capacity = 1200,
-                  Target = Helpers.Enums.TargetEnum.Target.all,
+                  Target = SameZeraIjedynka.Database.Entities.TargetEnum.all,
                   
             },
             new EventModel
@@ -50,7 +51,7 @@ namespace SameZeraIJedynka.Services
                   Place = "Gdańsk, Czerwona 1",
                   Price = 0,
                   Capacity = 200,
-                  Target = Helpers.Enums.TargetEnum.Target.all,
+                  Target =SameZeraIjedynka.Database.Entities.TargetEnum.all,
                   
             },
             new EventModel
@@ -62,7 +63,7 @@ namespace SameZeraIJedynka.Services
                   Place = "Sopot, Zolta 5",
                   Price = 0,
                   Capacity = 40,
-                  Target = Helpers.Enums.TargetEnum.Target.all,
+                  Target = SameZeraIjedynka.Database.Entities.TargetEnum.all,
                  
             },
             new EventModel
@@ -74,7 +75,7 @@ namespace SameZeraIJedynka.Services
                   Place = "Gdansk, Czerwona 123",
                   Price = 100,
                   Capacity = 70,
-                  Target = Helpers.Enums.TargetEnum.Target.grandpas,
+                  Target = SameZeraIjedynka.Database.Entities.TargetEnum.grandpas,
                  
             },
             new EventModel
@@ -86,7 +87,7 @@ namespace SameZeraIJedynka.Services
                   Place = "Gdansk, Niebieska 20",
                   Price = 10,
                   Capacity = 700,
-                  Target = Helpers.Enums.TargetEnum.Target.adults,
+                  Target = SameZeraIjedynka.Database.Entities.TargetEnum.adults,
                  
             }
         };

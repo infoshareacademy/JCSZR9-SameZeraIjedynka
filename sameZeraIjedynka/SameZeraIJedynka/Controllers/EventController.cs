@@ -1,112 +1,84 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.Models;
-using SameZeraIJedynka.Services;
-using System.Reflection;
 
 namespace SameZeraIJedynka.Controllers
 {
     public class EventController : Controller
     {
-        private readonly DatabaseContext _dbContext;
-    
+        private readonly DatabaseContext mvcDbContext;  // assign field to what is below
 
-        private readonly EventService _eventService;
-
-        public EventController(DatabaseContext dbContext)
+        public EventController(DatabaseContext mvcDbContext)  //constructor //in bracket injected service. Pres dot+CTRL to create an asign field
         {
-            _dbContext = dbContext;
-            _eventService = new EventService(_dbContext);
+            this.mvcDbContext = mvcDbContext;
         }
 
-        // GET: EventController
-        [Route("")]
-        public ActionResult Index()
-        {
-            var model = _eventService.ABC();
-            return View(model);
-        }
 
-        // GET: EventController/Details/5
-        //  [Route("details/{id:int}")]
-        public ActionResult Details(int id)
-        {
-            var model = _eventService.GetEventById(id);
-            return View(model);
-        }
-
-        // GET: EventController/Create
-        [Route("create")]
-        public ActionResult Create()
+        [HttpGet]
+        public IActionResult Add()
         {
             return View();
         }
 
-        // POST: EventController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("create")]
-        public ActionResult Create(EventModel model)
+        public IActionResult Add(EventModel addEventRequest)
         {
-            try
+            var newEvent = new Event()
             {
-                //if (!ModelState.IsValid)
-                //{
-                //    return View(model);
-                //}
-                _eventService.Create(model);
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-
+                EventId = addEventRequest.Id,
+                Name = addEventRequest.Name,
+                Date = addEventRequest.Date,
+                Organizer = addEventRequest.Organizer,
+                Place = addEventRequest.Place,
+                Price = addEventRequest.Price,
+                Capacity = addEventRequest.Capacity,
+                Target = addEventRequest.Target
+            };
+            mvcDbContext.Events.Add(newEvent);
+            mvcDbContext.SaveChanges();
+            return RedirectToAction("Add");
         }
 
-        // GET: EventController/Edit/5
-        public ActionResult Edit(int id)
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var events = await mvcDbContext.Events.ToListAsync();
+            return View(events);
         }
 
-        // POST: EventController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: EventController/Delete/5
-        public ActionResult Delete(int id)
+
+            [HttpGet]
+        public async Task<IActionResult> View(int id)
         {
-            return View();
+            var events = await mvcDbContext.Events.FirstOrDefaultAsync(x => x.EventId == id);
+            if(events != null)
+            {
+                var viewModel = new EventModel()
+                        
+                {
+                    Id = events.EventId,
+                    Name = events.Name,
+                    Date = events.Date,
+                    Organizer = events.Organizer,
+                    Place = events.Place,
+                    Price = events.Price,
+                    Capacity = events.Capacity,
+                    Target = events.Target,
+                };
+                return await Task.Run(() => View(viewModel));
+            }
+            return RedirectToAction("Index");
+        }
+        
+
+
+
+
+
+
     }
-
-    // POST: EventController/Delete/5
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Delete(int id, IFormCollection collection)
-    {
-        try
-        {
-            return RedirectToAction(nameof(Index));
-        }
-        catch
-        {
-            return View();
-        }
-    }
-}
 }

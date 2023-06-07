@@ -37,6 +37,7 @@ namespace SameZeraIJedynka.Controllers
         }
 
         [HttpGet]
+     
         public async Task<IActionResult> Index()
         {
             var users = await mvcDbContext.Users.ToListAsync();
@@ -44,6 +45,7 @@ namespace SameZeraIJedynka.Controllers
         }
 
         [HttpGet]
+      
         public async Task<IActionResult> View(int id)
         {
             var user = await mvcDbContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
@@ -62,6 +64,7 @@ namespace SameZeraIJedynka.Controllers
         }
 
         [HttpPost]
+   
         public async Task<IActionResult> View(UserModel model)
         {
            var user = await mvcDbContext.Users.FindAsync(model.Id);

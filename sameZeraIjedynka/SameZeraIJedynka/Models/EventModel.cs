@@ -1,4 +1,7 @@
-﻿using static SameZeraIJedynka.Helpers.Enums.TargetEnum;
+﻿using SameZeraIjedynka.Database.Entities;
+using SameZeraIJedynka.Helpers.Enums;
+using static SameZeraIjedynka.Database.Entities.TargetEnum;
+using TargetEnum = SameZeraIjedynka.Database.Entities.TargetEnum;
 
 namespace SameZeraIJedynka.Models
 {
@@ -12,7 +15,7 @@ namespace SameZeraIJedynka.Models
         public string? Place { get; set; }
         public int? Price { get; set; }
         public int? Capacity { get; set; }
-        public Target? Target { get; set; }
+        public TargetEnum Target { get; set; }
 
     }
 }
