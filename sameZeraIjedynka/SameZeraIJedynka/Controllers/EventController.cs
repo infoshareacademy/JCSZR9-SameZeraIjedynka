@@ -27,7 +27,7 @@ namespace SameZeraIJedynka.Controllers
         {
             var newEvent = new Event()
             {
-                EventId = addEventRequest.Id,
+                EventId = addEventRequest.EventId,
                 Name = addEventRequest.Name,
                 Date = addEventRequest.Date,
                 Organizer = addEventRequest.Organizer,
@@ -49,60 +49,53 @@ namespace SameZeraIJedynka.Controllers
             return View(events);
         }
 
-
-
-            [HttpGet]
+        [HttpGet]
         public async Task<IActionResult> View(int id)
         {
             var events = await mvcDbContext.Events.FirstOrDefaultAsync(x => x.EventId == id);
-            if(events != null)
+            if (events != null)
             {
                 var viewModel = new EventModel()
-                        
                 {
-                    Id = events.EventId,
+                    EventId = events.EventId,
                     Name = events.Name,
                     Date = events.Date,
                     Organizer = events.Organizer,
                     Place = events.Place,
                     Price = events.Price,
                     Capacity = events.Capacity,
-                    Target = events.Target,
+                    Target = events.Target
                 };
-                return await Task.Run(() => View(viewModel));
+                return await Task.Run(() => View("View", viewModel));
             }
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> View(EventModel model)
+        {
+            var events= await mvcDbContext.Events.FindAsync(model.EventId);
+            if (events != null)
+            {
+                events.EventId= model.EventId;
+                events.Name= model.Name;
+                events.Date = model.Date;
+                events.Organizer = model.Organizer;
+                events.Place = model.Place;
+                events.Price = model.Price;
+                events.Capacity = model.Capacity;
+                events.Target= model.Target;
 
-        //[HttpPost]
-
-        //public async Task<IActionResult> View(EventModel model)
-        //{
-        //    var events = await mvcDbContext.Events.FindAsync(model.Id);
-        //    if (events != null)
-        //    {
-        //        events.EventId = model.Id;
-        //        events.Name = model.Name;
-        //        events.Date = model.Date;
-        //        events.Organizer = model.Organizer;
-        //        events.Place = model.Place;
-        //        events.Price = model.Price;
-        //        events.Capacity = model.Capacity;
-        //        events.Target = model.Target;
-
-        //        await mvcDbContext.SaveChangesAsync();
-        //        return RedirectToAction("View");
-        //    }
-        //    return RedirectToAction("View");
-        //}
-
-
+                await mvcDbContext.SaveChangesAsync();
+                return RedirectToAction("View");
+            }
+            return RedirectToAction("Index");
+        }
 
         [HttpPost]
         public async Task<IActionResult> Delete(EventModel model)
         {
-            var events = await mvcDbContext.Events.FindAsync(model.Id);
+            var events = await mvcDbContext.Events.FindAsync(model.EventId);
             if (events != null)
             {
                 mvcDbContext.Events.Remove(events);
@@ -114,5 +107,30 @@ namespace SameZeraIJedynka.Controllers
 
 
 
+
+
+
     }
+           
+            
+        
+
+
+        
+
+
+
+
+
+
+
+   
+
+
+
+   
+
+
+
+    
 }

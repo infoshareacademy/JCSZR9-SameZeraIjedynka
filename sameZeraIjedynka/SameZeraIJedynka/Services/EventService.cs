@@ -20,7 +20,7 @@ namespace SameZeraIJedynka.Services
         {
             new EventModel
             {
-                  Id = 1,
+                  EventId = 1,
                   Name = "Event1",
                   Date = new DateTime(2023,10,12),
                   Organizer = "Organizer1",
@@ -32,7 +32,7 @@ namespace SameZeraIJedynka.Services
             },
             new EventModel
             {
-                  Id = 2,
+                  EventId = 2,
                   Name = "Event2",
                   Date = new DateTime(2024,09,22),
                   Organizer = "Organizer2",
@@ -44,7 +44,7 @@ namespace SameZeraIJedynka.Services
             },
             new EventModel
             {
-                  Id = 3,
+                  EventId = 3,
                   Name = "Event3",
                   Date = new DateTime(2023,05,22),
                   Organizer = "Organizer3",
@@ -56,7 +56,7 @@ namespace SameZeraIJedynka.Services
             },
             new EventModel
             {
-                  Id = 4,
+                  EventId = 4,
                   Name = "Event4",
                   Date = new DateTime(2023,05,05),
                   Organizer = "Organizer4",
@@ -68,7 +68,7 @@ namespace SameZeraIJedynka.Services
             },
             new EventModel
             {
-                  Id = 5,
+                  EventId = 5,
                   Name = "Event5",
                   Date = new DateTime(2023,08,12),
                   Organizer = "Organizer5",
@@ -80,7 +80,7 @@ namespace SameZeraIJedynka.Services
             },
             new EventModel
             {
-                  Id = 6,
+                  EventId = 6,
                   Name = "Event6",
                   Date = new DateTime(2023,07,05),
                   Organizer = "Organizer4",
@@ -101,11 +101,11 @@ namespace SameZeraIJedynka.Services
 
         public EventModel GetEventById(int id)
         {
-            return _events.FirstOrDefault(e => e.Id == 1);
+            return _events.FirstOrDefault(e => e.EventId == 1);
         }
         public void Create(EventModel eventModel)
         {
-            eventModel.Id = GetNextId();
+            eventModel.EventId = GetNextId();
             _events.Add(eventModel);
         }
 
