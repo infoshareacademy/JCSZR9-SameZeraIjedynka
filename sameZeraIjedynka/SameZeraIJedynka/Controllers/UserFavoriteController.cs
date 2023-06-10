@@ -49,6 +49,19 @@ namespace SameZeraIJedynka.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var newFavorite = new UserFavorite()
+            {
+                EventId = id,
+                UserId = 2
+            };
+            mvcDbContext.Favorites.Remove(newFavorite); // Change "mvcDbContext.Users" to "mvcDbContext.Favorites"
+            await mvcDbContext.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
