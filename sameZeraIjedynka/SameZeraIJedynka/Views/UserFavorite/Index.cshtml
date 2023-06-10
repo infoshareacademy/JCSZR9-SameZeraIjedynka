@@ -1,0 +1,40 @@
+﻿@model List<SameZeraIjedynka.Database.Entities.Event>
+
+@{
+}
+
+
+<h1>Events</h1>
+<table class="table">
+    <thread>
+        <tr>
+            <th>EventId</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Organizer</th>
+            <th>Place</th>
+            <th>Price</th>
+            <th>Capacity</th>
+            <th>Target</th>
+            <th> </th>
+        </tr>
+    </thread>
+    <tbody>
+        @foreach (var events in Model)
+        {
+            <tr>
+                <td>@events.EventId</td>
+                <td>@events.Name</td>
+                <td>@events.Date</td>
+                <td>@events.Organizer</td>
+                <td>@events.Place</td>
+                <td>@events.Price</td>
+                <td>@events.Capacity</td>
+                <td>@events.Target</td>
+
+                  <td><a href="Event/View/@events.EventId">View</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

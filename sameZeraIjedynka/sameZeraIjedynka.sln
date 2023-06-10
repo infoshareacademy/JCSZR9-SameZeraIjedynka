@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SameZeraIJedynka", "SameZeraIJedynka\SameZeraIJedynka.csproj", "{4D5F07C1-6295-4676-9D80-8D0D3966DCD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SameZeraIjedynka.Database", "SameZeraIjedynka.Database\SameZeraIjedynka.Database.csproj", "{0EE6F965-FDEB-4D1F-A409-2386EAAC88E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SameZeraIjedynka.Database", "SameZeraIjedynka.Database\SameZeraIjedynka.Database.csproj", "{0EE6F965-FDEB-4D1F-A409-2386EAAC88E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

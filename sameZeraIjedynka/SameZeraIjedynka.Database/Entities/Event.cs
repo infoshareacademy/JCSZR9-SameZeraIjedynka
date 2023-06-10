@@ -18,6 +18,7 @@ namespace SameZeraIjedynka.Database.Entities
         public int Capacity { get; set; }
 
         public TargetEnum Target { get; set; }
+        public virtual ICollection<UserFavorite> EventFavorites { get; set; }
     
     }
 }
