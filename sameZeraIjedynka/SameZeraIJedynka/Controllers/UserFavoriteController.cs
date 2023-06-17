@@ -27,9 +27,6 @@ namespace SameZeraIJedynka.Controllers
             return View(events2);
         }
 
-
-
-
         [HttpGet]
         public IActionResult Add()
         {

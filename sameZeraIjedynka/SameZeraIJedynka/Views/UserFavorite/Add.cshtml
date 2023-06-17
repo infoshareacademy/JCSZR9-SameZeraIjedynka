@@ -1,13 +1,16 @@
 ﻿@model userFavorite
 
+@{
+    ViewData["Title"] = "Dodaj ulubione";
+}
+
+
 <h1>Edycja listy Ulubionych dla uzytkownika</h1>
 <form method="post" action="Add" class="mt-5">
     <div class="mb-3">
         <label for=" " class="form-label">Event Id</label>
         <input type="number" class="form-control" asp-for="Id" />
     </div>
- 
-
 
     <button type="submit" class="btn btn-success">Dodaj wydarzenie</button>
 
