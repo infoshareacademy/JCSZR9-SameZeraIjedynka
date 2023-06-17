@@ -62,7 +62,7 @@ namespace SameZeraIjedynka.Database.Context
                         Place = "Sopot, Zolta 5",
                         Price = 0,
                         Capacity = 40,
-                        Target = TargetEnum.all
+                        Target = TargetEnum.kids
                     },
                     new Event
                     {

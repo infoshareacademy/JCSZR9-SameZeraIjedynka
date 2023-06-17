@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.Models;
+using Newtonsoft.Json;
 
 namespace SameZeraIJedynka.Controllers
 {
@@ -41,15 +42,36 @@ namespace SameZeraIJedynka.Controllers
             return RedirectToAction("Index");
         }
 
+		[HttpGet]
+		public async Task<IActionResult> Index(string sortOption = null)
+		{
+			IQueryable<Event> eventsQuery = mvcDbContext.Events;
 
-        [HttpGet]
-        public async Task<IActionResult> Index()
-        {
-            var events = await mvcDbContext.Events.ToListAsync();
-            return View(events);
-        }
+			switch (sortOption)
+			{
+				case "time_left":
+					eventsQuery = eventsQuery.OrderBy(e => e.Date);
+					break;
+				case "time_left_desc":
+					eventsQuery = eventsQuery.OrderByDescending(e => e.Date);
+					break;
+				case "price":
+					eventsQuery = eventsQuery.OrderBy(e => e.Price);
+					break;
+				case "price_desc":
+					eventsQuery = eventsQuery.OrderByDescending(e => e.Price);
+					break;
+				default:
+					eventsQuery = eventsQuery;
+					break;
+			}
 
-        [HttpGet]
+			var events = await eventsQuery.ToListAsync();
+
+			return View(events);
+		}
+
+		[HttpGet]
         public async Task<IActionResult> View(int id)
         {
             var events = await mvcDbContext.Events.FirstOrDefaultAsync(x => x.EventId == id);

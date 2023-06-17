@@ -140,6 +140,26 @@ a:hover {
   margin: 0;
 }
 
+.all-event-filter {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-gap: 10px;
+}
+
+.left-event-filter {
+    background-color: white;
+}
+
+.right-event-filter {
+    background-color: white;
+}
+
+.selected {
+    background-color: #63c573;
+    width: 100%;
+    border-radius: 10px;
+}
+
 /*------/ Nav Pills  /------*/
 .nav-pills-a {
   text-decoration: none;
@@ -329,9 +349,10 @@ a:hover {
 }
 
 .title-link {
-  font-size: 1.2rem;
-  font-weight: 300;
-  padding-top: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+    padding-top: 1.2rem;
+    color: black;
 }
 
 .title-link a {
@@ -1195,6 +1216,16 @@ a:hover {
 .card-box-b .img-a,
 .card-box-b .img-b {
   transition: 0.8s all ease-in-out;
+}
+
+.card-box-x {
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    background-color: #63c573;
 }
 
 @media (min-width: 768px) {
