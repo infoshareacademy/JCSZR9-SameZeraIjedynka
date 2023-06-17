@@ -2,41 +2,58 @@
 
 @{
     ViewData["Title"] = "Dodaj wydarzenie";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1>Add Event</h1>
-<form method="post" action="Add" class="mt-5">
-
-    <div class="mb-3">
-        <label for=" " class="form-label">Name</label>
-        <input type="text" class="form-control" asp-for="Name" />
-    </div>
-    <div class="mb-3">
-        <label for=" " class="form-label">Date</label>
-        <input type="date" class="form-control" asp-for="Date" />
-    </div>
-    <div class="mb-3">
-        <label for=" " class="form-label">Organizer</label>
-        <input type="text" class="form-control" asp-for="Organizer" />
-    </div>
-    <div class="mb-3">
-        <label for=" " class="form-label">Place</label>
-        <input type="text" class="form-control" asp-for="Place" />
-    </div>
-    <div class="mb-3">
-        <label for=" " class="form-label">Price</label>
-        <input type="number" class="form-control" asp-for="Price" />
-    </div>
-    <div class="mb-3">
-        <label for=" " class="form-label">Capacity</label>
-        <input type="number" class="form-control" asp-for="Capacity" />
-    </div>
-    <div class="mb-3">
-        <label for=" " class="form-label">Target</label>
-        <input type="text" class="form-control" asp-for="Target" />
-    </div>
+        <div class="container">	
+			<!-- ======= Intro Section ======= -->
+			<section class="section-services section-t8">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="title-wrap d-flex justify-content-between">
+							<div class="title-box">
+                                <h1 class="color-b">Dodaj wydarzenie</h1>
+                                <p>Wypełnij dane poniżej</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!-- End Intro Section -->
 
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+                <form method="post" action="Add" class="form-group">
+                <div class="mb-3">
+                    <label for=" " class="form-label color-b">Nazwa</label>
+                    <input type="text" class="form-control" asp-for="Name" />
+                </div>
+                <div class="mb-3">
+                    <label for=" " class="form-label color-b">Data</label>
+                    <input type="date" class="form-control" asp-for="Date" />
+                </div>
+                <div class="mb-3">
+                    <label for=" " class="form-label color-b">Organizator</label>
+                    <input type="text" class="form-control" asp-for="Organizer" />
+                </div>
+                <div class="mb-3">
+                    <label for=" " class="form-label color-b">Miejsce</label>
+                    <input type="text" class="form-control" asp-for="Place" />
+                </div>
+                <div class="mb-3">
+                    <label for=" " class="form-label color-b">Cena</label>
+                    <input type="number" class="form-control" asp-for="Price" />
+                </div>
+                <div class="mb-3">
+                    <label for=" " class="form-label color-b">Pojemność</label>
+                    <input type="number" class="form-control" asp-for="Capacity" />
+                </div>
+                <div class="mb-3">
+                    <label for=" " class="form-label color-b">Target</label>
+                    <select class="form-control" asp-for="Target">
+                        <option value="all">Wszyscy</option>
+                        <option value="grandpas">Seniorzy</option>
+                        <option value="adults">Dorośli</option>
+                        <option value="kids">Dzieci</option>
+                    </select>
+                </div>
+        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </form>
+
+        </div>
