@@ -111,9 +111,12 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-md-3 title-link">
-										<strong>@events.Name</strong>
-									</div>
+								 </div>
+								<div class="col-md-12 title-link d-flex justify-content-between align-items-center">
+									<strong>@events.Name</strong>
+									<a href="#" onclick="deleteFromFavorites(@events.EventId)" class="link-two float-right">
+										Usuń z ulubionych
+									</a>
 								</div>
 							</div>
 						</div>
@@ -140,6 +143,28 @@
 
 		});
 	});
+</script>
+
+<script>
+	function deleteFromFavorites(eventId) {
+		var result = confirm("Czy na pewno chcesz usunąć ten event z ulubionych?");
+
+		if (result) {
+			fetch('/UserFavorite/Delete/' + eventId, {
+				method: 'POST'
+			})
+				.then(response => {
+					if (response.ok) {
+						location.reload(); 
+					} else {
+						console.error('Wystąpił błąd podczas usuwania z ulubionych.');
+					}
+				})
+				.catch(error => {
+					console.error('Wystąpił błąd podczas wysyłania żądania.');
+				});
+		}
+	}
 </script>
 
 

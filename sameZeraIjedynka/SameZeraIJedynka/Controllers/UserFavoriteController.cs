@@ -61,8 +61,9 @@ namespace SameZeraIJedynka.Controllers
             };
             await mvcDbContext.Favorites.AddAsync(newFavorite);
             await mvcDbContext.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+			return RedirectToAction("Index", "UserFavorite");
+
+		}
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
@@ -75,6 +76,7 @@ namespace SameZeraIJedynka.Controllers
             mvcDbContext.Favorites.Remove(newFavorite); // Change "mvcDbContext.Users" to "mvcDbContext.Favorites"
             await mvcDbContext.SaveChangesAsync();
             return RedirectToAction("Index");
+
         }
 
 
