@@ -77,9 +77,14 @@
 					{
 						<div class="col-md-4">
 							<div>
+								<div class="row align-items-center">
+									<div class="col-12 title-link d-flex justify-content-between">
+										<strong>@events.Name</strong>
+									</div>
+								</div>
 								<div class="card-box-d card-box-x rounded">
 									<div class="card-img-d">
-										<img src="assets/img/event-@(events.EventId + ".jpg")" alt="" class="img-d img-fluid" width="800" height="296">
+										<img src="assets/img/event-@(events.EventId + ".jpg")" alt="" class="img-d img-fluid" width="800" height="896">
 									</div>
 									<div class="card-overlay card-overlay-hover">
 										<div class="card-header-d">
@@ -108,16 +113,16 @@
 												<p>
 													<strong>Cena: </strong> @events.Price
 												</p>
+												<div class="d-flex justify-content-end align-items-end">
+													<a href="#" onclick="deleteFromFavorites(@events.EventId)" class="">
+														<img src="~/assets/img/delete.png">
+													</a>
+												</div>
 											</div>
 										</div>
 									</div>
-								 </div>
-								<div class="col-md-12 title-link d-flex justify-content-between align-items-center">
-									<strong>@events.Name</strong>
-									<a href="#" onclick="deleteFromFavorites(@events.EventId)" class="link-two float-right">
-										Usuń z ulubionych
-									</a>
 								</div>
+
 							</div>
 						</div>
 					}
