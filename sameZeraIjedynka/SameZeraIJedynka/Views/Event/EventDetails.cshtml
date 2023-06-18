@@ -1,91 +1,95 @@
 ﻿@model SameZeraIjedynka.Database.Entities.Event
 
-<main id="main">
+@{
+    ViewData["Title"] = Model.Name;
+}
 
-    <!-- ======= Intro Single ======= -->
-    <section class="intro-single">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-lg-8">
-                    <div class="title-single-box">
-                        <h1 class="title-single">@Model.Name</h1>
-                        <span class="color-text-a">@Model.Organizer</span>
+        <main id="main">
+            <!-- ======= Intro Single ======= -->
+            <section class="intro-single">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-8">
+                            <div class="title-single-box">
+                                <h1 class="title-single">@Model.Name</h1>
+                                <span class="color-text-a">@Model.Organizer</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section><!-- End Intro Single-->
-    <!-- ======= Property Single ======= -->
-    <section class="property-single nav-arrow-b">
-        <div class="container">
-           <div class="row">
-                <div class="col-sm-12">
-                    <div class="row justify-content-between">
-                        <div class="col-md-5 col-lg-4">
-                            <div class="property-price d-flex justify-content-center foo">
-                                <div class="card-header-c d-flex">
-                                    <img src="~/assets/img/event-@(Model.EventId + ".jpg")" alt="" class="img-d img-fluid" width="800" height="896">
-                                </div>
-                            </div>
-                      
-                        </div>
-                        <div class="col-md-7 col-lg-7 section-md-t3">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="title-box-d">
-                                        <h3 class="title-d">Opis wydarzenia</h3>
+            </section><!-- End Intro Single-->
+            <!-- ======= Section Event Description ======= -->
+            <section class="property-single nav-arrow-b">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row justify-content-between">
+                                <div class="col-md-5 col-lg-4">
+                                    <div class="property-price d-flex justify-content-center foo">
+                                        <div class="card-header-c d-flex">
+                                            <img src="~/assets/img/event-@(Model.EventId + ".jpg")" alt="" class="img-d img-fluid" width="800" height="896">
+                                        </div>
                                     </div>
+                                    <!-- TODO: add delete/add to favorites -->
                                 </div>
-                            </div>
-                            <div class="property-description">
-                                <p class="description color-text-a">
-                                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit
-                                    neque, auctor sit amet
-                                    aliquam vel, ullamcorper sit amet ligula. Cras ultricies ligula sed magna dictum porta.
-                                    Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt
-                                    nibh pulvinar quam id dui posuere blandit.
-                                </p>
-                                <p class="description color-text-a no-margin">
-                                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec rutrum congue leo eget
-                                    malesuada. Quisque velit nisi,
-                                    pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada.
-                                </p>
-                            </div>
-                            <div class="row section-t3">
-                                <div class="property-summary">
+                                <div class="col-md-7 col-lg-7 section-md-t3">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <div class="title-box-d section-t4">
-                                                <h3 class="title-d">Informacje</h3>
+                                            <div class="title-box-d">
+                                                <h3 class="title-d">Opis wydarzenia</h3>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="summary-list">
-                                        <ul class="list">
-                                            <li class="d-flex justify-content-between">
-                                                <strong>Data:</strong>
-                                                <span>@Model.Date</span>
-                                            </li>
-                                            <li class="d-flex justify-content-between">
-                                                <strong>Lokalizacja:</strong>
-                                                <span>@Model.Place</span>
-                                            </li>
-                                            <li class="d-flex justify-content-between">
-                                                <strong>Cena:</strong>
-                                                <span>@Model.Price</span>
-                                            </li>
-                                            <li class="d-flex justify-content-between">
-                                                <strong>Pojemność:</strong>
-                                                <span>@Model.Capacity</span>
-                                            </li>
-                                        </ul>
+                                    <div class="property-description">
+                                        <!-- TODO: add description to database and pull from db -->
+                                        <p class="description color-text-a">
+                                            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit
+                                            neque, auctor sit amet
+                                            aliquam vel, ullamcorper sit amet ligula. Cras ultricies ligula sed magna dictum porta.
+                                            Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt
+                                            nibh pulvinar quam id dui posuere blandit.
+                                        </p>
+                                        <p class="description color-text-a no-margin">
+                                            Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec rutrum congue leo eget
+                                            malesuada. Quisque velit nisi,
+                                            pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada.
+                                        </p>
+                                    </div>
+                                    <div class="row section-t3">
+                                        <div class="property-summary">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="title-box-d section-t4">
+                                                        <h3 class="title-d">Informacje</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="summary-list">
+                                                <ul class="list">
+                                                    <li class="d-flex justify-content-between">
+                                                        <strong>Data:</strong>
+                                                        <span>@Model.Date</span>
+                                                    </li>
+                                                    <li class="d-flex justify-content-between">
+                                                        <strong>Lokalizacja:</strong>
+                                                        <span>@Model.Place</span>
+                                                    </li>
+                                                    <li class="d-flex justify-content-between">
+                                                        <strong>Cena:</strong>
+                                                        <span>@Model.Price</span>
+                                                    </li>
+                                                    <li class="d-flex justify-content-between">
+                                                        <strong>Pojemność:</strong>
+                                                        <span>@Model.Capacity</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section><!-- End Property Single-->
-</main>
+            </section><!-- End Section Event Description -->
+        </main>

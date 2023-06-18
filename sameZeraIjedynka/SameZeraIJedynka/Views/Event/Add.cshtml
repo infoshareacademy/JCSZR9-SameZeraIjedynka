@@ -18,10 +18,10 @@
 					</div>
 				</div>
 			</section><!-- End Intro Section -->
-
+            <!-- Input Event Form -->
+            <!-- TODO: better form styling -->
             <form method="post" action="Add" class="php-email-form">
                 <div class="row">
-
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-lg form-control-a" placeholder="Nazwa eventu" required asp-for="Name">
@@ -52,6 +52,7 @@
                                 <input type="number" class="form-control form-control-lg form-control-a" placeholder="Pojemność" asp-for="Capacity">
                             </div>
                         </div>
+                        <!-- TODO: add image -->
                         <div class="col-md-12 mb-3">
                             <div class="form-group">
                                 <select class="form-control" asp-for="Target">
@@ -64,5 +65,5 @@
                         </div>
                     <button class="btn btn-b">Wyślij</button>
                 </div>
-            </form>
+            </form><!-- End Input Form -->
         </div>

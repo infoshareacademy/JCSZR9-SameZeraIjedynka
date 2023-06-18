@@ -3,9 +3,12 @@
 @{
 	ViewData["Title"] = "Wydarzenia";
 }
+
+		<!-- TODO: would be perfect to join UserFavorite/Index and Event/Index REDUNDANCY -->
 		<div class="container">	
 			<!-- ======= Intro Section ======= -->
 			<section class="section-services section-t8">
+				<!-- Page Header -->
 				<div class="row">
 					<div class="col-md-12">
 						<div class="title-wrap d-flex justify-content-between">
@@ -14,15 +17,15 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div><!-- End Page Header -->
 			</section><!-- End Intro Section -->
-
 			<!-- ======= Sort Section ======= -->
+			<!-- TODO: needs to unify sorting and filtering -->
 			<section class="property-grid grid">
 				<div class="col-sm-12">
 					<div class="grid-option">
 						<form method="get" action="">
-							<select class="custom-select" name="sortOption">
+							<select class="custom-select input-group mb-3 navbar-toggle-box navbar-toggle-box-collapse" name="sortOption">
 								<option selected style="display: none;">---</option>
 								<option value="time_left">Od najwcześniejszego</option>
 								<option value="time_left_desc">Od najpóźniejszego</option>
@@ -34,16 +37,19 @@
 					</div>
 				</div>
 			</section> <!-- ======= End Sort Section ======= -->
-
 			<!-- ======= Show Events Section ======= -->
 			<section class="section-services">
 					<div class="row all-event-filter">
-
+					<!-- Filtering Events -->
+					<!-- TODO: not working - needs to unify sorting and filtering -->
 					<div class="left-event-filter">
 						<div class="col-sm-12 section-md-t3">
 							<div class="widget-a">
 								<div class="w-header-a">
-									<h3 class="w-title-a text-brand">Kategoria</h3>
+									<!-- TODO: vertical alignment has been made ugly -->
+									<p></p>
+										<h3 class="w-title-a text-brand">Kategoria</h3>
+									<p></p>
 								</div>
 								<div class="w-body-a">
 									<div class="w-body-a">
@@ -69,9 +75,11 @@
 								</div>
 							</div>
 						</div>
-					</div>
-
+					</div><!-- End Filtering Events-->
+					<!-- Events Grid -->
 					<div class="right-event-filter property-grid grid">
+						<!-- Picture And Description Of Recommended Events -->
+						<!-- TODO: need to fix responsivness issue and hiding + is not showing in desired positions elements like: addToFavorites button etc. -->
 						<div class="row">
 							@foreach (var events in Model)
 							{
@@ -79,18 +87,18 @@
 									<div>
 										<div class="row align-items-center">
 											<div class="col-12 title-link d-flex justify-content-between">
-												<strong>@events.Name</strong>
+												 <strong class="text-truncate overflow-hidden">@events.Name</strong>
 											</div>
 										</div>
 										<div class="card-box-d card-box-x rounded">
 											<div class="card-img-d">
-												<img src="assets/img/event-@(events.EventId + ".jpg")" alt="" class="img-d img-fluid" width="800" height="896">
+												<img src="~/assets/img/event-@(events.EventId + ".jpg")" alt="" class="img-d img-fluid" width="800" height="896">
 											</div>
 											<div class="card-overlay card-overlay-hover">
 												<div class="card-header-d">
 													<div class="card-title-d align-self-center">
 														<h3 class="title-d">
-															<a href="Event/EventDetails/@events.EventId" class="link-two">
+															<a href="https://localhost:7000/Event/EventDetails/@events.EventId" class="link-two text-truncate overflow-hidden">
 																@events.Name
 															</a>
 														</h3>
@@ -126,12 +134,16 @@
 									</div>
 								</div>
 							}
-						</div>
-					</div>
+							<p></p>
+							<p></p>
+							<p></p>
+						</div><!-- Picture And Description Of Recommended Events -->
+					</div><!-- End Events Grid -->
 				</div>
 			</section><!-- ======= End Show Events Section ======= -->
 		</div>
 
+		<!-- Changing Color Of Filter Option Script -->
 		<script>
 			const listItems = document.querySelectorAll('.clickable');
 
@@ -148,26 +160,29 @@
 
 				});
 			});
-		</script>
-
+		</script><!-- End Changing Color Of Filter Option Script -->
+		<!-- Script Helper For Adding Event To Favorites -->
+		<!-- TODO: the same script is used in multiple locations and fix relocation -->
 		<script>
 			function addToFavorites(eventId) {
-
-					fetch('/UserFavorite/Add/' + eventId, {
-						method: 'POST'
+				fetch('/UserFavorite/Add/' + eventId, {
+					method: 'POST'
+				})
+					.then(response => {
+						if (response.ok) {
+							window.location.href = "https://localhost:7000/UserFavorite"
+						} else {
+							console.error('Wystąpił błąd podczas dodawania do ulubionych.');
+							window.location.href = "https://localhost:7000/UserFavorite"
+						}
 					})
-						.then(response => {
-							if (response.ok) {
-								location.reload(); 
-							} else {
-								console.error('Wystąpił błąd podczas usuwania z ulubionych.');
-							}
-						})
-						.catch(error => {
-							console.error('Wystąpił błąd podczas wysyłania żądania.');
-						});
+					.catch(error => {
+						console.error('Wystąpił błąd podczas wysyłania żądania.');
+				window.location.href = "https://localhost:7000/UserFavorite"
+					});
+				
 			}
-		</script>
+		</script><!-- End Script Helper For Adding Event To Favorites -->
 
 
 

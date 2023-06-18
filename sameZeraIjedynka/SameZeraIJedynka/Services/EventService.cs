@@ -14,7 +14,7 @@ namespace SameZeraIJedynka.Services
         {
             context = _context;
         }
-        // provisional list of events, delete after enabling database
+        // TODO: provisional list of events, delete after enabling database
         private static int _idCounter;
         private static List<EventModel> _events = new List<EventModel>
         {

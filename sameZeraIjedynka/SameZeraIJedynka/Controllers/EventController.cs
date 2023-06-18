@@ -9,13 +9,12 @@ namespace SameZeraIJedynka.Controllers
 {
     public class EventController : Controller
     {
-        private readonly DatabaseContext mvcDbContext;  // assign field to what is below
+        private readonly DatabaseContext mvcDbContext;  
 
-        public EventController(DatabaseContext mvcDbContext)  //constructor //in bracket injected service. Pres dot+CTRL to create an asign field
+        public EventController(DatabaseContext mvcDbContext) 
         {
             this.mvcDbContext = mvcDbContext;
         }
-
 
         [HttpGet]
         public IActionResult Add()
@@ -70,7 +69,6 @@ namespace SameZeraIJedynka.Controllers
 
 			return View(events);
 		}
-
 
         [HttpGet]
         public async Task<IActionResult> Search(string searchPattern)
