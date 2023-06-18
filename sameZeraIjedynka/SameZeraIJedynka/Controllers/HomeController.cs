@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.Models;
 using System.Diagnostics;
 
@@ -8,14 +11,18 @@ namespace SameZeraIJedynka.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly DatabaseContext mvcDbContext;
+
+        public HomeController(DatabaseContext mvcDbContext, ILogger<HomeController> logger)  //constructor //in bracket injected service. Pres dot+CTRL to create an asign field
         {
+            this.mvcDbContext = mvcDbContext;
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var events = await mvcDbContext.Events.Take(3).ToListAsync();
+            return View(events);
         }
 
         public IActionResult Privacy()

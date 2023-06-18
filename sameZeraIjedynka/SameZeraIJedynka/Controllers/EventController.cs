@@ -3,18 +3,18 @@ using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.Models;
+using Newtonsoft.Json;
 
 namespace SameZeraIJedynka.Controllers
 {
     public class EventController : Controller
     {
-        private readonly DatabaseContext mvcDbContext;  // assign field to what is below
+        private readonly DatabaseContext mvcDbContext;  
 
-        public EventController(DatabaseContext mvcDbContext)  //constructor //in bracket injected service. Pres dot+CTRL to create an asign field
+        public EventController(DatabaseContext mvcDbContext) 
         {
             this.mvcDbContext = mvcDbContext;
         }
-
 
         [HttpGet]
         public IActionResult Add()
@@ -41,12 +41,43 @@ namespace SameZeraIJedynka.Controllers
             return RedirectToAction("Index");
         }
 
+		[HttpGet]
+		public async Task<IActionResult> Index(string sortOption = null)
+		{
+			IQueryable<Event> eventsQuery = mvcDbContext.Events;
+
+			switch (sortOption)
+			{
+				case "time_left":
+					eventsQuery = eventsQuery.OrderBy(e => e.Date);
+					break;
+				case "time_left_desc":
+					eventsQuery = eventsQuery.OrderByDescending(e => e.Date);
+					break;
+				case "price":
+					eventsQuery = eventsQuery.OrderBy(e => e.Price);
+					break;
+				case "price_desc":
+					eventsQuery = eventsQuery.OrderByDescending(e => e.Price);
+					break;
+				default:
+					eventsQuery = eventsQuery;
+					break;
+			}
+
+			var events = await eventsQuery.ToListAsync();
+
+			return View(events);
+		}
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Search(string searchPattern)
         {
-            var events = await mvcDbContext.Events.ToListAsync();
-            return View(events);
+            IQueryable<Event> eventsQuery = mvcDbContext.Events.Where(e => e.Name.Contains(searchPattern));
+
+            var events = await eventsQuery.ToListAsync();
+
+            return View("Index", events);
         }
 
         [HttpGet]
@@ -105,12 +136,19 @@ namespace SameZeraIJedynka.Controllers
             return RedirectToAction("Index");
         }
 
+		[HttpGet]
+        public async Task<IActionResult> EventDetails(int id)
+		{
+            var eventObj = await mvcDbContext.Events.FirstOrDefaultAsync(x => x.EventId == id);
+            return View(eventObj);
+		}
 
 
 
 
 
-    }
+
+	}
            
             
         

@@ -1,40 +1,204 @@
 ﻿@model List<SameZeraIjedynka.Database.Entities.Event>
 
 @{
+    ViewData["Title"] = "Ulubione";
 }
 
+		<!-- TODO: would be perfect to join UserFavorite/Index and Event/Index REDUNDANCY -->
+		<div class="container">
+			<!-- ======= Intro Section ======= -->
+			<section class="section-services section-t8">
+				<!-- Page Header -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="title-wrap d-flex justify-content-between">
+							<div class="title-box">
+								<h2 class="title-a">Discover. Learn. Enjoy.</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Page Header -->
+			</section><!-- End Intro Section -->
+			<!-- ======= Sort Section ======= -->
+			<!-- TODO: needs to unify sorting and filtering -->
+			<section class="property-grid grid">
+				<div class="col-sm-12">
+					<div class="grid-option">
+						<form method="get" action="">
+							<select class="custom-select" name="sortOption">
+								<option selected style="display: none;">---</option>
+								<option value="time_left">Od najwcześniejszego</option>
+								<option value="time_left_desc">Od najpóźniejszego</option>
+								<option value="price">Od najtańszego</option>
+								<option value="price_desc">Od najdroższego</option>
+							</select>
+							<button type="submit" class="btn btn-secondary btn-b">Sortuj</button>
+						</form>
+					</div>
+				</div>
+			</section> <!-- ======= End Sort Section ======= -->
+			<!-- ======= Show Events Section ======= -->
+			<section class="section-services">
+				<div class="row all-event-filter">
+					<!-- Filtering Events -->
+					<!-- TODO: not working - needs to unify sorting and filtering -->
+					<div class="left-event-filter">
+						<div class="col-sm-12 section-md-t3">
+							<div class="widget-a">
+								<div class="w-header-a">
+									<!-- TODO: vertical alignment has been made ugly -->
+									<h3 class="w-title-a text-brand">Kategoria</h3>
+									<p></p>
+								</div>
+								<div class="w-body-a">
+									<div class="w-body-a">
+										<ul class="list-unstyled">
+											<a href="#">
+											<li class="item-list-a clickable">
+												<a href="#"><i class="bi bi-chevron-right"></i> Wszyscy
+											</li></a>
+											<a href="#">
+											<li class="item-list-a clickable">
+												<i class="bi bi-chevron-right"></i> Seniorzy
+											</li></a>
+											<a href="#">
+											<li class="item-list-a clickable">
+												<i class="bi bi-chevron-right"></i> Dorośli</a>
+											</li></a>
+											<a href="#">
+											<li class="item-list-a clickable">
+												<i class="bi bi-chevron-right"></i> Dzieci</a>
+											</li></a>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> <!-- End Filtering Events-->
+					<!-- Events Grid -->
+					<div class="right-event-filter property-grid grid">
+						<!-- Picture And Description Of Recommended Events -->
+						<!-- TODO: need to fix responsivness issue and hiding + is not showing in desired positions elements like: addToFavorites button etc. -->
+						<div class="row">
+							@if (Model == null || Model.Count == 0)
+							{
+								<div class="row align-items-center">
+									<div class="col-20 d-flex justify-content-between">
+										<h3 class="w-title-a text-brand">Wpierw dodaj event do ulubionych</h3>
+										<div class="card-img-d">
+											<img src="~/assets/img/question.png" class="img-d img-fluid center" width="512" height="512">
+										</div>
 
-<h1>Events</h1>
-<table class="table">
-    <thread>
-        <tr>
-            <th>EventId</th>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Organizer</th>
-            <th>Place</th>
-            <th>Price</th>
-            <th>Capacity</th>
-            <th>Target</th>
-            <th> </th>
-        </tr>
-    </thread>
-    <tbody>
-        @foreach (var events in Model)
-        {
-            <tr>
-                <td>@events.EventId</td>
-                <td>@events.Name</td>
-                <td>@events.Date</td>
-                <td>@events.Organizer</td>
-                <td>@events.Place</td>
-                <td>@events.Price</td>
-                <td>@events.Capacity</td>
-                <td>@events.Target</td>
+									</div>
+								</div>
+							}
+							@if (Model.Count != 0)
+							{
+								<div class="title-box">
+									<h2 class="title-a">Twoje ulubione eventy</h2>
+								</div>
+							}
+							<!-- TODO: need to fix responsivness issue and hiding + is not showing in desired positions elements like: addToFavorites button etc. -->
+							@foreach (var events in Model)
+							{
+								<div class="col-md-4">
+									<div>
+										<div class="row align-items-center">
+											<div class="col-12 title-link d-flex justify-content-between">
+												<strong class="text-truncate overflow-hidden">@events.Name</strong>
+											</div>
+										</div>
+										<div class="card-box-d card-box-x rounded">
+											<div class="card-img-d">
+												<img src="~/assets/img/event-@(events.EventId + ".jpg")" alt="" class="img-d img-fluid" width="800" height="896">
+											</div>
+											<div class="card-overlay card-overlay-hover">
+												<div class="card-header-d">
+													<div class="card-title-d align-self-center">
+														<h3 class="title-d">
+															<a href="https://localhost:7000/Event/EventDetails/@events.EventId" class="link-two text-truncate overflow-hidden">
+																@events.Name
+															</a>
+														</h3>
+													</div>
+												</div>
+												<div class="card-body-d">
+													<div class="info-agents color-a">
+														<p class="content-d color-text-a">
+															Największy event IT w tej części Polski! 38 prelegentów, 12 godzin i wiele innych...
+														</p>
+														<p>
+															<strong>Organizator: </strong> @events.Organizer
+														</p>
+														<p>
+															<strong>Data: </strong> @events.Date
+														</p>
+														<p>
+															<strong>Miejsce: </strong> @events.Place
+														</p>
+														<p>
+															<strong>Cena: </strong> @events.Price
+														</p>
+														<div class="d-flex justify-content-end align-items-end">
+															<a href="#" onclick="deleteFromFavorites(@events.EventId)" class="">
+																<img src="~/assets/img/delete.png">
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 
-                  <td><a href="UserFavorite/Add/@events.EventId">View</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+									</div>
+								</div>
+							}
+						</div><!-- Picture And Description Of Recommended Events -->
+					</div><!-- End Events Grid -->
+				</div>
+			</section><!-- ======= End Show Events Section ======= -->
+		</div>
+
+
+		<!-- Changing Color Of Filter Option Script -->
+		<script>
+			const listItems = document.querySelectorAll('.clickable');
+			listItems.forEach(item => {
+				item.addEventListener('click', () => {
+					const isSelected = item.classList.contains('selected');
+
+					if (!isSelected) {
+						item.classList.add('selected');
+					}
+					if (isSelected) {
+						item.classList.remove('selected');
+					}
+
+				});
+			});
+		</script><!-- End Changing Color Of Filter Option Script -->
+		<!-- Script Helper For Deleting Event From Favorites -->
+		<script>
+			function deleteFromFavorites(eventId) {
+				var result = confirm("Czy na pewno chcesz usunąć ten event z ulubionych?");
+
+				if (result) {
+					fetch('/UserFavorite/Delete/' + eventId, {
+						method: 'POST'
+					})
+						.then(response => {
+							if (response.ok) {
+								location.reload(); 
+							} else {
+								console.error('Wystąpił błąd podczas usuwania z ulubionych.');
+							}
+						})
+						.catch(error => {
+							console.error('Wystąpił błąd podczas wysyłania żądania.');
+						});
+				}
+			}
+		</script><!-- End Script Helper For Deleting Event From Favorites -->
+
+
 
