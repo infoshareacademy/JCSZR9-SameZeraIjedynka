@@ -55,19 +55,19 @@
 									<div class="w-body-a">
 										<ul class="list-unstyled">
 									<a href="#">
-									<li class="item-list-a clickable">
+									<li id="all" class="item-list-a clickable">
 												<a href="#"><i class="bi bi-chevron-right"></i> Wszyscy
 											</li></a>
 									<a href="#">
-									<li class="item-list-a clickable">
+									<li id="grandpas" class=" item-list-a clickable">
 												<i class="bi bi-chevron-right"></i> Seniorzy
 											</li></a>
 									<a href="#">
-									<li class="item-list-a clickable">
+									<li id="adults" class="item-list-a clickable">
 												<i class="bi bi-chevron-right"></i> Dorośli</a>
 											</li></a>
 									<a href="#">
-									<li class="item-list-a clickable">
+									<li id="children" class="item-list-a clickable">
 												<i class="bi bi-chevron-right"></i> Dzieci</a>
 											</li></a>
 										</ul>
@@ -146,17 +146,34 @@
 		<!-- Changing Color Of Filter Option Script -->
 		<script>
 			const listItems = document.querySelectorAll('.clickable');
+			
 
 			listItems.forEach(item => {
 				item.addEventListener('click', () => {
+
+					let categories = localStorage.getItem('category');
+					
+					if(categories == null){
+						categories = [];
+					}
+
+
 					const isSelected = item.classList.contains('selected');
 
 					if (!isSelected) {
 						item.classList.add('selected');
+						categories.push(item.id);
+				console.log(item);
+				
 					}
 					if (isSelected) {
 						item.classList.remove('selected');
+						categories.slice(item.id);
+				console.log(item);
 					}
+
+					console.log(categories);
+					localStorage.setItem('category', categories)
 
 				});
 			});

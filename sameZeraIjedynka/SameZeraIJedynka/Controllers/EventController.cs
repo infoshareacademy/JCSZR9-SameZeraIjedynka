@@ -143,11 +143,6 @@ namespace SameZeraIJedynka.Controllers
             return View(eventObj);
 		}
 
-
-
-
-
-
 	}
            
             
