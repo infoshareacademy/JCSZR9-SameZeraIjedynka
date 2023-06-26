@@ -99,8 +99,19 @@
 
         <!-- Script for showing position of the event on the map -->
         <script>
-            function initMap() {
-                var eventPosition = { lat: 51.5074, lng: -0.1278 }; 
+    function initMap() {
+        var address = '@Model.Place'; 
+
+        var geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode({ address: address }, function (results, status) {
+            if (status === "OK") {
+                var latitude = results[0].geometry.location.lat();
+                var longitude = results[0].geometry.location.lng();
+                console.log("Latitude: " + latitude);
+                console.log("Longitude: " + longitude);
+
+                var eventPosition = { lat: latitude, lng: longitude };
                 var mapOptions = {
                     center: eventPosition,
                     zoom: 15
@@ -116,10 +127,15 @@
 
                 let labelContent = '<h5 class="title-d">@Model.Name</h3>';
 
-                marker.addListener('click', function() {
+                marker.addListener('click', function () {
                     infoWindow.setContent(labelContent);
                     infoWindow.open(map, marker);
                 });
+            } else {
+                console.log("Błąd geokodowania: " + status);
             }
-            google.maps.event.addDomListener(window, 'load', initMap);
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initMap);
         </script><!-- End Script for showing position of the event on the map -->
