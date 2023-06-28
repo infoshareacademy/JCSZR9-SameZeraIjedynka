@@ -16,9 +16,8 @@ namespace SameZeraIjedynka.Database.Entities
         public string Place { get; set; }
         public int Price { get; set; }
         public int Capacity { get; set; }
-
         public TargetEnum Target { get; set; }
         public virtual ICollection<UserFavorite> EventFavorites { get; set; }
-    
+        public string Description { get; set; } = "Default Description";
     }
 }

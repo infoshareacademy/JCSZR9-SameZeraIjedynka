@@ -34,7 +34,8 @@ namespace SameZeraIJedynka.Controllers
                 Place = addEventRequest.Place,
                 Price = addEventRequest.Price,
                 Capacity = addEventRequest.Capacity,
-                Target = addEventRequest.Target
+                Target = addEventRequest.Target,
+                Description = addEventRequest.Description,
             };
             await mvcDbContext.Events.AddAsync(newEvent);
             await mvcDbContext.SaveChangesAsync();

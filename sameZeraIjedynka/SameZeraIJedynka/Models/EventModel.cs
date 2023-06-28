@@ -8,7 +8,6 @@ namespace SameZeraIJedynka.Models
     public class EventModel
     {
         public int EventId { get; set; }
-
         public string Name { get; set; }
         public DateTime Date { get; set; }
         public string Organizer { get; set; }
@@ -16,6 +15,6 @@ namespace SameZeraIJedynka.Models
         public int Price { get; set; }
         public int Capacity { get; set; }
         public TargetEnum Target { get; set; }
-
+        public string Description { get; set; }
     }
 }
