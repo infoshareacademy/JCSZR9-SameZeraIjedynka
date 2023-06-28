@@ -4,6 +4,7 @@ using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.Models;
 using Newtonsoft.Json;
+using NuGet.ContentModel;
 
 namespace SameZeraIJedynka.Controllers
 {
@@ -23,8 +24,19 @@ namespace SameZeraIJedynka.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(EventModel addEventRequest)
+        public async Task<IActionResult> Add(EventModel addEventRequest, IFormFile image)
         {
+            if (image != null && image.Length > 0)
+            {
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+                string path = Path.Combine(@"wwwroot\assets\img\", fileName);
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await image.CopyToAsync(stream);
+                }
+                addEventRequest.ImagePath = "assets/img/" + fileName;
+            }
+
             var newEvent = new Event()
             {
                 EventId = addEventRequest.EventId,
@@ -36,6 +48,7 @@ namespace SameZeraIJedynka.Controllers
                 Capacity = addEventRequest.Capacity,
                 Target = addEventRequest.Target,
                 Description = addEventRequest.Description,
+                ImagePath = addEventRequest.ImagePath
             };
             await mvcDbContext.Events.AddAsync(newEvent);
             await mvcDbContext.SaveChangesAsync();

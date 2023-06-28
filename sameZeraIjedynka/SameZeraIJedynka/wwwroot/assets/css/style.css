@@ -1438,6 +1438,15 @@ a:hover {
   }
 }
 
+.card-img-d {
+    width: 400px;
+    height: 448px;
+    overflow: hidden;
+    position: relative;
+}
+
+
+
 /*------/ Property Grid /-----*/
 .property-grid .grid-option {
   text-align: right;

@@ -16,5 +16,6 @@ namespace SameZeraIJedynka.Models
         public int Capacity { get; set; }
         public TargetEnum Target { get; set; }
         public string Description { get; set; }
+        public string ImagePath { get; set; }
     }
 }

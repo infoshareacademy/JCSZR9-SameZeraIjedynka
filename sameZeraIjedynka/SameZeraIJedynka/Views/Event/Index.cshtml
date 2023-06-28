@@ -91,8 +91,19 @@
 											</div>
 										</div>
 										<div class="card-box-d card-box-x rounded">
-											<div class="card-img-d">
-												<img src="~/assets/img/event-@(events.EventId + ".jpg")" alt="" class="img-d img-fluid" width="800" height="896">
+									<div class="card-img-d" style="    width: 400px;
+    height: 448px;
+    overflow: hidden;
+    position: relative;">
+										<img src="@events.ImagePath" alt="" class="img-d img-fluid" style="  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;">
 											</div>
 											<div class="card-overlay card-overlay-hover">
 												<div class="card-header-d">
@@ -107,7 +118,7 @@
 												<div class="card-body-d">
 													<div class="info-agents color-a">
 														<p class="content-d color-text-a">
-															Największy event IT w tej części Polski! 38 prelegentów, 12 godzin i wiele innych...
+															@events.Description
 														</p>
 														<p>
 															<strong>Organizator: </strong> @events.Organizer
