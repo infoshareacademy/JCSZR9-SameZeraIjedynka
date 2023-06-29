@@ -24,8 +24,8 @@
 			<section class="property-grid grid">
 				<div class="col-sm-12">
 					<div class="grid-option">
-						<form method="get" action="">
-							<select class="custom-select input-group mb-3 navbar-toggle-box navbar-toggle-box-collapse" name="sortOption">
+						<form id="sortForm" method="get" action="">
+							<select id="sortOption" class="custom-select input-group mb-3 navbar-toggle-box navbar-toggle-box-collapse" name="sortOption">
 								<option selected style="display: none;">---</option>
 								<option value="time_left">Od najwcześniejszego</option>
 								<option value="time_left_desc">Od najpóźniejszego</option>
@@ -160,24 +160,19 @@
 				</div>
 			</section><!-- ======= End Show Events Section ======= -->
 		</div>
-		<!-- Reseting Filter Option While Opening View Script -->
-		<script>
-			let categories = [];
-			localStorage.setItem('categories', JSON.stringify(categories));
-		</script><!-- End reseting Filter Option While Opening View Script -->
+
 		<!-- Adding/Deleting Filter Option Script -->
 		<script>
 			const listItems = document.querySelectorAll('.clickable');
 			const events = document.querySelectorAll('.event-filter');
+
+			let categories = [];
+			localStorage.setItem('categories', JSON.stringify(categories));
+
 			listItems.forEach(item => {
 				item.addEventListener('click', () => {
 					let categories = localStorage.getItem('categories');
-
-					if (categories === null) {
-						categories = [];
-					} else {
-						categories = JSON.parse(categories);
-					}
+					categories = JSON.parse(categories);
 
 					const isSelected = item.classList.contains('selected');
 
@@ -199,20 +194,42 @@
 				});
 			});
 
-		function filterEvents(categories) {
-        events.forEach(event => {
-            const eventCategory = event.getAttribute('data-category');
-			if (!event) {
-				return; // Pomijamy, jeśli wartość product jest niezdefiniowana
+			function filterEvents(categories) {
+				events.forEach(event => {
+					const eventCategory = event.getAttribute('data-category');
+					if (!event) {
+						return;
+					}
+					if (categories.length === 0 || categories.includes(eventCategory)) {
+						event.style.display = 'block';
+					} else {
+						event.style.display = 'none';
+					}
+				});
 			}
-            if (categories.length === 0 || categories.includes(eventCategory)) {
-                event.style.display = 'block';
-            } else {
-                event.style.display = 'none';
-            }
-        });
-    }
 		</script><!-- End Adding/Deleting Filter Option Script -->
+
+		<script>
+			const sortForm = document.getElementById('sortForm');
+			const sortOption = document.getElementById('sortOption');
+
+			sortForm.addEventListener('submit', function(event) {
+				event.preventDefault();
+
+				const selectedOption = sortOption.value;
+				localStorage.setItem('selectedSortOption', selectedOption);
+
+				sortForm.submit();
+			});
+
+			const selectedSortOption = localStorage.getItem('selectedSortOption');
+			const selectedFilterOptions = localStorage.getItem('categories');
+			if (selectedSortOption) {
+				sortOption.value = selectedSortOption;
+				categories = selectedFilterOptions;
+			}
+		</script>
+
 		<!-- Script Helper For Adding Event To Favorites -->
 		<!-- TODO: the same script is used in multiple locations and fix relocation -->
 		<script>
