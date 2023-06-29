@@ -83,7 +83,7 @@
 						<div class="row">
 							@foreach (var events in Model)
 							{
-								<div class="col-md-4">
+								<div class="col-md-4 event-filter" data-category="@events.Target">
 									<div>
 										<div class="row align-items-center">
 											<div class="col-12 title-link d-flex justify-content-between">
@@ -160,42 +160,59 @@
 				</div>
 			</section><!-- ======= End Show Events Section ======= -->
 		</div>
-
-		<!-- Changing Color Of Filter Option Script -->
+		<!-- Reseting Filter Option While Opening View Script -->
+		<script>
+			let categories = [];
+			localStorage.setItem('categories', JSON.stringify(categories));
+		</script><!-- End reseting Filter Option While Opening View Script -->
+		<!-- Adding/Deleting Filter Option Script -->
 		<script>
 			const listItems = document.querySelectorAll('.clickable');
-			
-
+			const events = document.querySelectorAll('.event-filter');
 			listItems.forEach(item => {
 				item.addEventListener('click', () => {
+					let categories = localStorage.getItem('categories');
 
-					let categories = localStorage.getItem('category');
-					
-					if(categories == null){
+					if (categories === null) {
 						categories = [];
+					} else {
+						categories = JSON.parse(categories);
 					}
-
 
 					const isSelected = item.classList.contains('selected');
 
 					if (!isSelected) {
 						item.classList.add('selected');
 						categories.push(item.id);
-				console.log(item);
-				
-					}
-					if (isSelected) {
+					} else {
 						item.classList.remove('selected');
-						categories.slice(item.id);
-				console.log(item);
+						const index = categories.indexOf(item.id);
+						if (index > -1) {
+							categories.splice(index, 1);
+						}
 					}
 
-					console.log(categories);
-					localStorage.setItem('category', categories)
+					localStorage.setItem('categories', JSON.stringify(categories));
+					console.log(localStorage.getItem('categories'));
 
+					filterEvents(categories);
 				});
 			});
-		</script><!-- End Changing Color Of Filter Option Script -->
+
+		function filterEvents(categories) {
+        events.forEach(event => {
+            const eventCategory = event.getAttribute('data-category');
+			if (!event) {
+				return; // Pomijamy, jeśli wartość product jest niezdefiniowana
+			}
+            if (categories.length === 0 || categories.includes(eventCategory)) {
+                event.style.display = 'block';
+            } else {
+                event.style.display = 'none';
+            }
+        });
+    }
+		</script><!-- End Adding/Deleting Filter Option Script -->
 		<!-- Script Helper For Adding Event To Favorites -->
 		<!-- TODO: the same script is used in multiple locations and fix relocation -->
 		<script>

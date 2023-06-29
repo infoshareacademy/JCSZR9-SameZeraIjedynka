@@ -29,7 +29,7 @@ namespace SameZeraIjedynka.Database.Context
                       Place = "Gdansk, Zielona 23",
                       Price = 0,
                       Capacity = 100,
-                      Target = TargetEnum.adults,
+                      Target = TargetEnum.all,
                       Description = "Warsztaty rysunku dla dzieci to interaktywne i kreatywne zajęcia, " +
                       "które mają na celu rozwijanie umiejętności plastycznych u najmłodszych. Podczas " +
                       "wydarzenia dzieci będą miały okazję eksperymentować z różnymi technikami rysunku i" +
@@ -47,7 +47,7 @@ namespace SameZeraIjedynka.Database.Context
                         Place = "Gdynia, Zielona 31",
                         Price = 10,
                         Capacity = 1200,
-                        Target = TargetEnum.all,
+                        Target = TargetEnum.adults,
                         Description = "Zlot programistów IT to coroczne spotkanie branżowe, gromadzące pasjonatów " +
                         "programowania i specjalistów z różnych dziedzin informatyki. Podczas tego wydarzenia programiści " +
                         "mają możliwość uczestnictwa w interesujących prezentacjach, warsztatach i panelach dyskusyjnych, " +
@@ -66,7 +66,7 @@ namespace SameZeraIjedynka.Database.Context
                         Place = "Gdańsk, Czerwona 1",
                         Price = 0,
                         Capacity = 200,
-                        Target = TargetEnum.all,
+                        Target = TargetEnum.adults,
                         Description = "Koncert pop to niezapomniane muzyczne doświadczenie, podczas którego artyści prezentują" +
                         " najnowsze hity i energetyczne występy. To wyjątkowa okazja dla fanów muzyki pop, by zanurzyć się w" +
                         " dynamicznej atmosferze i świętować wspólnie z ulubionymi artystami. Koncerty pop przyciągają tłumy" +
@@ -114,7 +114,7 @@ namespace SameZeraIjedynka.Database.Context
                         Place = "Gdansk, Niebieska 20",
                         Price = 10,
                         Capacity = 700,
-                        Target = TargetEnum.adults,
+                        Target = TargetEnum.all,
                         Description = "Zapraszamy serdecznie na niezwykłe \"Spotkanie podróżnicze\" z Ewą Maj, podczas którego " +
                         "będzie miała okazję podzielić się swoją inspirującą historią podróży, w tym niezapomnianym wyjazdem do" +
                         " urokliwego Mozambiku. Przygotujcie się na fascynujące opowieści, piękne zdjęcia i ciekawe anegdoty, " +
