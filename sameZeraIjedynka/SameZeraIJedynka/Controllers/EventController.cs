@@ -34,8 +34,14 @@ namespace SameZeraIJedynka.Controllers
                 {
                     await image.CopyToAsync(stream);
                 }
-                addEventRequest.ImagePath = "assets/img/" + fileName;
+                addEventRequest.ImagePath = "/assets/img/" + fileName;
             }
+            else
+            {
+                string fileName = "placeholder.png";
+                addEventRequest.ImagePath = "/assets/img/" + fileName;
+            }
+
 
             var newEvent = new Event()
             {

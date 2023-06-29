@@ -91,19 +91,10 @@
 											</div>
 										</div>
 										<div class="card-box-d card-box-x rounded">
-									<div class="card-img-d" style="    width: 400px;
-    height: 448px;
-    overflow: hidden;
-    position: relative;">
-										<img src="@events.ImagePath" alt="" class="img-d img-fluid" style="  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: black;">
+											<div class="card-img-d" style="width: 400px; height: 448px; overflow: hidden; position: relative;">
+												<img src="@events.ImagePath" alt="" class="img-d img-fluid" style="display: block; 
+												width: 100%; height: auto; object-fit: contain; position: absolute; top: 50%; left: 50%; 
+												transform: translate(-50%, -50%); background-color: black;">
 											</div>
 											<div class="card-overlay card-overlay-hover">
 												<div class="card-header-d">
@@ -118,7 +109,24 @@
 												<div class="card-body-d">
 													<div class="info-agents color-a">
 														<p class="content-d color-text-a">
-															@events.Description
+															@{
+																if (events.Description.Length > 80)
+																{
+																	int indexOfSpace = events.Description.IndexOf(' ', 80);
+																	if (indexOfSpace != -1)
+																	{
+																		@Html.Raw(events.Description.Substring(0, indexOfSpace) + " [...]")
+																	}
+																	else
+																	{
+																		@Html.Raw(events.Description.Substring(0, 80) + " [...]")
+																	}
+																}
+																else
+																{
+																	@events.Description;
+																}
+															}
 														</p>
 														<p>
 															<strong>Organizator: </strong> @events.Organizer
@@ -141,7 +149,6 @@
 												</div>
 											</div>
 										</div>
-
 									</div>
 								</div>
 							}
