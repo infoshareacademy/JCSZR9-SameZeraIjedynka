@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.BusinnessLogic.Models;
+using SameZeraIJedynka.Models;
 
 namespace SameZeraIJedynka.Controllers
 {
