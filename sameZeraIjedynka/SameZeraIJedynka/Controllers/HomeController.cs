@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SameZeraIjedynka.Database.Context;
-using SameZeraIJedynka.Models;
+using SameZeraIJedynka.BusinnessLogic.Models;
 using System.Diagnostics;
 
 namespace SameZeraIJedynka.Controllers

@@ -2,17 +2,21 @@
 using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
-using SameZeraIJedynka.BusinnessLogic.Models;
+using SameZeraIJedynka.Models;
 using Newtonsoft.Json;
 using NuGet.ContentModel;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System;
 
 namespace SameZeraIJedynka.Controllers
 {
     public class EventController : Controller
     {
-        private readonly DatabaseContext mvcDbContext;  
+        private readonly DatabaseContext mvcDbContext;
 
-        public EventController(DatabaseContext mvcDbContext) 
+        public EventController(DatabaseContext mvcDbContext)
         {
             this.mvcDbContext = mvcDbContext;
         }
@@ -61,34 +65,34 @@ namespace SameZeraIJedynka.Controllers
             return RedirectToAction("Index");
         }
 
-		[HttpGet]
-		public async Task<IActionResult> Index(string sortOption = null)
-		{
-			IQueryable<Event> eventsQuery = mvcDbContext.Events;
+        [HttpGet]
+        public async Task<IActionResult> Index(string sortOption = null)
+        {
+            IQueryable<Event> eventsQuery = mvcDbContext.Events;
 
-			switch (sortOption)
-			{
-				case "time_left":
-					eventsQuery = eventsQuery.OrderBy(e => e.Date);
-					break;
-				case "time_left_desc":
-					eventsQuery = eventsQuery.OrderByDescending(e => e.Date);
-					break;
-				case "price":
-					eventsQuery = eventsQuery.OrderBy(e => e.Price);
-					break;
-				case "price_desc":
-					eventsQuery = eventsQuery.OrderByDescending(e => e.Price);
-					break;
-				default:
-					eventsQuery = eventsQuery;
-					break;
-			}
+            switch (sortOption)
+            {
+                case "time_left":
+                    eventsQuery = eventsQuery.OrderBy(e => e.Date);
+                    break;
+                case "time_left_desc":
+                    eventsQuery = eventsQuery.OrderByDescending(e => e.Date);
+                    break;
+                case "price":
+                    eventsQuery = eventsQuery.OrderBy(e => e.Price);
+                    break;
+                case "price_desc":
+                    eventsQuery = eventsQuery.OrderByDescending(e => e.Price);
+                    break;
+                default:
+                    eventsQuery = eventsQuery;
+                    break;
+            }
 
-			var events = await eventsQuery.ToListAsync();
+            var events = await eventsQuery.ToListAsync();
 
-			return View(events);
-		}
+            return View(events);
+        }
 
         [HttpGet]
         public async Task<IActionResult> Search(string searchPattern)
@@ -125,17 +129,17 @@ namespace SameZeraIJedynka.Controllers
         [HttpPost]
         public async Task<IActionResult> View(EventModel model)
         {
-            var events= await mvcDbContext.Events.FindAsync(model.EventId);
+            var events = await mvcDbContext.Events.FindAsync(model.EventId);
             if (events != null)
             {
-                events.EventId= model.EventId;
-                events.Name= model.Name;
+                events.EventId = model.EventId;
+                events.Name = model.Name;
                 events.Date = model.Date;
                 events.Organizer = model.Organizer;
                 events.Place = model.Place;
                 events.Price = model.Price;
                 events.Capacity = model.Capacity;
-                events.Target= model.Target;
+                events.Target = model.Target;
 
                 await mvcDbContext.SaveChangesAsync();
                 return RedirectToAction("View");
@@ -156,13 +160,13 @@ namespace SameZeraIJedynka.Controllers
             return RedirectToAction("Index");
         }
 
-		[HttpGet]
+        [HttpGet]
         public async Task<IActionResult> EventDetails(int id)
-		{
+        {
             var eventObj = await mvcDbContext.Events.FirstOrDefaultAsync(x => x.EventId == id);
             return View(eventObj);
-		}
+        }
 
-	}
-    
+    }
+
 }

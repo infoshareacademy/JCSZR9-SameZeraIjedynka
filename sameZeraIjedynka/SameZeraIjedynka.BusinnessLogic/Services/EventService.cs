@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
 using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
-using SameZeraIJedynka.Models;
-using SameZeraIJedynka.Helpers.Enums;
-using System.Reflection;
-using SameZeraIJedynka.Helpers.Enums;
+using SameZeraIJedynka.BusinnessLogic.Models;
 
-namespace SameZeraIJedynka.Services
+using System.Reflection;
+
+
+namespace SameZeraIJedynka.BusinnessLogic.Services
 {
     public class EventService
     {
@@ -91,6 +91,7 @@ namespace SameZeraIJedynka.Services
                  
             }
         };
+        private object mvcDbContext;
         private readonly DatabaseContext context;
 
         // return all events
@@ -155,6 +156,25 @@ namespace SameZeraIJedynka.Services
                 context.SaveChanges();
             }
             return _events.ToList();
+        }
+
+        public void Add(EventModel addEventRequest)
+        {
+            var newEvent = new Event()
+            {
+                EventId = addEventRequest.EventId,
+                Name = addEventRequest.Name,
+                Date = addEventRequest.Date,
+                Organizer = addEventRequest.Organizer,
+                Place = addEventRequest.Place,
+                Price = addEventRequest.Price,
+                Capacity = addEventRequest.Capacity,
+                Target = addEventRequest.Target,
+                Description = addEventRequest.Description,
+                ImagePath = addEventRequest.ImagePath
+            };
+          //  await mvcDbContext.Events.AddAsync(newEvent);
+          //  await mvcDbContext.SaveChangesAsync();
         }
     }
 }
