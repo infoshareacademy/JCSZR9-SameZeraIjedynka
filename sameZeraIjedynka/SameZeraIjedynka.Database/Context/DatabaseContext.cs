@@ -125,54 +125,46 @@ namespace SameZeraIjedynka.Database.Context
 
             //Adding values to DB Users data
             modelBuilder.Entity<User>().HasData(new User[]
-                        {new User
-                            {
-                                UserId=1,
-                                Name="AAA",
-                                Password="BBB"
-                              //  UsersFavorites=
-                            },
-                        new User
-                            {
-                                UserId=2,
-                                Name="BBB",
-                                Password="CCC"
-                              //UsersFavorites=
-                            },
-                        new User
-                            {
-                                UserId=3,
-                                Name="CCC",
-                                Password="DDD"
-                              //  UsersFavorites=
-                            }
+            {new User
+                {
+                    UserId=1,
+                    Name="AAA",
+                    Password="BBB"
+                    //  UsersFavorites=
+                },
+            new User
+                {
+                    UserId=2,
+                    Name="BBB",
+                    Password="CCC"
+                    //UsersFavorites=
+                },
+            new User
+                {
+                    UserId=3,
+                    Name="CCC",
+                    Password="DDD"
+                    //  UsersFavorites=
+                }
             });
 
             //Adding values to DB Users data
             modelBuilder.Entity<UserFavorite>().HasData(new UserFavorite[]
-                        { new UserFavorite
-                            {   EventId = 1,
+            { new UserFavorite
+                {   EventId = 1,
 
-                                UserId = 1,
+                    UserId = 1,
 
-                            },
-                            new UserFavorite
-                            {   EventId = 2,
+                },
+                new UserFavorite
+                {   EventId = 2,
 
-                                UserId = 2,
+                    UserId = 2,
 
-                            }
+                }
 
               });
         }
-
-
-
-
-
-
-
-
 
 
         public DbSet<Event> Events { get; set; }

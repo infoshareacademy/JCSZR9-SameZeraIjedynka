@@ -5,6 +5,7 @@ using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.BusinnessLogic.Models;
 using Newtonsoft.Json;
 using NuGet.ContentModel;
+using SameZeraIJedynka.BusinnessLogic.Services;
 
 namespace SameZeraIJedynka.Controllers
 {
@@ -23,10 +24,10 @@ namespace SameZeraIJedynka.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost] // przenieść do serwisu
         public async Task<IActionResult> Add(EventModel addEventRequest, IFormFile image)
         {
-            if (image != null && image.Length > 0)
+            if (image != null && image.Length > 0) //można przenieść
             {
                 string fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
                 string path = Path.Combine(@"wwwroot\assets\img\", fileName);
@@ -62,7 +63,7 @@ namespace SameZeraIJedynka.Controllers
         }
 
 		[HttpGet]
-		public async Task<IActionResult> Index(string sortOption = null)
+		public async Task<IActionResult> Index(string sortOption = null) //można przenieść i ewentualne rozbicie na 2 parametry
 		{
 			IQueryable<Event> eventsQuery = mvcDbContext.Events;
 
