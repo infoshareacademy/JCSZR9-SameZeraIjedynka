@@ -1,5 +1,6 @@
 using SameZeraIjedynka.Database.Context;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace SameZeraIJedynka
 {
@@ -8,6 +9,14 @@ namespace SameZeraIJedynka
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //Serilog logger
+            var logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(builder.Configuration)
+                .Enrich.FromLogContext()
+                .CreateLogger();
+            builder.Logging.ClearProviders();
+            builder.Logging.AddSerilog(logger);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
