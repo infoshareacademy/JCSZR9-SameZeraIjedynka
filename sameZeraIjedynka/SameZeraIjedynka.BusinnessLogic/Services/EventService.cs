@@ -95,5 +95,12 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
                 await eventRepository.Delete(eventsQuery);
             }
         }
+
+        public async Task<Event> EventDetails(int eventId)
+        {
+            Event eventsQuery = await eventRepository.GetById(eventId);
+
+            return eventsQuery;
+        }
     }
 }

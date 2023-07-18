@@ -62,8 +62,9 @@ namespace SameZeraIJedynka.Controllers
 		[HttpGet]
         public async Task<IActionResult> EventDetails(int id)
 		{
-            var eventObj = await mvcDbContext.Events.FirstOrDefaultAsync(x => x.EventId == id);
-            return View(eventObj);
+            var eventQuery = await eventService.EventDetails(id);
+
+            return View(eventQuery);
 		}
 
 	}

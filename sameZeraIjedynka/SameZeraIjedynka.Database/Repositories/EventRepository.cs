@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
 using System;
@@ -41,7 +42,7 @@ namespace SameZeraIjedynka.Database.Repositories
 
         public async Task<Event> GetById(int eventId)
         {
-            Event eventsQuery = await context.Events.FindAsync(eventId);
+            Event eventsQuery = await context.Events.FirstOrDefaultAsync(x => x.EventId == eventId);
 
             return eventsQuery;
         }
