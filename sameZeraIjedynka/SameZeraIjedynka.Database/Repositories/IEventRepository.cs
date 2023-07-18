@@ -6,5 +6,6 @@ namespace SameZeraIjedynka.Database.Repositories
     {
         Task<int> AddEvent(Event newEvent);
         Task<IQueryable<Event>> Get();
+        Task<IQueryable<Event>> Search(string searchPattern);
     }
 }

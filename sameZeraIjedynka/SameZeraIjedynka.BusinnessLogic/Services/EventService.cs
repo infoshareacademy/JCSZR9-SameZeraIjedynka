@@ -78,42 +78,25 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
             return eventsQuery;
         }
 
-/*        public async Task<List<EventModel>> Search(string searchPattern)
+        public async Task<List<Event>> Search(string searchPattern)
         {
-            IQueryable<Event> eventsQuery = context.Events.Where(e => e.Name.Contains(searchPattern));
+            IQueryable<Event> eventsQuery = await eventRepository.Search(searchPattern);
 
-            var events = await eventsQuery.ToListAsync();
+            var events = eventsQuery.ToList();
 
-            return events.Select(e => new EventModel
-            {
-                EventId = e.EventId,
-                Name = e.Name,
-                Date = e.Date,
-                Organizer = e.Organizer,
-                Place = e.Place,
-                Price = e.Price,
-                Capacity = e.Capacity,
-                Target = e.Target,
-                Description = e.Description
-            })
-                .ToList();
+            return events;
         }
 
-        public async Task<bool> Delete(int eventId)
+        public async Task<IActionResult> Delete(EventModel event)
         {
-            var events = await context.Events.FindAsync(eventId);
+            var events = await mvcDbContext.Events.FindAsync(model.EventId);
             if (events != null)
             {
-                context.Events.Remove(events);
-                await context.SaveChangesAsync();
-                return true;
+                mvcDbContext.Events.Remove(events);
+                await mvcDbContext.SaveChangesAsync();
+                return RedirectToAction("Index");
             }
-            return false;
+            return RedirectToAction("Index");
         }
-
-        public async Task<Event> EventDetails(int id)
-        {
-            return await context.Events.FirstOrDefaultAsync(x => x.EventId == id);
-        }*/
     }
 }

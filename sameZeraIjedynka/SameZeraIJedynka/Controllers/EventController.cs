@@ -46,14 +46,12 @@ namespace SameZeraIJedynka.Controllers
         [HttpGet]
         public async Task<IActionResult> Search(string searchPattern)
         {
-            IQueryable<Event> eventsQuery = mvcDbContext.Events.Where(e => e.Name.Contains(searchPattern));
-
-            var events = await eventsQuery.ToListAsync();
+            var events = await eventService.Search(searchPattern);
 
             return View("Index", events);
         }
 
-        [HttpGet]
+/*        [HttpGet]
         public async Task<IActionResult> View(int id)
         {
             var events = await mvcDbContext.Events.FirstOrDefaultAsync(x => x.EventId == id);
@@ -94,7 +92,7 @@ namespace SameZeraIJedynka.Controllers
                 return RedirectToAction("View");
             }
             return RedirectToAction("Index");
-        }
+        }*/
 
         [HttpPost]
         public async Task<IActionResult> Delete(EventModel model)

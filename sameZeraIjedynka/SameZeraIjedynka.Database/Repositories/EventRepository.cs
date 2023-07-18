@@ -30,5 +30,25 @@ namespace SameZeraIjedynka.Database.Repositories
 
             return eventsQuery;
         }
+
+        public async Task<IQueryable<Event>> Search(string searchPattern)
+        {
+            IQueryable<Event> eventsQuery = context.Events.Where(e => e.Name.Contains(searchPattern));
+
+            return eventsQuery;
+        }
+
+        public async Delete<IQueryable<Event>> Delete(event)
+        {
+            IQueryable<Event> eventsQuery =         public async Task<IQueryable<Event>> Search(string searchPattern)
+            {
+                IQueryable<Event> eventsQuery = context.Events.Where(e => e.Name.Contains(searchPattern));
+
+                return eventsQuery;
+            }
+
+            return eventsQuery;
+        }
+
     }
 }
