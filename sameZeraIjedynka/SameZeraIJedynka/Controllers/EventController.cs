@@ -35,29 +35,9 @@ namespace SameZeraIJedynka.Controllers
         }
 
 		[HttpGet]
-		public async Task<IActionResult> Index(string sortOption = null) //można przenieść i ewentualne rozbicie na 2 parametry
+		public async Task<IActionResult> Index(string sortOption = null)
 		{
-			IQueryable<Event> eventsQuery = mvcDbContext.Events;
-
-			switch (sortOption)
-			{
-				case "time_left":
-					eventsQuery = eventsQuery.OrderBy(e => e.Date);
-					break;
-				case "time_left_desc":
-					eventsQuery = eventsQuery.OrderByDescending(e => e.Date);
-					break;
-				case "price":
-					eventsQuery = eventsQuery.OrderBy(e => e.Price);
-					break;
-				case "price_desc":
-					eventsQuery = eventsQuery.OrderByDescending(e => e.Price);
-					break;
-				default:
-					eventsQuery = eventsQuery;
-					break;
-			}
-
+			var eventsQuery = await eventService.Index(sortOption);
 			var events = await eventsQuery.ToListAsync();
 
 			return View(events);

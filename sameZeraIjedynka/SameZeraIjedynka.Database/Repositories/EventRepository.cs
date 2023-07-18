@@ -23,5 +23,12 @@ namespace SameZeraIjedynka.Database.Repositories
 
             return newEvent.EventId;
         }
+
+        public async Task<IQueryable<Event>> Get()
+        {
+            IQueryable<Event> eventsQuery = context.Events;
+
+            return eventsQuery;
+        }
     }
 }

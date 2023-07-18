@@ -52,6 +52,32 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
             return newEventId;
         }
 
+        public async Task<IQueryable<Event>> Index(string sortOption)
+        {
+            IQueryable<Event> eventsQuery = await eventRepository.Get();
+
+            switch (sortOption)
+            {
+                case "time_left":
+                    eventsQuery = eventsQuery.OrderBy(e => e.Date);
+                    break;
+                case "time_left_desc":
+                    eventsQuery = eventsQuery.OrderByDescending(e => e.Date);
+                    break;
+                case "price":
+                    eventsQuery = eventsQuery.OrderBy(e => e.Price);
+                    break;
+                case "price_desc":
+                    eventsQuery = eventsQuery.OrderByDescending(e => e.Price);
+                    break;
+                default:
+                    eventsQuery = eventsQuery;
+                    break;
+            }
+
+            return eventsQuery;
+        }
+
 /*        public async Task<List<EventModel>> Search(string searchPattern)
         {
             IQueryable<Event> eventsQuery = context.Events.Where(e => e.Name.Contains(searchPattern));
