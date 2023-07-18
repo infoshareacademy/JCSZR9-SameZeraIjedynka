@@ -8,6 +8,7 @@ namespace SameZeraIjedynka.Database.Repositories
         Task Delete(Event eventsQuery);
         Task<IQueryable<Event>> Get();
         Task<Event> GetById(int eventId);
+        Task<IQueryable<Event>> GetHomeEvents();
         Task<IQueryable<Event>> Search(string searchPattern);
     }
 }

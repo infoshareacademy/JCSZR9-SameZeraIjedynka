@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Serilog;
 using SameZeraIjedynka.Database.Repositories;
 using SameZeraIJedynka.BusinnessLogic.Services;
+using SameZeraIjedynka.BusinnessLogic.Services;
 
 namespace SameZeraIJedynka
 {
@@ -26,6 +27,7 @@ namespace SameZeraIJedynka
             builder.Services.AddDbContext<DatabaseContext>(c => c.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseContextConnectionString")));
 
             // Services Dependency Injection
+            builder.Services.AddScoped<IHomeService, HomeService>();
             builder.Services.AddScoped<IEventService, EventService>();
             builder.Services.AddScoped<IEventRepository, EventRepository>();
 

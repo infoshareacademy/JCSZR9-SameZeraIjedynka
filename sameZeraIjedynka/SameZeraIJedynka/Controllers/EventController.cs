@@ -11,12 +11,10 @@ namespace SameZeraIJedynka.Controllers
 {
     public class EventController : Controller
     {
-        private readonly DatabaseContext mvcDbContext;
         private readonly IEventService eventService;
 
-        public EventController(DatabaseContext mvcDbContext, IEventService eventService) 
+        public EventController(IEventService eventService) 
         {
-            this.mvcDbContext = mvcDbContext;
             this.eventService = eventService;
         }
 

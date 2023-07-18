@@ -53,6 +53,11 @@ namespace SameZeraIjedynka.Database.Repositories
             await context.SaveChangesAsync();
         }
 
+        public async Task<IQueryable<Event>> GetHomeEvents()
+        {
+            IQueryable<Event> eventsQuery = context.Events.Take(3);
 
+            return eventsQuery;
+        }
     }
 }
