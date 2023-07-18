@@ -1,4 +1,5 @@
-﻿using SameZeraIjedynka.Database.Context;
+﻿using Microsoft.Extensions.Logging;
+using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -30,5 +31,27 @@ namespace SameZeraIjedynka.Database.Repositories
 
             return eventsQuery;
         }
+
+        public async Task<IQueryable<Event>> Search(string searchPattern)
+        {
+            IQueryable<Event> eventsQuery = context.Events.Where(e => e.Name.Contains(searchPattern));
+
+            return eventsQuery;
+        }
+
+        public async Task<Event> GetById(int eventId)
+        {
+            Event eventsQuery = await context.Events.FindAsync(eventId);
+
+            return eventsQuery;
+        }
+
+        public async Task Delete(Event eventsQuery)
+        {
+            context.Events.Remove(eventsQuery);
+            await context.SaveChangesAsync();
+        }
+
+
     }
 }
