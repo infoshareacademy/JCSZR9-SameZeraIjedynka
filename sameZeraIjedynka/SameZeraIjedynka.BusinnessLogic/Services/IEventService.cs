@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using SameZeraIjedynka.Database.Entities;
 using SameZeraIJedynka.BusinnessLogic.Models;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
 {
     public interface IEventService
     {
-        Task Add(EventModel addEventRequest, IFormFile image);
-        Task<List<EventModel>> Search(string searchPattern);
-        Task<bool> Delete(int eventId);
+        Task<int> Add(EventModel addEventRequest, IFormFile image);
+/*        Task<List<EventModel>> Search(string searchPattern);
+        Task<bool> Delete(int eventId);*/
     }
 }

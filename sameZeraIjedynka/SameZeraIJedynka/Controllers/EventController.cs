@@ -11,11 +11,13 @@ namespace SameZeraIJedynka.Controllers
 {
     public class EventController : Controller
     {
-        private readonly DatabaseContext mvcDbContext;  
+        private readonly DatabaseContext mvcDbContext;
+        private readonly IEventService eventService;
 
-        public EventController(DatabaseContext mvcDbContext) 
+        public EventController(DatabaseContext mvcDbContext, IEventService eventService) 
         {
             this.mvcDbContext = mvcDbContext;
+            this.eventService = eventService;
         }
 
         [HttpGet]
@@ -24,42 +26,12 @@ namespace SameZeraIJedynka.Controllers
             return View();
         }
 
-        [HttpPost] // przenieść do serwisu
+        [HttpPost]
         public async Task<IActionResult> Add(EventModel addEventRequest, IFormFile image)
         {
-            if (image != null && image.Length > 0) //można przenieść
-            {
-                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
-                string path = Path.Combine(@"wwwroot\assets\img\", fileName);
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await image.CopyToAsync(stream);
-                }
-                addEventRequest.ImagePath = "/assets/img/" + fileName;
-            }
-            else
-            {
-                string fileName = "placeholder.png";
-                addEventRequest.ImagePath = "/assets/img/" + fileName;
-            }
+            var newEventId = await eventService.Add(addEventRequest, image); 
 
-
-            var newEvent = new Event()
-            {
-                EventId = addEventRequest.EventId,
-                Name = addEventRequest.Name,
-                Date = addEventRequest.Date,
-                Organizer = addEventRequest.Organizer,
-                Place = addEventRequest.Place,
-                Price = addEventRequest.Price,
-                Capacity = addEventRequest.Capacity,
-                Target = addEventRequest.Target,
-                Description = addEventRequest.Description,
-                ImagePath = addEventRequest.ImagePath
-            };
-            await mvcDbContext.Events.AddAsync(newEvent);
-            await mvcDbContext.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("EventDetails", new { id = newEventId });
         }
 
 		[HttpGet]

@@ -4,20 +4,21 @@ using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.BusinnessLogic.Models;
 using Microsoft.AspNetCore.Http;
+using SameZeraIjedynka.Database.Repositories;
 
 namespace SameZeraIJedynka.BusinnessLogic.Services
 {
     public class EventService : IEventService
     {
-        private readonly DatabaseContext context;
-        public EventService(DatabaseContext _context)
+        private readonly IEventRepository eventRepository;
+        public EventService(IEventRepository _eventRepository)
         {
-            context = _context;
+            eventRepository = _eventRepository;
         }
 
-        public async Task Add(EventModel addEventRequest, IFormFile image)
+        public async Task<int> Add(EventModel addEventRequest, IFormFile image)
         {
-            if (image != null && image.Length > 0) //można przenieść
+            if (image != null && image.Length > 0)
             {
                 string fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
                 string path = Path.Combine(@"wwwroot\assets\img\", fileName);
@@ -46,11 +47,12 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
                 ImagePath = addEventRequest.ImagePath
             };
 
-            await context.Events.AddAsync(newEvent);
-            await context.SaveChangesAsync();
+            var newEventId = await eventRepository.AddEvent(newEvent);
+
+            return newEventId;
         }
 
-        public async Task<List<EventModel>> Search(string searchPattern)
+/*        public async Task<List<EventModel>> Search(string searchPattern)
         {
             IQueryable<Event> eventsQuery = context.Events.Where(e => e.Name.Contains(searchPattern));
 
@@ -86,6 +88,6 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
         public async Task<Event> EventDetails(int id)
         {
             return await context.Events.FirstOrDefaultAsync(x => x.EventId == id);
-        }
+        }*/
     }
 }
