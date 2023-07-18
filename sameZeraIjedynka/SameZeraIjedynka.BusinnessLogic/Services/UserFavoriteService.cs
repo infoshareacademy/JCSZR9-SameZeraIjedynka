@@ -1,25 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SameZeraIJedynka.Controllers;
-using SameZeraIjedynka.Database.Context;
-using SameZeraIjedynka.Database.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using SameZeraIJedynka.BusinnessLogic.Models;
 using Microsoft.EntityFrameworkCore;
+using SameZeraIjedynka.Database.Context;
+using SameZeraIjedynka.Database.Entities;
 
-namespace SameZeraIJedynka.Controllers
+namespace SameZeraIjedynka.BusinnessLogic.Services
 {
-    public class UserFavoriteController : Controller
+    public class UserFavoriteService
     {
         private readonly DatabaseContext mvcDbContext;
 
-        public UserFavoriteController(DatabaseContext mvcDbContext)
+        public UserFavoriteService(DatabaseContext mvcDbContext)
         {
             this.mvcDbContext = mvcDbContext;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Index(string sortOption = null)
+        public async Task<List<Event>> GetFavoriteEvents(int userId, string sortOption = null)
         {
-            var eventsQuery = mvcDbContext.Favorites.Where(x => x.UserId == 2).Select(x => x.Event);
+            var eventsQuery = mvcDbContext.Favorites.Where(x => x.UserId == userId).Select(x => x.Event);
 
             switch (sortOption)
             {
@@ -42,44 +45,28 @@ namespace SameZeraIJedynka.Controllers
 
             var events = await eventsQuery.ToListAsync();
 
-            return View(events);
+            return events;
         }
 
-        [HttpGet]
-        public IActionResult Add()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Add(int id)
+        public async Task AddFavoriteEvent(int userId, int eventId)
         {
             var newFavorite = new UserFavorite()
             {
-                EventId = id,
-                UserId = 2
+                EventId = eventId,
+                UserId = userId
             };
             await mvcDbContext.Favorites.AddAsync(newFavorite);
             await mvcDbContext.SaveChangesAsync();
-            return RedirectToAction("Index", "UserFavorite");
-
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public async Task DeleteFavoriteEvent(int userId, int eventId)
         {
-            var newFavorite = new UserFavorite()
+            var favorite = await mvcDbContext.Favorites.FirstOrDefaultAsync(x => x.UserId == userId && x.EventId == eventId);
+            if (favorite != null)
             {
-                EventId = id,
-                UserId = 2
-            };
-            mvcDbContext.Favorites.Remove(newFavorite); // Change "mvcDbContext.Users" to "mvcDbContext.Favorites"
-            await mvcDbContext.SaveChangesAsync();
-            return RedirectToAction("Index");
+                mvcDbContext.Favorites.Remove(favorite);
+                await mvcDbContext.SaveChangesAsync();
+            }
         }
-
-
     }
 }
-
-

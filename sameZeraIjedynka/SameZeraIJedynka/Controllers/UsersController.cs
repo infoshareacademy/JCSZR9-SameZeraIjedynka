@@ -5,6 +5,7 @@ using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.BusinnessLogic.Models;
 using SameZeraIJedynka.Models;
 
+
 namespace SameZeraIJedynka.Controllers
 {
     public class UsersController : Controller
@@ -38,7 +39,7 @@ namespace SameZeraIJedynka.Controllers
         }
 
         [HttpGet]
-     
+  
         public async Task<IActionResult> Index()
         {
             var users = await mvcDbContext.Users.ToListAsync();
