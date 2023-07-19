@@ -37,15 +37,9 @@ namespace SameZeraIJedynka.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(int id)
         {
-            var newFavorite = new UserFavorite()
-            {
-                EventId = id,
-                UserId = 2
-            };
-            await mvcDbContext.Favorites.AddAsync(newFavorite);
-            await mvcDbContext.SaveChangesAsync();
-            return RedirectToAction("Index", "UserFavorite");
+            await userFavoriteService.AddFavoriteEvent(id);
 
+            return RedirectToAction("Index", "UserFavorite");
         }
 
         [HttpPost]

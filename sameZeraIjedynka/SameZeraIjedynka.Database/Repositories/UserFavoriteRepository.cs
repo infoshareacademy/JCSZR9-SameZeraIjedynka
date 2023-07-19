@@ -22,5 +22,11 @@ namespace SameZeraIjedynka.Database.Repositories
 
             return eventsQuery;
         }
+
+        public async Task Add(UserFavorite newFavorite)
+        {
+            await context.Favorites.AddAsync(newFavorite);
+            await context.SaveChangesAsync(); 
+        }
     }
 }

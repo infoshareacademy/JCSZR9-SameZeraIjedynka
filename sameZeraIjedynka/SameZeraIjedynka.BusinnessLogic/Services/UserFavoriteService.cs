@@ -48,26 +48,26 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             return events;
         }
 
-        /*
-                public async Task AddFavoriteEvent(int userId, int eventId)
-                {
-                    var newFavorite = new UserFavorite()
-                    {
-                        EventId = eventId,
-                        UserId = userId
-                    };
-                    await mvcDbContext.Favorites.AddAsync(newFavorite);
-                    await mvcDbContext.SaveChangesAsync();
-                }
+        
+        public async Task AddFavoriteEvent(int id)
+        {
+            var newFavorite = new UserFavorite()
+            {
+                EventId = id,
+                UserId = 2
+            };
 
-                public async Task DeleteFavoriteEvent(int userId, int eventId)
-                {
-                    var favorite = await mvcDbContext.Favorites.FirstOrDefaultAsync(x => x.UserId == userId && x.EventId == eventId);
-                    if (favorite != null)
-                    {
-                        mvcDbContext.Favorites.Remove(favorite);
-                        await mvcDbContext.SaveChangesAsync();
-                    }
-                }*/
+            await userFavoriteRepository.Add(newFavorite);
+        }
+
+/*        public async Task DeleteFavoriteEvent(int userId, int eventId)
+        {
+            var favorite = await mvcDbContext.Favorites.FirstOrDefaultAsync(x => x.UserId == userId && x.EventId == eventId);
+            if (favorite != null)
+            {
+                mvcDbContext.Favorites.Remove(favorite);
+                await mvcDbContext.SaveChangesAsync();
+            }
+        }*/
     }
 }
