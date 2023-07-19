@@ -29,7 +29,7 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
                 Name = addUserRequest.Name,
                 Password = addUserRequest.Password
             };
-            await userRepository.Add(user);
+            await userRepository.AddUser(user);
         }
 
         public async Task<List<User>> GetAllUsers()
@@ -41,7 +41,7 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
 
         public async Task<UserModel> GetUserById(int id)
         {
-            var user = await userRepository.GetUser(id);
+            var user = await userRepository.GetUserById(id);
             if (user != null)
             {
                 var userModel = new UserModel
@@ -55,19 +55,17 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             return null;
         }
 
-        /*public async Task UpdateUser(UserModel model)
+        public async Task UpdateUser(UserModel model, User newUser)
         {
-            var user = await dbContext.Users.FindAsync(model.Id);
+            var user = await userRepository.GetUserById(model.Id);
+            
             if (user != null)
             {
-                user.UserId = model.Id;
-                user.Name = model.Name;
-                user.Password = model.Password;
-                await dbContext.SaveChangesAsync();
+                await userRepository.UpdateUser(user, model.Id, model.Name, model.Password);
             }
         }
 
-        public async Task DeleteUser(UserModel model)
+        /*public async Task DeleteUser(UserModel model)
         {
             var user = await dbContext.Users.FindAsync(model.Id);
             if (user != null)

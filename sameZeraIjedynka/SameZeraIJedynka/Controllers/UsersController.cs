@@ -10,10 +10,10 @@ namespace SameZeraIJedynka.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly DatabaseContext mvcDbContext;
         private readonly IUserService userService;
+        private readonly DatabaseContext mvcDbContext;
 
-        public UsersController(DatabaseContext mvcDbContext)  
+        public UsersController(DatabaseContext mvcDbContext, IUserService userService)  
         {
             this.mvcDbContext = mvcDbContext;
             this.userService = userService;
@@ -53,24 +53,21 @@ namespace SameZeraIJedynka.Controllers
             return RedirectToAction("Index");
         }
 
-        /*[HttpPost]
+        [HttpPost]
         public async Task<IActionResult> View(UserModel model)
         {
-           var user = await mvcDbContext.Users.FindAsync(model.Id);
+            var user = await mvcDbContext.Users.FindAsync(model.Id);
+
             if (user != null)
             {
-                user.UserId = model.Id;
-                user.Name = model.Name;
-                user.Password = model.Password;
-
-                await mvcDbContext.SaveChangesAsync();
+                await userService.UpdateUser(model, user);
                 return RedirectToAction("View");
             }
             return RedirectToAction("Index");
         }
 
 
-        [HttpPost]
+        /*[HttpPost]
         public async Task<IActionResult> Delete(UserModel model)
         {
             var user = await mvcDbContext.Users.FindAsync(model.Id);

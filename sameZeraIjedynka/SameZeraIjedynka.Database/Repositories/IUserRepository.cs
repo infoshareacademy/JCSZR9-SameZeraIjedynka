@@ -4,8 +4,9 @@ namespace SameZeraIjedynka.Database.Repositories
 {
     public interface IUserRepository
     {
-        Task Add(User newUser);
+        Task AddUser(User newUser);
         Task<List<User>> GetAllUsers();
-        Task<User> GetUser(int id);
+        Task<User> GetUserById(int id);
+        Task UpdateUser(User user, int newId, string newUsername, string newPassword);
     }
 }

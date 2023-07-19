@@ -17,7 +17,7 @@ namespace SameZeraIjedynka.Database.Repositories
             context = _context;
         }
 
-        public async Task Add(User newUser)
+        public async Task AddUser(User newUser)
         {
             await context.Users.AddAsync(newUser);
             await context.SaveChangesAsync();
@@ -29,11 +29,20 @@ namespace SameZeraIjedynka.Database.Repositories
 
             return users;
         }
-        public async Task<User> GetUser(int id)
+
+        public async Task<User> GetUserById(int id)
         {
             var user = await context.Users.FirstOrDefaultAsync(x => x.UserId == id);
 
             return user;
+        }
+
+        public async Task UpdateUser(User user, int newId, string newUsername, string newPassword)
+        {
+            user.UserId = newId;
+            user.Name = newUsername;
+            user.Password = newPassword;
+            await context.SaveChangesAsync();
         }
     }
 }

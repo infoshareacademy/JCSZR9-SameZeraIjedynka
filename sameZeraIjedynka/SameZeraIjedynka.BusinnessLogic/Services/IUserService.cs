@@ -8,9 +8,6 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
         Task Add(UserModel addUserRequest);
         Task<List<User>> GetAllUsers();
         Task<UserModel> GetUserById(int id);
-        /*        Task DeleteUser(UserModel model);
-Task<List<UserModel>> GetAllUsers();
-Task<UserModel> GetUserById(int id);
-Task UpdateUser(UserModel model);*/
+        Task UpdateUser(UserModel model, User user);
     }
 }
