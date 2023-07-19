@@ -11,11 +11,9 @@ namespace SameZeraIJedynka.Controllers
     public class UsersController : Controller
     {
         private readonly IUserService userService;
-        private readonly DatabaseContext mvcDbContext;
 
-        public UsersController(DatabaseContext mvcDbContext, IUserService userService)  
+        public UsersController(IUserService userService)  
         {
-            this.mvcDbContext = mvcDbContext;
             this.userService = userService;
         }
 
@@ -56,7 +54,7 @@ namespace SameZeraIJedynka.Controllers
         [HttpPost]
         public async Task<IActionResult> View(UserModel model)
         {
-            var user = await mvcDbContext.Users.FindAsync(model.Id);
+            var user = await userService.GetUserById(model.Id);
 
             if (user != null)
             {

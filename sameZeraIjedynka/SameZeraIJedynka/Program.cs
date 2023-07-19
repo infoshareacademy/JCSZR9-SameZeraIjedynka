@@ -2,8 +2,8 @@ using SameZeraIjedynka.Database.Context;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using SameZeraIjedynka.Database.Repositories;
-using SameZeraIJedynka.BusinnessLogic.Services;
 using SameZeraIjedynka.BusinnessLogic.Services;
+using SameZeraIJedynka.BusinnessLogic.Services;
 
 namespace SameZeraIJedynka
 {
@@ -30,7 +30,10 @@ namespace SameZeraIJedynka
             builder.Services.AddScoped<IHomeService, HomeService>();
             builder.Services.AddScoped<IEventService, EventService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IUserFavoriteService, UserFavoriteService>();
             builder.Services.AddScoped<IEventRepository, EventRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserFavoriteRepository, UserFavoriteRepository>();
 
             var app = builder.Build();
 

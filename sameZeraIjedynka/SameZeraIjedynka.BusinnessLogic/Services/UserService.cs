@@ -16,7 +16,7 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
     {
         private readonly IUserRepository userRepository;
 
-        public UserService(DatabaseContext dbContext, IUserRepository userRepository)
+        public UserService(IUserRepository userRepository)
         {
             this.userRepository = userRepository;
         }
@@ -64,11 +64,10 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             }
             return null;
         }
-
         public async Task UpdateUser(User user, UserModel model)
         {
             var userToUpdate = await userRepository.GetUserById(user.UserId);
-            
+
             if (user != null)
             {
                 await userRepository.UpdateUser(user, model.Id, model.Name, model.Password);
@@ -77,7 +76,7 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
 
         public async Task DeleteUser(User user)
         {
-            var userToDelete = await userRepository.GetUserById(user.UserId); 
+            var userToDelete = await userRepository.GetUserById(user.UserId);
 
             if (userToDelete != null)
             {

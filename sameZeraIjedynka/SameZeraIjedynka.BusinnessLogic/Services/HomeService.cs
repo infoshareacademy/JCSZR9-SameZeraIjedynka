@@ -11,6 +11,7 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
     public class HomeService : IHomeService
     {
         private readonly IEventRepository eventRepository;
+
         public HomeService(IEventRepository _eventRepository)
         {
             eventRepository = _eventRepository;

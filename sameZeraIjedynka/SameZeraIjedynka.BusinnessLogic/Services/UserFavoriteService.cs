@@ -8,21 +8,22 @@ using SameZeraIJedynka.BusinnessLogic.Models;
 using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
+using SameZeraIjedynka.Database.Repositories;
 
 namespace SameZeraIjedynka.BusinnessLogic.Services
 {
-    public class UserFavoriteService
+    public class UserFavoriteService : IUserFavoriteService
     {
-        private readonly DatabaseContext mvcDbContext;
+        private readonly IUserFavoriteRepository userFavoriteRepository;
 
-        public UserFavoriteService(DatabaseContext mvcDbContext)
+        public UserFavoriteService(IUserFavoriteRepository userFavoriteRepository)
         {
-            this.mvcDbContext = mvcDbContext;
+            this.userFavoriteRepository = userFavoriteRepository;
         }
 
         public async Task<List<Event>> GetFavoriteEvents(int userId, string sortOption = null)
         {
-            var eventsQuery = mvcDbContext.Favorites.Where(x => x.UserId == userId).Select(x => x.Event);
+            var eventsQuery = await userFavoriteRepository.Get();
 
             switch (sortOption)
             {
@@ -42,31 +43,31 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
                     eventsQuery = eventsQuery;
                     break;
             }
-
             var events = await eventsQuery.ToListAsync();
 
             return events;
         }
 
-        public async Task AddFavoriteEvent(int userId, int eventId)
-        {
-            var newFavorite = new UserFavorite()
-            {
-                EventId = eventId,
-                UserId = userId
-            };
-            await mvcDbContext.Favorites.AddAsync(newFavorite);
-            await mvcDbContext.SaveChangesAsync();
-        }
+        /*
+                public async Task AddFavoriteEvent(int userId, int eventId)
+                {
+                    var newFavorite = new UserFavorite()
+                    {
+                        EventId = eventId,
+                        UserId = userId
+                    };
+                    await mvcDbContext.Favorites.AddAsync(newFavorite);
+                    await mvcDbContext.SaveChangesAsync();
+                }
 
-        public async Task DeleteFavoriteEvent(int userId, int eventId)
-        {
-            var favorite = await mvcDbContext.Favorites.FirstOrDefaultAsync(x => x.UserId == userId && x.EventId == eventId);
-            if (favorite != null)
-            {
-                mvcDbContext.Favorites.Remove(favorite);
-                await mvcDbContext.SaveChangesAsync();
-            }
-        }
+                public async Task DeleteFavoriteEvent(int userId, int eventId)
+                {
+                    var favorite = await mvcDbContext.Favorites.FirstOrDefaultAsync(x => x.UserId == userId && x.EventId == eventId);
+                    if (favorite != null)
+                    {
+                        mvcDbContext.Favorites.Remove(favorite);
+                        await mvcDbContext.SaveChangesAsync();
+                    }
+                }*/
     }
 }

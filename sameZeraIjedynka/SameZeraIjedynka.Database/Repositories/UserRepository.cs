@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SameZeraIjedynka.Database.Repositories
 {
-    internal class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         public readonly DatabaseContext context;
         public UserRepository(DatabaseContext _context)
