@@ -36,7 +36,8 @@ namespace SameZeraIJedynka.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var users = await mvcDbContext.Users.ToListAsync();
+            var users = await userService.GetAllUsers();
+
             return View(users);
         }
 

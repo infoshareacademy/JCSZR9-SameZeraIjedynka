@@ -22,5 +22,12 @@ namespace SameZeraIjedynka.Database.Repositories
             await context.Users.AddAsync(newUser);
             await context.SaveChangesAsync();
         }
+
+        public async Task<List<User>> GetAllUsers()
+        {
+            var users = await context.Users.ToListAsync();
+
+            return users;
+        }
     }
 }

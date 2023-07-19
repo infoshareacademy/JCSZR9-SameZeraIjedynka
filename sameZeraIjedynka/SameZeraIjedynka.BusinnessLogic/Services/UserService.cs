@@ -32,15 +32,11 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             await userRepository.Add(user);
         }
 
-        /*public async Task<List<UserModel>> GetAllUsers()
+        public async Task<List<User>> GetAllUsers()
         {
-            var users = await dbContext.Users.ToListAsync();
-            return users.Select(user => new UserModel
-            {
-                Id = user.UserId,
-                Name = user.Name,
-                Password = user.Password
-            }).ToList();
+            var users = await userRepository.GetAllUsers();
+
+            return users;
         }
 
         /*public async Task<UserModel> GetUserById(int id)
