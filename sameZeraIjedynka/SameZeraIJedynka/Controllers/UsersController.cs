@@ -41,26 +41,19 @@ namespace SameZeraIJedynka.Controllers
             return View(users);
         }
 
-        /*[HttpGet]
+        [HttpGet]
         public async Task<IActionResult> View(int id)
         {
-            var user = await mvcDbContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
+            var user = await userService.GetUserById(id);
       
             if (user != null)
             {
-                var viewModel = new UserModel()
-                {
-                    Id = user.UserId,
-                    Name = user.Name,
-                    Password = user.Password
-                };
-                return  await Task.Run(() => View("View",viewModel));
+                return  await Task.Run(() => View("View", user));
             }
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-   
+        /*[HttpPost]
         public async Task<IActionResult> View(UserModel model)
         {
            var user = await mvcDbContext.Users.FindAsync(model.Id);

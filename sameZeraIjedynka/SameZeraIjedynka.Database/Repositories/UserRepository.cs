@@ -29,5 +29,11 @@ namespace SameZeraIjedynka.Database.Repositories
 
             return users;
         }
+        public async Task<User> GetUser(int id)
+        {
+            var user = await context.Users.FirstOrDefaultAsync(x => x.UserId == id);
+
+            return user;
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace SameZeraIjedynka.Database.Repositories
     {
         Task Add(User newUser);
         Task<List<User>> GetAllUsers();
+        Task<User> GetUser(int id);
     }
 }

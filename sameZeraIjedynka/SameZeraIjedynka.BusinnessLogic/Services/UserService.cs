@@ -39,9 +39,9 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             return users;
         }
 
-        /*public async Task<UserModel> GetUserById(int id)
+        public async Task<UserModel> GetUserById(int id)
         {
-            var user = await dbContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
+            var user = await userRepository.GetUser(id);
             if (user != null)
             {
                 var userModel = new UserModel
@@ -55,7 +55,7 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             return null;
         }
 
-        public async Task UpdateUser(UserModel model)
+        /*public async Task UpdateUser(UserModel model)
         {
             var user = await dbContext.Users.FindAsync(model.Id);
             if (user != null)
