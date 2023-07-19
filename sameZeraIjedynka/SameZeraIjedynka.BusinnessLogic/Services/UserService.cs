@@ -7,17 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
+using SameZeraIjedynka.Database.Repositories;
 using SameZeraIJedynka.Models;
 
 namespace SameZeraIjedynka.BusinnessLogic.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        private readonly DatabaseContext dbContext;
+        private readonly IUserRepository userRepository;
 
-        public UserService(DatabaseContext dbContext)
+        public UserService(DatabaseContext dbContext, IUserRepository userRepository)
         {
-            this.dbContext = dbContext;
+            this.userRepository = userRepository;
         }
 
         public async Task Add(UserModel addUserRequest)
@@ -28,10 +29,10 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
                 Name = addUserRequest.Name,
                 Password = addUserRequest.Password
             };
-            await dbContext.Users.AddAsync(user);
-            await dbContext.SaveChangesAsync();
+            await userRepository.Add(user);
         }
-        public async Task<List<UserModel>> GetAllUsers()
+
+        /*public async Task<List<UserModel>> GetAllUsers()
         {
             var users = await dbContext.Users.ToListAsync();
             return users.Select(user => new UserModel
@@ -42,7 +43,7 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             }).ToList();
         }
 
-        public async Task<UserModel> GetUserById(int id)
+        /*public async Task<UserModel> GetUserById(int id)
         {
             var user = await dbContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
             if (user != null)
@@ -78,6 +79,6 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
                 dbContext.Users.Remove(user);
                 await dbContext.SaveChangesAsync();
             }
-        }
+        }*/
     }
 }

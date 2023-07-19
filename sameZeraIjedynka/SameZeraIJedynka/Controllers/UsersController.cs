@@ -4,19 +4,20 @@ using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.BusinnessLogic.Models;
 using SameZeraIJedynka.Models;
-
+using SameZeraIjedynka.BusinnessLogic.Services;
 
 namespace SameZeraIJedynka.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly DatabaseContext mvcDbContext;  // assign field to what is below
+        private readonly DatabaseContext mvcDbContext;
+        private readonly IUserService userService;
 
-        public UsersController(DatabaseContext mvcDbContext)  //constructor //in bracket injected service. Pres dot+CTRL to create an asign field
+        public UsersController(DatabaseContext mvcDbContext)  
         {
             this.mvcDbContext = mvcDbContext;
+            this.userService = userService;
         }
-
 
         [HttpGet]
         public IActionResult Add()
@@ -27,27 +28,19 @@ namespace SameZeraIJedynka.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(UserModel addUserRequest)
         {
-            var user = new User() //conversion between models
-            {
-                UserId = addUserRequest.Id,
-                Name = addUserRequest.Name,
-                Password = addUserRequest.Password
-            };
-            await mvcDbContext.Users.AddAsync(user); //adding to list next employee
-            await mvcDbContext.SaveChangesAsync();
+            await userService.Add(addUserRequest);
+
             return RedirectToAction("Add");
         }
 
         [HttpGet]
-  
         public async Task<IActionResult> Index()
         {
             var users = await mvcDbContext.Users.ToListAsync();
             return View(users);
         }
 
-        [HttpGet]
-      
+        /*[HttpGet]
         public async Task<IActionResult> View(int id)
         {
             var user = await mvcDbContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
@@ -94,7 +87,7 @@ namespace SameZeraIJedynka.Controllers
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
-        }
+        }*/
     }
 }
 

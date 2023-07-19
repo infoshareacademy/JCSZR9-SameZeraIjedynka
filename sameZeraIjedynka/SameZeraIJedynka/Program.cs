@@ -29,6 +29,7 @@ namespace SameZeraIJedynka
             // Services Dependency Injection
             builder.Services.AddScoped<IHomeService, HomeService>();
             builder.Services.AddScoped<IEventService, EventService>();
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IEventRepository, EventRepository>();
 
             var app = builder.Build();

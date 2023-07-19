@@ -12,7 +12,6 @@ namespace SameZeraIJedynka.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
         private readonly IHomeService homeService;
 
         public HomeController(IHomeService homeService, ILogger<HomeController> logger)  
