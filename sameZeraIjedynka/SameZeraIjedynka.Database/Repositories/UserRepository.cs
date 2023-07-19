@@ -44,5 +44,11 @@ namespace SameZeraIjedynka.Database.Repositories
             user.Password = newPassword;
             await context.SaveChangesAsync();
         }
+
+        public async Task DeleteUser(User user)
+        {
+            context.Users.Remove(user);
+            await context.SaveChangesAsync();
+        }
     }
 }

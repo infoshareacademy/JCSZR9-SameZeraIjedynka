@@ -39,7 +39,7 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             return users;
         }
 
-        public async Task<UserModel> GetUserById(int id)
+        public async Task<UserModel> GetUserModelById(int id)
         {
             var user = await userRepository.GetUserById(id);
             if (user != null)
@@ -55,9 +55,19 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             return null;
         }
 
-        public async Task UpdateUser(UserModel model, User newUser)
+        public async Task<User> GetUserById(int id)
         {
-            var user = await userRepository.GetUserById(model.Id);
+            var user = await userRepository.GetUserById(id);
+            if (user != null)
+            {
+                return user;
+            }
+            return null;
+        }
+
+        public async Task UpdateUser(User user, UserModel model)
+        {
+            var userToUpdate = await userRepository.GetUserById(user.UserId);
             
             if (user != null)
             {
@@ -65,14 +75,14 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             }
         }
 
-        /*public async Task DeleteUser(UserModel model)
+        public async Task DeleteUser(User user)
         {
-            var user = await dbContext.Users.FindAsync(model.Id);
-            if (user != null)
+            var userToDelete = await userRepository.GetUserById(user.UserId); 
+
+            if (userToDelete != null)
             {
-                dbContext.Users.Remove(user);
-                await dbContext.SaveChangesAsync();
+                await userRepository.DeleteUser(userToDelete);
             }
-        }*/
+        }
     }
 }

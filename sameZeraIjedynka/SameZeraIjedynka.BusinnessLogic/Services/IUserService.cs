@@ -6,8 +6,10 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
     public interface IUserService
     {
         Task Add(UserModel addUserRequest);
+        Task DeleteUser(User user);
         Task<List<User>> GetAllUsers();
-        Task<UserModel> GetUserById(int id);
-        Task UpdateUser(UserModel model, User user);
+        Task<User> GetUserById(int id);
+        Task<UserModel> GetUserModelById(int id);
+        Task UpdateUser(User user, UserModel model);
     }
 }

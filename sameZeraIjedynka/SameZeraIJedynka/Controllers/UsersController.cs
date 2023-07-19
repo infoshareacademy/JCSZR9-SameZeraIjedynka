@@ -44,7 +44,7 @@ namespace SameZeraIJedynka.Controllers
         [HttpGet]
         public async Task<IActionResult> View(int id)
         {
-            var user = await userService.GetUserById(id);
+            var user = await userService.GetUserModelById(id);
       
             if (user != null)
             {
@@ -60,25 +60,24 @@ namespace SameZeraIJedynka.Controllers
 
             if (user != null)
             {
-                await userService.UpdateUser(model, user);
+                await userService.UpdateUser(user, model);
                 return RedirectToAction("View");
             }
             return RedirectToAction("Index");
         }
 
-
-        /*[HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Delete(UserModel model)
         {
-            var user = await mvcDbContext.Users.FindAsync(model.Id);
-            if(user!= null)
+            var user = await userService.GetUserById(model.Id);
+
+            if (user != null)
             {
-                mvcDbContext.Users.Remove(user);
-                await mvcDbContext.SaveChangesAsync();
+                await userService.DeleteUser(user);
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
-        }*/
+        }
     }
 }
 
