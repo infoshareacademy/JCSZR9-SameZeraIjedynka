@@ -1,4 +1,5 @@
-﻿using SameZeraIjedynka.Database.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,19 @@ namespace SameZeraIjedynka.Database.Repositories
         {
             await context.Favorites.AddAsync(newFavorite);
             await context.SaveChangesAsync(); 
+        }
+
+        public async Task Delete(UserFavorite newFavorite)
+        {
+            context.Favorites.Remove(newFavorite); 
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<UserFavorite> Find(int id)
+        {
+            var eventsQuery = await context.Favorites.FirstOrDefaultAsync(x => x.UserId == 2 && x.EventId == id);
+
+            return eventsQuery;
         }
     }
 }

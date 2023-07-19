@@ -45,13 +45,8 @@ namespace SameZeraIJedynka.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var newFavorite = new UserFavorite()
-            {
-                EventId = id,
-                UserId = 2
-            };
-            mvcDbContext.Favorites.Remove(newFavorite); // Change "mvcDbContext.Users" to "mvcDbContext.Favorites"
-            await mvcDbContext.SaveChangesAsync();
+            await userFavoriteService.DeleteFavoriteEvent(id);
+
             return RedirectToAction("Index");
         }
 

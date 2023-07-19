@@ -60,14 +60,20 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             await userFavoriteRepository.Add(newFavorite);
         }
 
-/*        public async Task DeleteFavoriteEvent(int userId, int eventId)
+        public async Task DeleteFavoriteEvent(int id)
         {
-            var favorite = await mvcDbContext.Favorites.FirstOrDefaultAsync(x => x.UserId == userId && x.EventId == eventId);
-            if (favorite != null)
+            var newFavorite = new UserFavorite()
             {
-                mvcDbContext.Favorites.Remove(favorite);
-                await mvcDbContext.SaveChangesAsync();
+                EventId = id,
+                UserId = 2
+            };
+
+            var favoriteEvent = await userFavoriteRepository.Find(id);
+
+            if (favoriteEvent != null)
+            {
+                await userFavoriteRepository.Delete(favoriteEvent);
             }
-        }*/
+        }
     }
 }
