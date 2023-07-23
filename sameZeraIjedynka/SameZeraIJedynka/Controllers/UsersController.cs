@@ -76,6 +76,31 @@ namespace SameZeraIJedynka.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(UserModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+            return await View(model);
+        }
+
+
+
+        [HttpGet] // Dodaj tę adnotację GET, aby zwrócić widok dla wyświetlenia formularza usuwania
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = new UserModel { Id = 1 };
+            return View();
+        }
     }
 }
 
