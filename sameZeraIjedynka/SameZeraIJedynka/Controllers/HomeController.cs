@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SameZeraIjedynka.BusinnessLogic.Services;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.BusinnessLogic.Models;
+using SameZeraIJedynka.BusinnessLogic.Services;
 using System.Diagnostics;
 
 namespace SameZeraIJedynka.Controllers
@@ -10,18 +12,17 @@ namespace SameZeraIJedynka.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHomeService homeService;
 
-        private readonly DatabaseContext mvcDbContext;
-
-        public HomeController(DatabaseContext mvcDbContext, ILogger<HomeController> logger)  //constructor //in bracket injected service. Pres dot+CTRL to create an asign field
+        public HomeController(IHomeService homeService, ILogger<HomeController> logger)  
         {
-            this.mvcDbContext = mvcDbContext;
+            this.homeService = homeService;
             _logger = logger;
         }
 
         public async Task<IActionResult> Index()
         {
-            var events = await mvcDbContext.Events.Take(3).ToListAsync();
+            var events = await homeService.GetHomeEvents();
             return View(events);
         }
 

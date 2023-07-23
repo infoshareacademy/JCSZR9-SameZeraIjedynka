@@ -4,19 +4,18 @@ using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.BusinnessLogic.Models;
 using SameZeraIJedynka.Models;
-
+using SameZeraIjedynka.BusinnessLogic.Services;
 
 namespace SameZeraIJedynka.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly DatabaseContext mvcDbContext;  // assign field to what is below
+        private readonly IUserService userService;
 
-        public UsersController(DatabaseContext mvcDbContext)  //constructor //in bracket injected service. Pres dot+CTRL to create an asign field
+        public UsersController(IUserService userService)  
         {
-            this.mvcDbContext = mvcDbContext;
+            this.userService = userService;
         }
-
 
         [HttpGet]
         public IActionResult Add()
@@ -27,70 +26,52 @@ namespace SameZeraIJedynka.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(UserModel addUserRequest)
         {
-            var user = new User() //conversion between models
-            {
-                UserId = addUserRequest.Id,
-                Name = addUserRequest.Name,
-                Password = addUserRequest.Password
-            };
-            await mvcDbContext.Users.AddAsync(user); //adding to list next employee
-            await mvcDbContext.SaveChangesAsync();
+            await userService.Add(addUserRequest);
+
             return RedirectToAction("Add");
         }
 
         [HttpGet]
-  
         public async Task<IActionResult> Index()
         {
-            var users = await mvcDbContext.Users.ToListAsync();
+            var users = await userService.GetAllUsers();
+
             return View(users);
         }
 
         [HttpGet]
-      
         public async Task<IActionResult> View(int id)
         {
-            var user = await mvcDbContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
+            var user = await userService.GetUserModelById(id);
       
             if (user != null)
             {
-                var viewModel = new UserModel()
-                {
-                    Id = user.UserId,
-                    Name = user.Name,
-                    Password = user.Password
-                };
-                return  await Task.Run(() => View("View",viewModel));
+                return  await Task.Run(() => View("View", user));
             }
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-   
         public async Task<IActionResult> View(UserModel model)
         {
-           var user = await mvcDbContext.Users.FindAsync(model.Id);
+            var user = await userService.GetUserById(model.Id);
+
             if (user != null)
             {
-                user.UserId = model.Id;
-                user.Name = model.Name;
-                user.Password = model.Password;
-
-                await mvcDbContext.SaveChangesAsync();
+                await userService.UpdateUser(user, model);
                 return RedirectToAction("View");
             }
             return RedirectToAction("Index");
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Delete(UserModel model)
         {
-            var user = await mvcDbContext.Users.FindAsync(model.Id);
-            if(user!= null)
+            var user = await userService.GetUserById(model.Id);
+
+            if (user != null)
             {
-                mvcDbContext.Users.Remove(user);
-                await mvcDbContext.SaveChangesAsync();
+                await userService.DeleteUser(user);
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");

@@ -4,163 +4,21 @@ using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.BusinnessLogic.Models;
 using Microsoft.AspNetCore.Http;
+using SameZeraIjedynka.Database.Repositories;
 
 namespace SameZeraIJedynka.BusinnessLogic.Services
 {
     public class EventService : IEventService
     {
-        public EventService(DatabaseContext _context)
+        private readonly IEventRepository eventRepository;
+        public EventService(IEventRepository _eventRepository)
         {
-            context = _context;
+            eventRepository = _eventRepository;
         }
 
-        // TODO: provisional list of events, delete after enabling database
-        private static int _idCounter;
-        private static List<EventModel> _events = new List<EventModel>
+        public async Task<int> Add(EventModel addEventRequest, IFormFile image)
         {
-            new EventModel
-            {
-                  EventId = 1,
-                  Name = "Event1",
-                  Date = new DateTime(2023,10,12),
-                  Organizer = "Organizer1",
-                  Place = "Gdansk, Zielona 23",
-                  Price = 0,
-                  Capacity = 100,
-                  Target = TargetEnum.kids,
-                  
-            },
-            new EventModel
-            {
-                  EventId = 2,
-                  Name = "Event2",
-                  Date = new DateTime(2024,09,22),
-                  Organizer = "Organizer2",
-                  Place = "Gdynia, Zielona 31",
-                  Price = 10,
-                  Capacity = 1200,
-                  Target = TargetEnum.all,
-                  
-            },
-            new EventModel
-            {
-                  EventId = 3,
-                  Name = "Event3",
-                  Date = new DateTime(2023,05,22),
-                  Organizer = "Organizer3",
-                  Place = "Gdańsk, Czerwona 1",
-                  Price = 0,
-                  Capacity = 200,
-                  Target = TargetEnum.all,
-                  
-            },
-            new EventModel
-            {
-                  EventId = 4,
-                  Name = "Event4",
-                  Date = new DateTime(2023,05,05),
-                  Organizer = "Organizer4",
-                  Place = "Sopot, Zolta 5",
-                  Price = 0,
-                  Capacity = 40,
-                  Target = TargetEnum.all,
-                 
-            },
-            new EventModel
-            {
-                  EventId = 5,
-                  Name = "Event5",
-                  Date = new DateTime(2023,08,12),
-                  Organizer = "Organizer5",
-                  Place = "Gdansk, Czerwona 123",
-                  Price = 100,
-                  Capacity = 70,
-                  Target = TargetEnum.grandpas,
-                 
-            },
-            new EventModel
-            {
-                  EventId = 6,
-                  Name = "Event6",
-                  Date = new DateTime(2023,07,05),
-                  Organizer = "Organizer4",
-                  Place = "Gdansk, Niebieska 20",
-                  Price = 10,
-                  Capacity = 700,
-                  Target = TargetEnum.adults,
-                 
-            }
-        };
-        public object mvcDbContext;
-        private readonly DatabaseContext context;
-
-        // return all events
-        public List<EventModel> ABC()
-        {
-            return _events;
-        }
-
-        public EventModel GetEventById(int id)
-        {
-            return _events.FirstOrDefault(e => e.EventId == 1);
-        }
-        public void Create(EventModel eventModel)
-        {
-            eventModel.EventId = GetNextId();
-            _events.Add(eventModel);
-        }
-
-        private int GetNextId()
-        {
-            _idCounter++;
-
-            return _idCounter;
-        }
-
-        // return all events
-        public List<EventModel> GetUserFavorites(int id)
-        {
-            var user = context.Users.FirstOrDefault(m => m.UserId == id);
-            var userFavorites = user.UsersFavorites.ToList();
-            List<EventModel> events = new List<EventModel>();
-          
-            foreach(var item in userFavorites) //linq
-            {
-                var favoriteEvent = new EventModel() { Name = item.Event.Name };//dopisac pola
-               events.Add(favoriteEvent);
-            }
-
-            return events;
-              
-        }
-
-        public List<EventModel> allEvents()
-        {
-            return _events;
-        }
-
-        public Event GetById(int id)
-        {
-           
-            return context.Events.FirstOrDefault(m => m.EventId == id);
-        }
-
-
-        public List<EventModel> ReverseIsFavorite(int id)
-        {
-            var events 
-                = context.Events.SingleOrDefault(m => m.EventId == id);
-            if (events != null)
-            {
-                //events.IsFavorite = !events.IsFavorite;
-                context.SaveChanges();
-            }
-            return _events.ToList();
-        }
-    //----------------------------------------------------------------------------------
-        public async Task Add(EventModel addEventRequest, IFormFile image)
-        {
-            if (image != null && image.Length > 0) //można przenieść
+            if (image != null && image.Length > 0)
             {
                 string fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
                 string path = Path.Combine(@"wwwroot\assets\img\", fileName);
@@ -189,46 +47,60 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
                 ImagePath = addEventRequest.ImagePath
             };
 
-            await context.Events.AddAsync(newEvent);
-            await context.SaveChangesAsync();
+            var newEventId = await eventRepository.AddEvent(newEvent);
+
+            return newEventId;
         }
 
-        public async Task<List<EventModel>> Search(string searchPattern)
+        public async Task<IQueryable<Event>> Index(string sortOption)
         {
-            IQueryable<Event> eventsQuery = context.Events.Where(e => e.Name.Contains(searchPattern));
+            IQueryable<Event> eventsQuery = await eventRepository.Get();
 
-            var events = await eventsQuery.ToListAsync();
-
-            return events.Select(e => new EventModel
+            switch (sortOption)
             {
-                EventId = e.EventId,
-                Name = e.Name,
-                Date = e.Date,
-                Organizer = e.Organizer,
-                Place = e.Place,
-                Price = e.Price,
-                Capacity = e.Capacity,
-                Target = e.Target,
-                Description = e.Description
-            })
-                .ToList();
-        }
-
-        public async Task<bool> Delete(int eventId)
-        {
-            var events = await context.Events.FindAsync(eventId);
-            if (events != null)
-            {
-                context.Events.Remove(events);
-                await context.SaveChangesAsync();
-                return true;
+                case "time_left":
+                    eventsQuery = eventsQuery.OrderBy(e => e.Date);
+                    break;
+                case "time_left_desc":
+                    eventsQuery = eventsQuery.OrderByDescending(e => e.Date);
+                    break;
+                case "price":
+                    eventsQuery = eventsQuery.OrderBy(e => e.Price);
+                    break;
+                case "price_desc":
+                    eventsQuery = eventsQuery.OrderByDescending(e => e.Price);
+                    break;
+                default:
+                    eventsQuery = eventsQuery;
+                    break;
             }
-            return false;
+
+            return eventsQuery;
         }
 
-        public async Task<Event> EventDetails(int id)
+        public async Task<List<Event>> Search(string searchPattern)
         {
-            return await context.Events.FirstOrDefaultAsync(x => x.EventId == id);
+            IQueryable<Event> eventsQuery = await eventRepository.Search(searchPattern);
+
+            var events = eventsQuery.ToList();
+
+            return events;
+        }
+
+        public async Task Delete(EventModel model)
+        {
+            var eventsQuery = await eventRepository.GetById(model.EventId);
+            if (eventsQuery != null)
+            {
+                await eventRepository.Delete(eventsQuery);
+            }
+        }
+
+        public async Task<Event> EventDetails(int eventId)
+        {
+            Event eventsQuery = await eventRepository.GetById(eventId);
+
+            return eventsQuery;
         }
     }
 }

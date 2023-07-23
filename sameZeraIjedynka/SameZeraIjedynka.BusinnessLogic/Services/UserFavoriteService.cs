@@ -8,21 +8,22 @@ using SameZeraIJedynka.BusinnessLogic.Models;
 using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
+using SameZeraIjedynka.Database.Repositories;
 
 namespace SameZeraIjedynka.BusinnessLogic.Services
 {
-    public class UserFavoriteService
+    public class UserFavoriteService : IUserFavoriteService
     {
-        private readonly DatabaseContext mvcDbContext;
+        private readonly IUserFavoriteRepository userFavoriteRepository;
 
-        public UserFavoriteService(DatabaseContext mvcDbContext)
+        public UserFavoriteService(IUserFavoriteRepository userFavoriteRepository)
         {
-            this.mvcDbContext = mvcDbContext;
+            this.userFavoriteRepository = userFavoriteRepository;
         }
 
         public async Task<List<Event>> GetFavoriteEvents(int userId, string sortOption = null)
         {
-            var eventsQuery = mvcDbContext.Favorites.Where(x => x.UserId == userId).Select(x => x.Event);
+            var eventsQuery = await userFavoriteRepository.Get();
 
             switch (sortOption)
             {
@@ -42,30 +43,36 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
                     eventsQuery = eventsQuery;
                     break;
             }
-
             var events = await eventsQuery.ToListAsync();
 
             return events;
         }
 
-        public async Task AddFavoriteEvent(int userId, int eventId)
+        
+        public async Task AddFavoriteEvent(int id)
         {
             var newFavorite = new UserFavorite()
             {
-                EventId = eventId,
-                UserId = userId
+                EventId = id,
+                UserId = 2
             };
-            await mvcDbContext.Favorites.AddAsync(newFavorite);
-            await mvcDbContext.SaveChangesAsync();
+
+            await userFavoriteRepository.Add(newFavorite);
         }
 
-        public async Task DeleteFavoriteEvent(int userId, int eventId)
+        public async Task DeleteFavoriteEvent(int id)
         {
-            var favorite = await mvcDbContext.Favorites.FirstOrDefaultAsync(x => x.UserId == userId && x.EventId == eventId);
-            if (favorite != null)
+            var newFavorite = new UserFavorite()
             {
-                mvcDbContext.Favorites.Remove(favorite);
-                await mvcDbContext.SaveChangesAsync();
+                EventId = id,
+                UserId = 2
+            };
+
+            var favoriteEvent = await userFavoriteRepository.Find(id);
+
+            if (favoriteEvent != null)
+            {
+                await userFavoriteRepository.Delete(favoriteEvent);
             }
         }
     }

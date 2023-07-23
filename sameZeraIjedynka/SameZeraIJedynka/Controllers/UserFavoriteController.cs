@@ -4,43 +4,26 @@ using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
 using SameZeraIJedynka.BusinnessLogic.Models;
 using Microsoft.EntityFrameworkCore;
+using SameZeraIjedynka.Database.Repositories;
+using SameZeraIjedynka.BusinnessLogic.Services;
 
 namespace SameZeraIJedynka.Controllers
 {
     public class UserFavoriteController : Controller
     {
         private readonly DatabaseContext mvcDbContext;
+        private readonly IUserFavoriteService userFavoriteService;
 
-        public UserFavoriteController(DatabaseContext mvcDbContext)
+        public UserFavoriteController(DatabaseContext mvcDbContext, IUserFavoriteService userFavoriteService)
         {
             this.mvcDbContext = mvcDbContext;
+            this.userFavoriteService = userFavoriteService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index(string sortOption = null)
         {
-            var eventsQuery = mvcDbContext.Favorites.Where(x => x.UserId == 2).Select(x => x.Event);
-
-            switch (sortOption)
-            {
-                case "time_left":
-                    eventsQuery = eventsQuery.OrderBy(e => e.Date);
-                    break;
-                case "time_left_desc":
-                    eventsQuery = eventsQuery.OrderByDescending(e => e.Date);
-                    break;
-                case "price":
-                    eventsQuery = eventsQuery.OrderBy(e => e.Price);
-                    break;
-                case "price_desc":
-                    eventsQuery = eventsQuery.OrderByDescending(e => e.Price);
-                    break;
-                default:
-                    eventsQuery = eventsQuery;
-                    break;
-            }
-
-            var events = await eventsQuery.ToListAsync();
+            var events = await userFavoriteService.GetFavoriteEvents(2, sortOption);
 
             return View(events);
         }
@@ -54,27 +37,16 @@ namespace SameZeraIJedynka.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(int id)
         {
-            var newFavorite = new UserFavorite()
-            {
-                EventId = id,
-                UserId = 2
-            };
-            await mvcDbContext.Favorites.AddAsync(newFavorite);
-            await mvcDbContext.SaveChangesAsync();
-            return RedirectToAction("Index", "UserFavorite");
+            await userFavoriteService.AddFavoriteEvent(id);
 
+            return RedirectToAction("Index", "UserFavorite");
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var newFavorite = new UserFavorite()
-            {
-                EventId = id,
-                UserId = 2
-            };
-            mvcDbContext.Favorites.Remove(newFavorite); // Change "mvcDbContext.Users" to "mvcDbContext.Favorites"
-            await mvcDbContext.SaveChangesAsync();
+            await userFavoriteService.DeleteFavoriteEvent(id);
+
             return RedirectToAction("Index");
         }
 

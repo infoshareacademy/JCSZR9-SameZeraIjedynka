@@ -1,19 +1,15 @@
-﻿using SameZeraIJedynka.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SameZeraIjedynka.Database.Entities;
+using SameZeraIJedynka.Models;
 
 namespace SameZeraIjedynka.BusinnessLogic.Services
 {
     public interface IUserService
     {
-       Task Add(UserModel addUserRequest);
-       Task<List<UserModel>> GetAllUsers();
-       Task<UserModel> GetUserById(int id);
-       Task UpdateUser(UserModel model);
-       Task DeleteUser(UserModel model);
+        Task Add(UserModel addUserRequest);
+        Task DeleteUser(User user);
+        Task<List<User>> GetAllUsers();
+        Task<User> GetUserById(int id);
+        Task<UserModel> GetUserModelById(int id);
+        Task UpdateUser(User user, UserModel model);
     }
 }
-

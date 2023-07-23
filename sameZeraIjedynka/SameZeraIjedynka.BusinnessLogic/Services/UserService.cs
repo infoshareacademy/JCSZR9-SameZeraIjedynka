@@ -7,17 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
+using SameZeraIjedynka.Database.Repositories;
 using SameZeraIJedynka.Models;
 
 namespace SameZeraIjedynka.BusinnessLogic.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        private readonly DatabaseContext dbContext;
+        private readonly IUserRepository userRepository;
 
-        public UserService(DatabaseContext dbContext)
+        public UserService(IUserRepository userRepository)
         {
-            this.dbContext = dbContext;
+            this.userRepository = userRepository;
         }
 
         public async Task Add(UserModel addUserRequest)
@@ -28,23 +29,19 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
                 Name = addUserRequest.Name,
                 Password = addUserRequest.Password
             };
-            await dbContext.Users.AddAsync(user);
-            await dbContext.SaveChangesAsync();
-        }
-        public async Task<List<UserModel>> GetAllUsers()
-        {
-            var users = await dbContext.Users.ToListAsync();
-            return users.Select(user => new UserModel
-            {
-                Id = user.UserId,
-                Name = user.Name,
-                Password = user.Password
-            }).ToList();
+            await userRepository.AddUser(user);
         }
 
-        public async Task<UserModel> GetUserById(int id)
+        public async Task<List<User>> GetAllUsers()
         {
-            var user = await dbContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
+            var users = await userRepository.GetAllUsers();
+
+            return users;
+        }
+
+        public async Task<UserModel> GetUserModelById(int id)
+        {
+            var user = await userRepository.GetUserById(id);
             if (user != null)
             {
                 var userModel = new UserModel
@@ -58,25 +55,32 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             return null;
         }
 
-        public async Task UpdateUser(UserModel model)
+        public async Task<User> GetUserById(int id)
         {
-            var user = await dbContext.Users.FindAsync(model.Id);
+            var user = await userRepository.GetUserById(id);
             if (user != null)
             {
-                user.UserId = model.Id;
-                user.Name = model.Name;
-                user.Password = model.Password;
-                await dbContext.SaveChangesAsync();
+                return user;
+            }
+            return null;
+        }
+        public async Task UpdateUser(User user, UserModel model)
+        {
+            var userToUpdate = await userRepository.GetUserById(user.UserId);
+
+            if (user != null)
+            {
+                await userRepository.UpdateUser(user, model.Id, model.Name, model.Password);
             }
         }
 
-        public async Task DeleteUser(UserModel model)
+        public async Task DeleteUser(User user)
         {
-            var user = await dbContext.Users.FindAsync(model.Id);
-            if (user != null)
+            var userToDelete = await userRepository.GetUserById(user.UserId);
+
+            if (userToDelete != null)
             {
-                dbContext.Users.Remove(user);
-                await dbContext.SaveChangesAsync();
+                await userRepository.DeleteUser(userToDelete);
             }
         }
     }

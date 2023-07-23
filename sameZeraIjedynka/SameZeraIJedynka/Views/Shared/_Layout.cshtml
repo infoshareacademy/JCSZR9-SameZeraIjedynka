@@ -35,7 +35,7 @@
     <header>
         <!-- TODO: navbar elements are not alined vertically + add resposivness -->
         <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
-            <div class="container">
+            <div class="container" >
                 <!-- Logo -->
                 <a class="navbar-brand text-brand" asp-controller="Home" asp-action="Index">Event<span class="color-b">Finder</span></a><!-- End Logo -->
                 <!-- Menu -->
@@ -77,7 +77,7 @@
                 <!-- Searcher -->
                 <!-- TODO: make searcher similar to filter -->
                 <form method="get" action="@Url.Action("Search", "Event")">
-                    <div class="input-group mb-3 navbar-toggle-box navbar-toggle-box-collapse">
+                    <div class="input-group navbar-toggle-box navbar-toggle-box-collapse">
                         <input type="text" class="form-control" name="searchPattern" placeholder="Szukaj...">
                         <button class="btn btn-b-n" type="submit">
                             <i class="bi bi-search"></i>
