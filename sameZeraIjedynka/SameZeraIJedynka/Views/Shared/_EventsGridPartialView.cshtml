@@ -1,10 +1,10 @@
 ﻿@{
 	var toggleEventInFavoritesFunction = ViewData["ToggleEventInFavoritesFunction"] as string;
 	var imagePath = ViewData["ImagePath"] as string;
+	var controllerName = ViewData["ControllerName"] as string;
 }
 
-
-<div class="container">
+<div class="container" >
 	<!-- ======= Intro Section ======= -->
 	<section class="section-services section-t8">
 		<!-- Page Header -->
@@ -19,33 +19,34 @@
 		</div><!-- End Page Header -->
 	</section><!-- End Intro Section -->
 	<!-- ======= Sort Section ======= -->
-	<!-- TODO: needs to unify sorting and filtering -->
 	<section class="property-grid grid">
 		<div class="col-sm-12">
 			<div class="grid-option">
 				<form id="sortForm" method="get" action="">
 					<select id="sortOption" class="custom-select input-group mb-3 navbar-toggle-box navbar-toggle-box-collapse" name="sortOption">
-						<option selected style="display: none;">---</option>
+						<option value="" disabled selected>Sortuj</option>
 						<option value="time_left">Od najwcześniejszego</option>
 						<option value="time_left_desc">Od najpóźniejszego</option>
 						<option value="price">Od najtańszego</option>
 						<option value="price_desc">Od najdroższego</option>
+						@if (ViewData["ViewName"]?.ToString() == "Search")
+						{
+							<input type="hidden" name="searchPattern" value="@ViewData["SearchPattern"]" />
+						}
 					</select>
-					<button type="submit" class="btn btn-secondary btn-b">Sortuj</button>
 				</form>
 			</div>
 		</div>
-	</section> <!-- ======= End Sort Section ======= -->
+	</section>
+	<!-- ======= End Sort Section ======= -->
 	<!-- ======= Show Events Section ======= -->
 	<section class="section-services">
 		<div class="row all-event-filter">
 			<!-- Filtering Events -->
-			<!-- TODO: not working - needs to unify sorting and filtering -->
 			<div class="left-event-filter">
 				<div class="col-sm-12 section-md-t3">
 					<div class="widget-a">
 						<div class="w-header-a">
-							<!-- TODO: vertical alignment has been made ugly -->
 							<p></p>
 							<h3 class="w-title-a text-brand">Kategoria</h3>
 							<p></p>
@@ -123,8 +124,7 @@
 														}
 														else
 														{
-															@events.Description
-															;
+															@events.Description;
 														}
 													}
 												</p>
@@ -161,24 +161,75 @@
 	</section><!-- ======= End Show Events Section ======= -->
 </div>
 
-<!-- Adding/Deleting Filter Option Script -->
+<!-- Scrpit for filtering and sorting events in grid -->
 <script>
+	function redirectToSortedPage(redirectUrl) {
+		const currentUrl = window.location.href;
+		window.location.replace(redirectUrl);
+		document.body.style.visibility = 'hidden';
+	}
+
+	function sortEvents() {
+		sortForm.submit();
+	}
+
+	function filterEvents(categories) {
+		const eventsContainer = document.querySelector('.right-event-filter .row');
+		const events = Array.from(eventsContainer.children);
+		events.forEach(event => {
+			const eventCategory = event.getAttribute('data-category');
+			if (!eventCategory) {
+				return;
+			}
+			if (categories.length === 0 || categories.includes(eventCategory)) {
+				event.style.display = 'block';
+			} 
+			else {
+				event.style.display = 'none';
+			}
+		});
+	}
+
+	function updateStylesBasedOnCategories() {
+		listItems.forEach(item => {
+			const itemId = item.id;
+			if (categories.includes(itemId)) {
+				item.classList.add('selected');
+			}
+		});
+	}
+
 	const listItems = document.querySelectorAll('.clickable');
 	const events = document.querySelectorAll('.event-filter');
 
+	const storedCategories = localStorage.getItem('categories');
 	let categories = [];
-	localStorage.setItem('categories', JSON.stringify(categories));
+	if (storedCategories) {
+		categories = JSON.parse(storedCategories);
+	}
+
+	let sortOption = localStorage.getItem('sortOption');
+	const sortOptionSelect = document.getElementById('sortOption');
+	if (sortOption) {
+		sortOptionSelect.value = sortOption;
+	}
+
+	sortOptionSelect.addEventListener('change', function () {
+		const selectedSortOption = this.value;
+		localStorage.setItem('sortOption', selectedSortOption);
+		sortOption = selectedSortOption;
+		sortEvents(); 
+	});
 
 	listItems.forEach(item => {
 		item.addEventListener('click', () => {
-			let categories = localStorage.getItem('categories');
-			categories = JSON.parse(categories);
-
 			const isSelected = item.classList.contains('selected');
-
 			if (!isSelected) {
-				item.classList.add('selected');
-				categories.push(item.id);
+				const itemId = item.id;
+				if (!categories.includes(itemId)) {
+					item.classList.add('selected');
+					categories.push(itemId);
+				}
 			} else {
 				item.classList.remove('selected');
 				const index = categories.indexOf(item.id);
@@ -186,46 +237,31 @@
 					categories.splice(index, 1);
 				}
 			}
-
 			localStorage.setItem('categories', JSON.stringify(categories));
-			console.log(localStorage.getItem('categories'));
-
 			filterEvents(categories);
 		});
 	});
 
-	function filterEvents(categories) {
-		events.forEach(event => {
-			const eventCategory = event.getAttribute('data-category');
-			if (!event) {
-				return;
+	window.addEventListener('DOMContentLoaded', function () {
+		const currentUrl = new URL(window.location.href);
+		const sortOption = localStorage.getItem('sortOption');
+		const sortOptionParam = currentUrl.searchParams.get('sortOption');
+		if (sortOption && sortOption.trim() !== '' && !sortOptionParam) {
+			if (window.location.href.includes('Search')) {
+
+				let redirectUrl = `https://localhost:7000/@controllerName/Search?sortOption=${encodeURIComponent(sortOption)}&searchPattern=@ViewData["SearchPattern"]`;
+				redirectToSortedPage(redirectUrl);
 			}
-			if (categories.length === 0 || categories.includes(eventCategory)) {
-				event.style.display = 'block';
-			} else {
-				event.style.display = 'none';
+			else {
+				let redirectUrl = `https://localhost:7000/@controllerName/Index?sortOption=${encodeURIComponent(sortOption)}`;
+				redirectToSortedPage(redirectUrl);
 			}
-		});
-	}
-</script><!-- End Adding/Deleting Filter Option Script -->
-
-<script>
-	const sortForm = document.getElementById('sortForm');
-	const sortOption = document.getElementById('sortOption');
-
-	sortForm.addEventListener('submit', function (event) {
-		event.preventDefault();
-
-		const selectedOption = sortOption.value;
-		localStorage.setItem('selectedSortOption', selectedOption);
-
-		sortForm.submit();
+		}
 	});
+	filterEvents(categories);
+	updateStylesBasedOnCategories();
+</script><!-- End Scrpit For Filtering And Sorting Events In Grid -->
 
-	const selectedSortOption = localStorage.getItem('selectedSortOption');
-	const selectedFilterOptions = localStorage.getItem('categories');
-	if (selectedSortOption) {
-		sortOption.value = selectedSortOption;
-		categories = selectedFilterOptions;
-	}
-</script>
+
+
+
