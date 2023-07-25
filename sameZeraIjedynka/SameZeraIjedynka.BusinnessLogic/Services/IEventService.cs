@@ -16,6 +16,6 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
         Task Delete(EventModel model);
         Task<Event> EventDetails(int eventId);
         Task<IQueryable<Event>> Index(string sortOption);
-        Task<List<Event>> Search(string searchPattern);
-    }
+		Task<List<Event>> Search(string searchPattern, string sortOption);
+	}
 }

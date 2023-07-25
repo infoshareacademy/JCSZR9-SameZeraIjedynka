@@ -78,11 +78,28 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
             return eventsQuery;
         }
 
-        public async Task<List<Event>> Search(string searchPattern)
+        public async Task<List<Event>> Search(string searchPattern, string sortOption)
         {
             IQueryable<Event> eventsQuery = await eventRepository.Search(searchPattern);
-
-            var events = eventsQuery.ToList();
+            switch (sortOption)
+            {
+                case "time_left":
+                    eventsQuery = eventsQuery.OrderBy(e => e.Date);
+                    break;
+                case "time_left_desc":
+                    eventsQuery = eventsQuery.OrderByDescending(e => e.Date);
+                    break;
+                case "price":
+                    eventsQuery = eventsQuery.OrderBy(e => e.Price);
+                    break;
+                case "price_desc":
+                    eventsQuery = eventsQuery.OrderByDescending(e => e.Price);
+                    break;
+                default:
+                    eventsQuery = eventsQuery;
+                    break;
+            }
+					var events = eventsQuery.ToList();
 
             return events;
         }
