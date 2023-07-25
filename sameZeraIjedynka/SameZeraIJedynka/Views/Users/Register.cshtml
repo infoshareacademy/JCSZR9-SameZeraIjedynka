@@ -1,49 +1,44 @@
 ﻿@model UserModel
 
-<h2>Register</h2>
+@{
+    ViewData["Title"] = "Rejestracja";
+}
 
-<form method="post">
-    <div>
-        <label for="Username">Username:</label>
-        <input type="text" id="Username" name="Username" asp-for="Name" />
-        <span asp-validation-for="Name"></span>
+<div class="container" >
+    <!-- ======= Intro Section ======= -->
+    <section class="section-services section-t8">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-wrap d-flex justify-content-between">
+                    <div class="title-box">
+                        <h2 class="title-a">Rejestracja</h2>
+                        <p class="color-b">Wypełnij dane poniżej</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Intro Section -->
+
+    <div style="background-color: #f4f6ec; padding: 40px; border-radius: 10px;">
+        <form method="post" action="Add"; class="php-email-form">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Nazwa użytkownika" required asp-for="Name">
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Hasło" required asp-for="Password">
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Powtórz hasło" required asp-for="Password">
+                    </div>
+                </div>
+   
+                <button class="btn btn-b">Wyślij</button>
+            </div>
+        </form><!-- End Input Form -->
     </div>
-    <div>
-        <label for="Password">Password:</label>
-        <input type="password" id="Password" name="Password" asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <button type="submit">Register</button>
-    </div>
-</form>
-<form method="post">
-    <div>
-        <label for="Username">Username:</label>
-        <input type="text" id="Username" name="Username" asp-for="Name" />
-        <span asp-validation-for="Name"></span>
-    </div>
-    <div>
-        <label for="Password">Password:</label>
-        <input type="password" id="Password" name="Password" asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <button type="submit">Register</button>
-    </div>
-</form>
-<form method="post">
-    <div>
-        <label for="Username">Username:</label>
-        <input type="text" id="Username" name="Username" asp-for="Name" />
-        <span asp-validation-for="Name"></span>
-    </div>
-    <div>
-        <label for="Password">Password:</label>
-        <input type="password" id="Password" name="Password" asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <button type="submit">Register</button>
-    </div>
-</form>
