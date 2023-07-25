@@ -1,0 +1,29 @@
+﻿@model SameZeraIJedynka.Models.UserModel
+
+<h2>Rejestracja użytkownika</h2>
+
+@using (Html.BeginForm("Register", "Users", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Zarejestruj</button>
+}
