@@ -7,30 +7,30 @@
 	ViewData["controllerName"] = "UserFavorite";
 }
 
-		@Html.Partial("_EventsGridPartialView")
+@Html.Partial("_EventsGridPartialView")
 
-		<!-- Script Helper For Deleting Event From Favorites -->
-		<script>
-			function deleteFromFavorites(eventId) {
-				var result = confirm("Czy na pewno chcesz usunąć ten event z ulubionych?");
+<!-- Script Helper For Deleting Event From Favorites -->
+<script>
+	function deleteFromFavorites(eventId) {
+		var result = confirm("Czy na pewno chcesz usunąć ten event z ulubionych?");
 
-				if (result) {
-					fetch('/UserFavorite/Delete/' + eventId, {
-						method: 'POST'
-					})
-						.then(response => {
-							if (response.ok) {
-								location.reload(); 
-							} else {
-								console.error('Wystąpił błąd podczas usuwania z ulubionych.');
-							}
-						})
-						.catch(error => {
-							console.error('Wystąpił błąd podczas wysyłania żądania.');
-						});
-				}
-			}
-		</script><!-- End Script Helper For Deleting Event From Favorites -->
+		if (result) {
+			fetch('/UserFavorite/Delete/' + eventId, {
+				method: 'POST'
+			})
+				.then(response => {
+					if (response.ok) {
+						location.reload(); 
+					} else {
+						console.error('Wystąpił błąd podczas usuwania z ulubionych.');
+					}
+				})
+				.catch(error => {
+					console.error('Wystąpił błąd podczas wysyłania żądania.');
+				});
+		}
+	}
+</script><!-- End Script Helper For Deleting Event From Favorites -->
 
 
 
