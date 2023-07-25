@@ -1,10 +1,11 @@
 ﻿@model List<SameZeraIjedynka.Database.Entities.Event>
 
 @{
-	ViewData["Title"] = "Wydarzenia";
+	ViewData["Title"] = "Wyszukiwanie";
 	ViewData["toggleEventInFavoritesFunction"] = "addToFavorites";
 	ViewData["ImagePath"] = "/assets/img/add-to-favorites.png";
 	ViewData["controllerName"] = "Event";
+	ViewData["ViewName"] = "Search";
 }
 
 @Html.Partial("_EventsGridPartialView")
@@ -25,12 +26,8 @@
 			})
 			.catch(error => {
 				console.error('Wystąpił błąd podczas wysyłania żądania.');
-		window.location.href = "https://localhost:7000/UserFavorite"
+				window.location.href = "https://localhost:7000/UserFavorite"
 			});
-				
+
 	}
 </script><!-- End Script Helper For Adding Event To Favorites -->
-
-
-
-

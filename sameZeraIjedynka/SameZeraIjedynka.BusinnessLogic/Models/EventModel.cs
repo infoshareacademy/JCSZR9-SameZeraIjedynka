@@ -10,6 +10,8 @@ namespace SameZeraIJedynka.BusinnessLogic.Models
     {
         public int EventId { get; set; }
         public string Name { get; set; }
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-ddTHH:mm}")]
         public DateTime Date { get; set; }
         public string Organizer { get; set; }
         public string Place { get; set; }

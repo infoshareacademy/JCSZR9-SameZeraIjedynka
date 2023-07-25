@@ -632,6 +632,12 @@ a:hover {
   padding: 10px;
 }
 
+#sortOption {
+    font-size: 1.2rem;
+    border: 2px solid #2eca6a;
+    padding: 6px;
+}
+
 .navbar-toggle-box i {
   line-height: 0;
 }
@@ -1455,7 +1461,7 @@ a:hover {
 
 .property-grid .grid-option .custom-select {
   border-radius: 0;
-  width: 200px;
+  width: 300px;
   border-color: #313131;
 }
 
