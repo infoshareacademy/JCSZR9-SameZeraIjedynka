@@ -1,4 +1,5 @@
-﻿using SameZeraIjedynka.Database.Entities;
+﻿using SameZeraIjedynka.BusinnessLogic.Models;
+using SameZeraIjedynka.Database.Entities;
 using SameZeraIJedynka.Models;
 
 namespace SameZeraIjedynka.BusinnessLogic.Services
@@ -9,5 +10,6 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
         Task<bool> AuthenticateUser(UserModel user);
         Task<int> GetUserId(UserModel model);
         Task UpdateUser(UserModel user, UserModel model);
+        Task AddUser(RegisterUserModel addUserRequest);
     }
 }

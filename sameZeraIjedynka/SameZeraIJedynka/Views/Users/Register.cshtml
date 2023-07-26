@@ -1,4 +1,5 @@
-﻿@model UserModel
+﻿@using SameZeraIjedynka.BusinnessLogic.Models;
+@model RegisterUserModel
 
 @{
     ViewData["Title"] = "Rejestracja";
@@ -20,21 +21,24 @@
     </section><!-- End Intro Section -->
 
     <div style="background-color: #f4f6ec; padding: 40px; border-radius: 10px;">
-        <form method="post" action="Add"; class="php-email-form">
+        <form method="post" action="Register"; class="php-email-form">
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <div class="form-group">
                         <input type="text" class="form-control form-control-lg form-control-a" placeholder="Nazwa użytkownika" required asp-for="Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-12 mb-3">
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Hasło" required asp-for="Password">
+                        <input type="password" class="form-control form-control-lg form-control-a" placeholder="Hasło" required asp-for="Password">
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-12 mb-3">
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Powtórz hasło" required asp-for="Password">
+                        <input type="password" class="form-control form-control-lg form-control-a" placeholder="Powtórz hasło" required asp-for="ConfirmPassword">
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
                 </div>
    

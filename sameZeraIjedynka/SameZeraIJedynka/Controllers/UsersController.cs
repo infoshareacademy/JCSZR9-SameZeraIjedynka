@@ -3,8 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.BusinnessLogic.Models;
-using SameZeraIJedynka.Models;
+
 using SameZeraIjedynka.BusinnessLogic.Services;
+using SameZeraIJedynka.Models;
+using SameZeraIjedynka.BusinnessLogic.Models;
 
 namespace SameZeraIJedynka.Controllers
 {
@@ -61,13 +63,14 @@ namespace SameZeraIJedynka.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(UserModel model)
+        public async Task<IActionResult> Register(RegisterUserModel user)
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                await userService.AddUser(user);
+                return RedirectToAction("Login");
             }
-            return await Index(model);
+            return View(user);
         }
 
         [HttpGet]

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SameZeraIjedynka.BusinnessLogic.Models;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Repositories;
@@ -63,6 +64,19 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             var authenticatedUser = await userRepository.Authenticate(user.Name, user.Password);
 
             return authenticatedUser;
+        }
+
+        public async Task AddUser(RegisterUserModel addUserRequest)
+        {
+            if (addUserRequest.Password == addUserRequest.ConfirmPassword)
+            {
+                var user = new User()
+                {
+                    Name = addUserRequest.Name,
+                    Password = addUserRequest.Password
+                };
+                await userRepository.AddUser(user);
+            }
         }
     }
 }

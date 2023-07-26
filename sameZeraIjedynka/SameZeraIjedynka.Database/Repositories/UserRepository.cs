@@ -45,5 +45,11 @@ namespace SameZeraIjedynka.Database.Repositories
 
             return userId;
         }
+
+        public async Task AddUser(User newUser)
+        {
+            await context.Users.AddAsync(newUser);
+            await context.SaveChangesAsync();
+        }
     }
 }
