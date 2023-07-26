@@ -17,9 +17,9 @@ namespace SameZeraIjedynka.Database.Repositories
             context = _context;
         }
 
-        public async Task<IQueryable<Event>> Get()
+        public async Task<IQueryable<Event>> Get(int userId)
         {
-            IQueryable<Event> eventsQuery = context.Favorites.Where(x => x.UserId == 2).Select(x => x.Event);
+            IQueryable<Event> eventsQuery = context.Favorites.Where(x => x.UserId == userId).Select(x => x.Event);
 
             return eventsQuery;
         }

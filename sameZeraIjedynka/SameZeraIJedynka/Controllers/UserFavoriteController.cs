@@ -19,11 +19,20 @@ namespace SameZeraIJedynka.Controllers
             this.userFavoriteService = userFavoriteService;
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Index(string sortOption = null)
         {
-            var events = await userFavoriteService.GetFavoriteEvents(2, sortOption);
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            List<Event> events;
+
+            if (userId.HasValue)
+            {
+                events = await userFavoriteService.GetFavoriteEvents(userId.Value, sortOption);
+            }
+            else
+            {
+                events = null;
+            }
 
             return View(events);
         }

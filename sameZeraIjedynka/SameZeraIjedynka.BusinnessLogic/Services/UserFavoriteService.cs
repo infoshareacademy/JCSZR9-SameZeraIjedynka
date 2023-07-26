@@ -23,7 +23,7 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
 
         public async Task<List<Event>> GetFavoriteEvents(int userId, string sortOption = null)
         {
-            var eventsQuery = await userFavoriteRepository.Get();
+            var eventsQuery = await userFavoriteRepository.Get(userId);
 
             switch (sortOption)
             {
@@ -48,7 +48,6 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             return events;
         }
 
-        
         public async Task AddFavoriteEvent(int id)
         {
             var newFavorite = new UserFavorite()
