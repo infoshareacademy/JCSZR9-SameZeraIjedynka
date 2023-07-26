@@ -36,9 +36,9 @@ namespace SameZeraIjedynka.Database.Repositories
             await context.SaveChangesAsync();
         }
 
-        public async Task<UserFavorite> Find(int id)
+        public async Task<UserFavorite> Find(int id, int userId)
         {
-            var eventsQuery = await context.Favorites.FirstOrDefaultAsync(x => x.UserId == 2 && x.EventId == id);
+            var eventsQuery = await context.Favorites.FirstOrDefaultAsync(x => x.UserId == userId && x.EventId == id);
 
             return eventsQuery;
         }

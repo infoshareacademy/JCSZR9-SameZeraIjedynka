@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Repositories;
 using SameZeraIjedynka.BusinnessLogic.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace SameZeraIJedynka.Controllers
 {
@@ -37,24 +38,26 @@ namespace SameZeraIJedynka.Controllers
             return View(events);
         }
 
-        [HttpGet]
-        public IActionResult Add()
-        {
-            return View();
-        }
-
         [HttpPost]
         public async Task<IActionResult> Add(int id)
         {
-            await userFavoriteService.AddFavoriteEvent(id);
-
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId.HasValue)
+            {
+                await userFavoriteService.AddFavoriteEvent(id, userId.Value);
+            }
+            
             return RedirectToAction("Index", "UserFavorite");
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            await userFavoriteService.DeleteFavoriteEvent(id);
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId.HasValue)
+            {
+                await userFavoriteService.DeleteFavoriteEvent(id, userId.Value);
+            }
 
             return RedirectToAction("Index");
         }
