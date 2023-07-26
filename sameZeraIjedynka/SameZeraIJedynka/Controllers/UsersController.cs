@@ -18,61 +18,38 @@ namespace SameZeraIJedynka.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Add(UserModel addUserRequest)
-        {
-            await userService.Add(addUserRequest);
-
-            return RedirectToAction("Add");
-        }
-
-        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var users = await userService.GetAllUsers();
+            int? userId = HttpContext.Session.GetInt32("UserId");
 
-            return View(users);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> View(int id)
-        {
-            var user = await userService.GetUserModelById(2);
-      
-            if (user != null)
+            if (userId.HasValue)
             {
-                return  await Task.Run(() => View("View", user));
+                var user = await userService.GetUserModelById(userId.Value);
+
+                if (user != null)
+                {
+                    return View(user);
+                }
             }
-            return RedirectToAction("Index");
+
+            return RedirectToAction("Login");
         }
 
         [HttpPost]
-        public async Task<IActionResult> View(UserModel model)
+        public async Task<IActionResult> Index(UserModel model)
         {
-            var user = await userService.GetUserById(2);
+            int? userId = HttpContext.Session.GetInt32("UserId");
 
-            if (user != null)
+            if (userId.HasValue)
             {
-                await userService.UpdateUser(user, model);
-                return RedirectToAction("View");
-            }
-            return RedirectToAction("Index");
-        }
+                var user = await userService.GetUserModelById(userId.Value);
 
-        [HttpPost]
-        public async Task<IActionResult> Delete(UserModel model)
-        {
-            var user = await userService.GetUserById(model.Id);
-
-            if (user != null)
-            {
-                await userService.DeleteUser(user);
-                return RedirectToAction("Index");
+                if (user != null)
+                {
+                    await userService.UpdateUser(user, model);
+                    // TODO: Show User That Data Has Been Updated
+                    return RedirectToAction("Index");
+                }
             }
             return RedirectToAction("Index");
         }
@@ -90,7 +67,7 @@ namespace SameZeraIJedynka.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return await View(model);
+            return await Index(model);
         }
 
         [HttpGet]
@@ -104,16 +81,23 @@ namespace SameZeraIJedynka.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
-            }
-            return await View(model);
-        }
+                bool isAuthenticated = await userService.AuthenticateUser(model);
 
-        [HttpGet] // Dodaj tę adnotację GET, aby zwrócić widok dla wyświetlenia formularza usuwania
-        public async Task<IActionResult> Delete(int id)
-        {
-            var user = new UserModel { Id = 1 };
-            return View();
+                if (isAuthenticated)
+                {
+                    var userId = await userService.GetUserId(model);
+                    HttpContext.Session.SetInt32("UserId", userId);
+                    
+                    return RedirectToAction("Index", new { id = userId });
+                }
+                else
+                {
+                    // TODO: Show User That Has Not Been Logged
+                    ModelState.AddModelError("", "Nieprawidłowa nazwa użytkownika lub hasło.");
+                }
+            }
+            // TODO: Show User That Has Not Been Logged
+            return View(model);
         }
     }
 }

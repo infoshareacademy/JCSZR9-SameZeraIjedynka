@@ -4,10 +4,9 @@ namespace SameZeraIjedynka.Database.Repositories
 {
     public interface IUserRepository
     {
-        Task AddUser(User newUser);
-        Task DeleteUser(User user);
-        Task<List<User>> GetAllUsers();
+        Task<bool> Authenticate(string username, string password);
+        Task<int> FindUserId(string username, string password);
         Task<User> GetUserById(int id);
-        Task UpdateUser(User user, int newId, string newUsername, string newPassword);
+        Task UpdateUser(User user, string newUsername, string newPassword);
     }
 }
