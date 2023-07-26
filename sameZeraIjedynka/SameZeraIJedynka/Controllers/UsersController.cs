@@ -42,7 +42,7 @@ namespace SameZeraIJedynka.Controllers
         [HttpGet]
         public async Task<IActionResult> View(int id)
         {
-            var user = await userService.GetUserModelById(id);
+            var user = await userService.GetUserModelById(2);
       
             if (user != null)
             {
@@ -54,7 +54,7 @@ namespace SameZeraIJedynka.Controllers
         [HttpPost]
         public async Task<IActionResult> View(UserModel model)
         {
-            var user = await userService.GetUserById(model.Id);
+            var user = await userService.GetUserById(2);
 
             if (user != null)
             {

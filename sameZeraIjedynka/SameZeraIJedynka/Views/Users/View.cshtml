@@ -1,31 +1,44 @@
 ﻿@model UserModel
-@{
 
+@{
+    ViewData["Title"] = "Moje dane";
 }
 
-<h1>Lista urzytkownikow</h1>
+<div class="container">
+    <!-- ======= Intro Section ======= -->
+    <section class="section-services section-t8">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-wrap d-flex justify-content-between">
+                    <div class="title-box">
+                        <h2 class="title-a">Witaj @Model.Name</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Intro Section -->
 
-<form method="post" action="View" class="mt-5">
+    <div style="background-color: #f4f6ec; padding: 40px; border-radius: 10px;">
+        <form method="post" action="View" ; class="php-email-form">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Nazwa użytkownika" required asp-for="Name">
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Hasło" required asp-for="Password">
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Powtórz hasło" required asp-for="Password">
+                    </div>
+                </div>
 
-    <div class="mb-3">
-    <label for="" class="form-label">UserId</label>
-    <input type="numer" class="form-control" asp-for="Id">
+                <button class="btn btn-b">Wyślij</button>
+            </div>
+        </form><!-- End Input Form -->
     </div>
-
-    <div class="mb-3">
-    <label for="" class="form-label">Name</label>
-    <input type="text" class="form-control" asp-for="Name">
-    </div>
-
-    <div class="mb-3">
-    <label for="" class="form-label">Password</label>
-    <input type="text" class="form-control" asp-for="Password">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-
-    <button type="submit" class="btn btn-danger"
-            asp-action="Delete"
-            asp-controller="Users">Delete</button>
-
-</form>
+</div>

@@ -66,11 +66,11 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
         }
         public async Task UpdateUser(User user, UserModel model)
         {
-            var userToUpdate = await userRepository.GetUserById(user.UserId);
+            var userToUpdate = await userRepository.GetUserById(2);
 
             if (user != null)
             {
-                await userRepository.UpdateUser(user, model.Id, model.Name, model.Password);
+                await userRepository.UpdateUser(user, 2, model.Name, model.Password);
             }
         }
 

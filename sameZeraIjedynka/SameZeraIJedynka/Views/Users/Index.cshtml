@@ -1,27 +1,18 @@
-﻿
-
-@model List<SameZeraIjedynka.Database.Entities.User>
+﻿@model UserModel
 
 @{
+    ViewData["Title"] = "Moje dane";
 }
 
-<h1>Uzytkownicy</h1>
-<table class="table">
-    <thread>
-        <tr>
-            
-            <th>Name</th>
-
-            <th> </th>
-        </tr>
-    </thread>
-    <tbody>
-        @foreach (var user in Model)
-        {
-            <tr>
-                <td>@user.Name</td>
-                <td><a href="Users/View/@user.UserId">View</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+<!-- ======= Intro Section ======= -->
+<section>
+    <!-- Page Header -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between">
+                <div class="title-box">
+                    <h2 class="title-a">Witaj @Model.Name !</h2>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Page Header -->
