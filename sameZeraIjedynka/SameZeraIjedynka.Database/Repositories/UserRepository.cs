@@ -17,19 +17,6 @@ namespace SameZeraIjedynka.Database.Repositories
             context = _context;
         }
 
-        public async Task AddUser(User newUser)
-        {
-            await context.Users.AddAsync(newUser);
-            await context.SaveChangesAsync();
-        }
-
-        public async Task<List<User>> GetAllUsers()
-        {
-            var users = await context.Users.ToListAsync();
-
-            return users;
-        }
-
         public async Task<User> GetUserById(int id)
         {
             var user = await context.Users.FirstOrDefaultAsync(x => x.UserId == id);
@@ -37,18 +24,26 @@ namespace SameZeraIjedynka.Database.Repositories
             return user;
         }
 
-        public async Task UpdateUser(User user, int newId, string newUsername, string newPassword)
+        public async Task UpdateUser(User user,  string newUsername, string newPassword)
         {
-            user.UserId = newId;
             user.Name = newUsername;
             user.Password = newPassword;
             await context.SaveChangesAsync();
         }
 
-        public async Task DeleteUser(User user)
+        public async Task<bool> Authenticate(string username, string password)
         {
-            context.Users.Remove(user);
-            await context.SaveChangesAsync();
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Name == username && u.Password == password);
+
+            return user != null;
+        }
+
+        public async Task<int> FindUserId(string username, string password)
+        {
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Name == username && u.Password == password);
+            var userId = user.UserId;
+
+            return userId;
         }
     }
 }

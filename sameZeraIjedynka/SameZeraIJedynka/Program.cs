@@ -4,6 +4,7 @@ using Serilog;
 using SameZeraIjedynka.Database.Repositories;
 using SameZeraIjedynka.BusinnessLogic.Services;
 using SameZeraIJedynka.BusinnessLogic.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SameZeraIJedynka
 {
@@ -24,6 +25,20 @@ namespace SameZeraIJedynka
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.LoginPath = "/Users/Login"; 
+            options.LogoutPath = "/Users/Logout"; 
+            options.AccessDeniedPath = "/Users/AccessDenied"; 
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(60); 
+        });
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             builder.Services.AddDbContext<DatabaseContext>(c => c.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseContextConnectionString")));
 
             // Services Dependency Injection
@@ -50,7 +65,9 @@ namespace SameZeraIJedynka
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",

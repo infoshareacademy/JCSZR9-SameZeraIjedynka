@@ -1,7 +1,7 @@
 ﻿@model UserModel
 
 @{
-    ViewData["Title"] = "Rejestracja";
+    ViewData["Title"] = "Logowanie";
 }
 
 <div class="container" >
@@ -20,7 +20,7 @@
     </section><!-- End Intro Section -->
 
     <div style="background-color: #f4f6ec; padding: 40px; border-radius: 10px;">
-        <form method="post" action="Add"; class="php-email-form">
+        <form method="post" action="Login"; class="php-email-form">
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <div class="form-group">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-md-12 mb-3">
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Hasło" required asp-for="Password">
+                        <input type="password" class="form-control form-control-lg form-control-a" placeholder="Hasło" required asp-for="Password">
                     </div>
                 </div>   
                 <button class="btn btn-b">Zaloguj</button>

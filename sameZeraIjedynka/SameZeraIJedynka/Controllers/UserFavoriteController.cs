@@ -6,20 +6,20 @@ using SameZeraIJedynka.BusinnessLogic.Models;
 using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Repositories;
 using SameZeraIjedynka.BusinnessLogic.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SameZeraIJedynka.Controllers
 {
     public class UserFavoriteController : Controller
     {
-        private readonly DatabaseContext mvcDbContext;
         private readonly IUserFavoriteService userFavoriteService;
 
-        public UserFavoriteController(DatabaseContext mvcDbContext, IUserFavoriteService userFavoriteService)
+        public UserFavoriteController(IUserFavoriteService userFavoriteService)
         {
-            this.mvcDbContext = mvcDbContext;
             this.userFavoriteService = userFavoriteService;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Index(string sortOption = null)
         {

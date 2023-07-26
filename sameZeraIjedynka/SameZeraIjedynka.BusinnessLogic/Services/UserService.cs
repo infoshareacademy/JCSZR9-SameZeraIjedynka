@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Context;
@@ -21,24 +22,6 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             this.userRepository = userRepository;
         }
 
-        public async Task Add(UserModel addUserRequest)
-        {
-            var user = new User()
-            {
-                UserId = addUserRequest.Id,
-                Name = addUserRequest.Name,
-                Password = addUserRequest.Password
-            };
-            await userRepository.AddUser(user);
-        }
-
-        public async Task<List<User>> GetAllUsers()
-        {
-            var users = await userRepository.GetAllUsers();
-
-            return users;
-        }
-
         public async Task<UserModel> GetUserModelById(int id)
         {
             var user = await userRepository.GetUserById(id);
@@ -54,34 +37,32 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             }
             return null;
         }
-
-        public async Task<User> GetUserById(int id)
+        public async Task<int> GetUserId(UserModel model)
         {
-            var user = await userRepository.GetUserById(id);
-            if (user != null)
-            {
-                return user;
-            }
-            return null;
-        }
-        public async Task UpdateUser(User user, UserModel model)
-        {
-            var userToUpdate = await userRepository.GetUserById(2);
+            var userId = await userRepository.FindUserId(model.Name, model.Password);
 
-            if (user != null)
+            if (userId != null)
             {
-                await userRepository.UpdateUser(user, 2, model.Name, model.Password);
+                return userId;
             }
+            return -1;
         }
 
-        public async Task DeleteUser(User user)
+        public async Task UpdateUser(UserModel user, UserModel model)
         {
-            var userToDelete = await userRepository.GetUserById(user.UserId);
+            var userToUpdate = await userRepository.GetUserById(user.Id);
 
-            if (userToDelete != null)
+            if (userToUpdate != null)
             {
-                await userRepository.DeleteUser(userToDelete);
+                await userRepository.UpdateUser(userToUpdate, model.Name, model.Password);
             }
+        }
+
+        public async Task<bool> AuthenticateUser(UserModel user)
+        {
+            var authenticatedUser = await userRepository.Authenticate(user.Name, user.Password);
+
+            return authenticatedUser;
         }
     }
 }
