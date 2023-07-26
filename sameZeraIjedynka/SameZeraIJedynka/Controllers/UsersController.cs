@@ -93,7 +93,21 @@ namespace SameZeraIJedynka.Controllers
             return await View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Login()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> Login(UserModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+            return await View(model);
+        }
 
         [HttpGet] // Dodaj tę adnotację GET, aby zwrócić widok dla wyświetlenia formularza usuwania
         public async Task<IActionResult> Delete(int id)
