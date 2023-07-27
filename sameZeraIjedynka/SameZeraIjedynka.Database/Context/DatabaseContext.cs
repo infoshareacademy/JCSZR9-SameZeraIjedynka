@@ -129,21 +129,24 @@ namespace SameZeraIjedynka.Database.Context
                 {
                     UserId=1,
                     Name="AAA",
-                    Password="BBB"
+                    Password="BBB",
+                    Email="aaa@gmail.com"
                     //  UsersFavorites=
                 },
             new User
                 {
                     UserId=2,
                     Name="BBB",
-                    Password="CCC"
+                    Password="CCC",
+                    Email="bbb@gmail.com"
                     //UsersFavorites=
                 },
             new User
                 {
                     UserId=3,
                     Name="CCC",
-                    Password="DDD"
+                    Password="DDD",
+                    Email="ccc@gmail.com"
                     //  UsersFavorites=
                 }
             });
