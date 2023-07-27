@@ -102,11 +102,10 @@ namespace SameZeraIJedynka.Controllers
                 }
                 else
                 {
-                    // TODO: Show User That Has Not Been Logged
                     ModelState.AddModelError("", "Nieprawidłowa nazwa użytkownika lub hasło.");
                 }
             }
-            // TODO: Show User That Has Not Been Logged
+
             return View(model);
         }
     }

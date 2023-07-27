@@ -31,7 +31,13 @@
                     <div class="form-group">
                         <input type="password" class="form-control form-control-lg form-control-a" placeholder="Hasło" required asp-for="Password">
                     </div>
-                </div>   
+                </div>
+                 @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @Html.ValidationSummary()
+        </div>
+    }
                 <button class="btn btn-b">Zaloguj</button>
             </div>
         </form><!-- End Input Form -->

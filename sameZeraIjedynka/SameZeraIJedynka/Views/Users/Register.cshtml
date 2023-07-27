@@ -26,23 +26,25 @@
                 <div class="col-md-12 mb-3">
                     <div class="form-group">
                         <input type="text" class="form-control form-control-lg form-control-a" placeholder="Nazwa użytkownika" required asp-for="Name">
-                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-12 mb-3">
                     <div class="form-group">
                         <input type="password" class="form-control form-control-lg form-control-a" placeholder="Hasło" required asp-for="Password">
-                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-12 mb-3">
                     <div class="form-group">
                         <input type="password" class="form-control form-control-lg form-control-a" placeholder="Powtórz hasło" required asp-for="ConfirmPassword">
-                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
                 </div>
-   
-                <button class="btn btn-b">Wyślij</button>
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger">
+                        @Html.ValidationSummary()
+                    </div>
+                }
+                <button class="btn btn-b">Zarejestruj</button>
             </div>
         </form><!-- End Input Form -->
     </div>

@@ -9,6 +9,7 @@ namespace SameZeraIjedynka.BusinnessLogic.Models
 {
     public class RegisterUserModel
     {
+        [MinLength(2, ErrorMessage = "Nazwa użytkownika musi mieć przynajmniej dwa znaki.")]
         [Required(ErrorMessage = "Nazwa użytkownika jest wymagana.")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Hasło jest wymagane.")]
