@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SameZeraIJedynka.BusinnessL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SameZeraIjedynka.BusinnessLogic", "SameZeraIjedynka.BusinnessLogic\SameZeraIjedynka.BusinnessLogic.csproj", "{774A5286-BB8E-4029-9CB6-69896F317021}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSender", "WebApplication1\WebApplication1\EmailSender.csproj", "{E9825722-5347-4DA3-943B-9714DC3E76BE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{774A5286-BB8E-4029-9CB6-69896F317021}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{774A5286-BB8E-4029-9CB6-69896F317021}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{774A5286-BB8E-4029-9CB6-69896F317021}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9825722-5347-4DA3-943B-9714DC3E76BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9825722-5347-4DA3-943B-9714DC3E76BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9825722-5347-4DA3-943B-9714DC3E76BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9825722-5347-4DA3-943B-9714DC3E76BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

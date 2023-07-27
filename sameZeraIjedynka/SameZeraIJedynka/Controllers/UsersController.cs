@@ -70,6 +70,8 @@ namespace SameZeraIJedynka.Controllers
                 if (await userService.IsUsernameUnique(user.Name))
                 {
                     await userService.AddUser(user);
+                    await userService.SendEmail(user);
+
                     return RedirectToAction("Login");
                 }
                 else

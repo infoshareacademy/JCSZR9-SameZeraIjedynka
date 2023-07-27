@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +13,10 @@ using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Repositories;
 using SameZeraIJedynka.Models;
+using MailKit.Security;
+using MimeKit.Text;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 
 namespace SameZeraIjedynka.BusinnessLogic.Services
@@ -93,6 +98,26 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             }
         }
 
+        public async Task SendEmail(RegisterUserModel user)
+        {
+            var request = new EmailModel
+            {
+                To = user.Email, 
+                Subject = "Discover. Learn. Enjoy.", 
+            };
+
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("stanley.kassulke@ethereal.email"));
+            email.To.Add(MailboxAddress.Parse(request.To));
+            email.Subject = request.Subject;
+            email.Body = new TextPart(TextFormat.Html) { Text = request.Body };
+
+            using var smtp = new MailKit.Net.Smtp.SmtpClient();
+            smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("stanley.kassulke@ethereal.email", "44bMnvxFyhRtKFU18S");
+            smtp.Send(email);
+            smtp.Disconnect(true);
+        }
 
     }
 }

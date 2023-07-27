@@ -12,5 +12,6 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
         Task<bool> IsUsernameUnique(string username);
         Task<int> GetUserId(LoginUserModel model);
         Task<bool> AuthenticateUser(LoginUserModel user);
+        Task SendEmail(RegisterUserModel user);
     }
 }
