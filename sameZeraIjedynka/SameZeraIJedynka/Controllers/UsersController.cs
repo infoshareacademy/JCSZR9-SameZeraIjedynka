@@ -67,8 +67,15 @@ namespace SameZeraIJedynka.Controllers
         {
             if (ModelState.IsValid)
             {
-                await userService.AddUser(user);
-                return RedirectToAction("Login");
+                if (await userService.IsUsernameUnique(user.Name))
+                {
+                    await userService.AddUser(user);
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("Name", "Użytkownik o podanej nazwie już istnieje.");
+                }
             }
             return View(user);
         }

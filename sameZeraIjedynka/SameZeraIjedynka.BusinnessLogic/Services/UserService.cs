@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SameZeraIjedynka.BusinnessLogic.Helpers.HelperMethods;
 using SameZeraIjedynka.BusinnessLogic.Models;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Repositories;
 using SameZeraIJedynka.Models;
+
 
 namespace SameZeraIjedynka.BusinnessLogic.Services
 {
@@ -40,13 +42,20 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
         }
         public async Task<int> GetUserId(UserModel model)
         {
-            var userId = await userRepository.FindUserId(model.Name, model.Password);
+            var hashedPassword = HelperMethods.HashPassword(model.Password);
+            var userId = await userRepository.FindUserId(model.Name, hashedPassword);
 
             if (userId != null)
             {
                 return userId;
             }
             return -1;
+        }
+        public async Task<bool> IsUsernameUnique(string username)
+        {
+            var existingUser = await userRepository.GetUserByName(username);
+
+            return existingUser == null;
         }
 
         public async Task UpdateUser(UserModel user, UserModel model)
@@ -55,13 +64,15 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
 
             if (userToUpdate != null)
             {
-                await userRepository.UpdateUser(userToUpdate, model.Name, model.Password);
+                var hashedPassword = HelperMethods.HashPassword(model.Password);
+                await userRepository.UpdateUser(userToUpdate, model.Name, hashedPassword);
             }
         }
 
         public async Task<bool> AuthenticateUser(UserModel user)
         {
-            var authenticatedUser = await userRepository.Authenticate(user.Name, user.Password);
+            var hashedPassword = HelperMethods.HashPassword(user.Password);
+            var authenticatedUser = await userRepository.Authenticate(user.Name, hashedPassword);
 
             return authenticatedUser;
         }
@@ -70,13 +81,17 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
         {
             if (addUserRequest.Password == addUserRequest.ConfirmPassword)
             {
+                var hashedPassword = HelperMethods.HashPassword(addUserRequest.Password); 
+
                 var user = new User()
                 {
                     Name = addUserRequest.Name,
-                    Password = addUserRequest.Password
+                    Password = hashedPassword
                 };
                 await userRepository.AddUser(user);
             }
         }
+
+
     }
 }

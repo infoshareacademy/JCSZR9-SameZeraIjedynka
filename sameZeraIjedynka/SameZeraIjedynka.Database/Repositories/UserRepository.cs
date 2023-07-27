@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SameZeraIjedynka.Database.Repositories
 {
     public class UserRepository : IUserRepository
@@ -31,9 +32,9 @@ namespace SameZeraIjedynka.Database.Repositories
             await context.SaveChangesAsync();
         }
 
-        public async Task<bool> Authenticate(string username, string password)
+        public async Task<bool> Authenticate(string username, string hashedPassword)
         {
-            var user = await context.Users.FirstOrDefaultAsync(u => u.Name == username && u.Password == password);
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Name == username && u.Password == hashedPassword);
 
             return user != null;
         }
@@ -50,6 +51,11 @@ namespace SameZeraIjedynka.Database.Repositories
         {
             await context.Users.AddAsync(newUser);
             await context.SaveChangesAsync();
+        }
+
+        public async Task<User> GetUserByName(string username)
+        {
+            return await context.Users.FirstOrDefaultAsync(u => u.Name == username);
         }
     }
 }

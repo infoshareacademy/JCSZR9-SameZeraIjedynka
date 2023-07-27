@@ -8,6 +8,7 @@ namespace SameZeraIjedynka.Database.Repositories
         Task<bool> Authenticate(string username, string password);
         Task<int> FindUserId(string username, string password);
         Task<User> GetUserById(int id);
+        Task<User> GetUserByName(string username);
         Task UpdateUser(User user, string newUsername, string newPassword);
     }
 }

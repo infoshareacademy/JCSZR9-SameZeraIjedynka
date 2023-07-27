@@ -11,5 +11,6 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
         Task<int> GetUserId(UserModel model);
         Task UpdateUser(UserModel user, UserModel model);
         Task AddUser(RegisterUserModel addUserRequest);
+        Task<bool> IsUsernameUnique(string username);
     }
 }
