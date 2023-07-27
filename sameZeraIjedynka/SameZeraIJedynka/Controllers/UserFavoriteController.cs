@@ -24,18 +24,17 @@ namespace SameZeraIJedynka.Controllers
         public async Task<IActionResult> Index(string sortOption = null)
         {
             int? userId = HttpContext.Session.GetInt32("UserId");
-            List<Event> events;
 
             if (userId.HasValue)
             {
-                events = await userFavoriteService.GetFavoriteEvents(userId.Value, sortOption);
+                List<Event> events = await userFavoriteService.GetFavoriteEvents(userId.Value, sortOption);
+
+                return View(events);
             }
             else
             {
-                events = null;
-            }
-
-            return View(events);
+                return RedirectToAction("Login", "Users");
+            }            
         }
 
         [HttpPost]
