@@ -65,7 +65,7 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             if (userToUpdate != null)
             {
                 var hashedPassword = HelperMethods.HashPassword(model.Password);
-                await userRepository.UpdateUser(userToUpdate, model.Name, hashedPassword);
+                await userRepository.UpdateUser(userToUpdate, model.Name, model.Email, hashedPassword);
             }
         }
 

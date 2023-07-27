@@ -25,10 +25,11 @@ namespace SameZeraIjedynka.Database.Repositories
             return user;
         }
 
-        public async Task UpdateUser(User user,  string newUsername, string newPassword)
+        public async Task UpdateUser(User user, string newUsername, string newEmail, string newPassword)
         {
             user.Name = newUsername;
             user.Password = newPassword;
+            user.Email = newEmail;
             await context.SaveChangesAsync();
         }
 
