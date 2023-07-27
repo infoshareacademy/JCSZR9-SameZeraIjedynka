@@ -87,7 +87,7 @@ namespace SameZeraIJedynka.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(UserModel model)
+        public async Task<IActionResult> Login(LoginUserModel model)
         {
             if (ModelState.IsValid)
             {

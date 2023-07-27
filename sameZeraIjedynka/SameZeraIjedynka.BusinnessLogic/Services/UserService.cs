@@ -40,7 +40,7 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             }
             return null;
         }
-        public async Task<int> GetUserId(UserModel model)
+        public async Task<int> GetUserId(LoginUserModel model)
         {
             var hashedPassword = HelperMethods.HashPassword(model.Password);
             var userId = await userRepository.FindUserId(model.Name, hashedPassword);
@@ -69,7 +69,7 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             }
         }
 
-        public async Task<bool> AuthenticateUser(UserModel user)
+        public async Task<bool> AuthenticateUser(LoginUserModel user)
         {
             var hashedPassword = HelperMethods.HashPassword(user.Password);
             var authenticatedUser = await userRepository.Authenticate(user.Name, hashedPassword);
