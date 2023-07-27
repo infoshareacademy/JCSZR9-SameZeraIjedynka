@@ -96,8 +96,8 @@ namespace SameZeraIJedynka.Controllers
                 if (isAuthenticated)
                 {
                     var userId = await userService.GetUserId(model);
+                    HttpContext.Session.SetString("IsLoggedIn", "true");
                     HttpContext.Session.SetInt32("UserId", userId);
-                    
                     return RedirectToAction("Index", new { id = userId });
                 }
                 else
@@ -107,6 +107,15 @@ namespace SameZeraIJedynka.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            HttpContext.Session.Remove("IsLoggedIn");
+            HttpContext.Session.Remove("UserId");
+
+            return RedirectToAction("Login");
         }
     }
 }
