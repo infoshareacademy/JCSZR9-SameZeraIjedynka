@@ -86,7 +86,8 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
                 var user = new User()
                 {
                     Name = addUserRequest.Name,
-                    Password = hashedPassword
+                    Password = hashedPassword,
+                    Email = addUserRequest.Email,
                 };
                 await userRepository.AddUser(user);
             }
