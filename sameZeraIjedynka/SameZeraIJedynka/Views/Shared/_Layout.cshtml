@@ -33,7 +33,6 @@
 <body>
     <!-- ======= Header/Navbar ======= -->
     <header>
-        <!-- TODO: navbar elements are not alined vertically + add resposivness -->
         <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
             <div class="container" >
                 <!-- Logo -->
@@ -50,9 +49,9 @@
                         <li class="nav-item">
                             <a class="nav-link " asp-area="" asp-controller="Event" asp-action="Add">Dodaj event</a>
                         </li>
-                        <!-- TODO: Not implemented yet -->
+
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Konto</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moje konto</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" asp-area="" asp-controller="UserFavorite" asp-action="Index">Ulubione eventy</a>
                                 <a class="dropdown-item" asp-area="" asp-controller="Users" asp-action="Index">Moje dane</a>
@@ -60,7 +59,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Users" asp-action="Login"><img src="/assets/img/user.png"></a>
+                            <a class="nav-link " asp-area="" asp-controller="Users" asp-action="Login"><img src="/assets/img/user.png"> Zaloguj</a>
                         </li>
                     </ul>
                 </div><!-- End Menu -->

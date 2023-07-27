@@ -20,6 +20,7 @@
     </section><!-- End Intro Section -->
 
     <div style="background-color: #f4f6ec; padding: 40px; border-radius: 10px;">
+        <!-- Start Input Form -->
         <form method="post" action="Login"; class="php-email-form">
             <div class="row">
                 <div class="col-md-12 mb-3">
@@ -33,11 +34,11 @@
                     </div>
                 </div>
                  @if (!ViewData.ModelState.IsValid)
-    {
-        <div class="alert alert-danger">
-            @Html.ValidationSummary()
-        </div>
-    }
+                 {
+                     <div class="alert alert-danger">
+                         @Html.ValidationSummary()
+                     </div>
+                 }
                 <button class="btn btn-b">Zaloguj</button>
             </div>
         </form><!-- End Input Form -->
@@ -47,9 +48,9 @@
         <div class="col-md-12">
             <div class="title-wrap d-flex justify-content-between">
                 <div class="title-box">
-                    <h3>Nie masz jeszcze konta?</h3>
+                    <h3 style="padding: 40px 0px 10px 0px">Nie masz jeszcze konta?</h3>
                         <a class="title-a" asp-area="" asp-controller="Users" asp-action="Register">
-                            <h4>Zarejestruj się!</h4>
+                            <button class="btn btn-b">Zarejestruj się</button>
                         </a>
                 </div>
             </div>
