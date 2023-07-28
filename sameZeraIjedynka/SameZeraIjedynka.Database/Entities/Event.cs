@@ -26,6 +26,8 @@ namespace SameZeraIjedynka.Database.Entities
 
         public TargetEnum Target { get; set; }
 
+        public int UserId { get; set; }
+
         public virtual ICollection<UserFavorite> EventFavorites { get; set; }
 
         public string? Description { get; set; } 

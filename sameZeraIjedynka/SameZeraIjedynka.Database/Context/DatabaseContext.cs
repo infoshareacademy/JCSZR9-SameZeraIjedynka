@@ -17,6 +17,17 @@ namespace SameZeraIjedynka.Database.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserFavorite>().HasKey(x => new { x.EventId, x.UserId });
+            modelBuilder.Entity<UserFavorite>()
+                .HasOne(uf => uf.Event)
+                .WithMany(e => e.EventFavorites)
+                .HasForeignKey(uf => uf.EventId)
+                .IsRequired();
+
+            modelBuilder.Entity<UserFavorite>()
+                .HasOne(uf => uf.User)
+                .WithMany(u => u.UsersFavorites)
+                .HasForeignKey(uf => uf.UserId)
+                .IsRequired();
             base.OnModelCreating(modelBuilder);
 
             //Adding values to DB Events data
