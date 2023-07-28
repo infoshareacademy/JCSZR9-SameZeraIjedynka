@@ -13,7 +13,6 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
     public interface IEventService
     {
         Task<int> Add(EventModel addEventRequest, IFormFile image, int userId);
-        Task Delete(EventModel model);
         Task<Event> EventDetails(int eventId);
         Task<IQueryable<Event>> Index(string sortOption);
 		Task<List<Event>> Search(string searchPattern, string sortOption);
@@ -21,5 +20,6 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
         Task<EventModel> ConvertEventToEventModel(Event events);
         Task<bool> EventBelongsToUser(int userId, int eventId);
         Task Update(EventModel addEventRequest, IFormFile image, int userId);
+        Task Delete(int id);
     }
 }

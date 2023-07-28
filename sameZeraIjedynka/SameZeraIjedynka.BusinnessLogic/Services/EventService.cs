@@ -105,9 +105,9 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
             return events;
         }
 
-        public async Task Delete(EventModel model)
+        public async Task Delete(int id)
         {
-            var eventsQuery = await eventRepository.GetById(model.EventId);
+            var eventsQuery = await eventRepository.GetById(id);
             if (eventsQuery != null)
             {
                 await eventRepository.Delete(eventsQuery);

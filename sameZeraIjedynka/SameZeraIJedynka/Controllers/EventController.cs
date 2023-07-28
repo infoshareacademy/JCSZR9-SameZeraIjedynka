@@ -65,14 +65,6 @@ namespace SameZeraIJedynka.Controllers
             return View(eventsQuery);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Delete(EventModel model)
-        {
-            await eventService.Delete(model);
-
-            return RedirectToAction("Index");
-        }
-
 		[HttpGet]
         public async Task<IActionResult> EventDetails(int id)
 		{

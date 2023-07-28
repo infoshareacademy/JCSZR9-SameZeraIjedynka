@@ -175,6 +175,21 @@ namespace SameZeraIJedynka.Controllers
             return RedirectToAction("Login", "Users");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteEvent(int eventId)
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId != null)
+            {
+                await eventService.Delete(eventId);
+
+                return RedirectToAction("MyEvents");
+            }
+
+            return RedirectToAction("Login", "Users");
+        }
+
     }
 }
 

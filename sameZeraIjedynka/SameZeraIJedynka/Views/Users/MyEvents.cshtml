@@ -56,9 +56,9 @@
                                     </a>
                                 </li>
                                 <li class="d-flex justify-content-between" style="margin: 10px 0px 0px 0px">
-                                    <a href="#" onclick="#" class="">
-                                        <button class="btn btn-b">Usuń event</button>
-                                    </a>
+                                    <form method="post" asp-area="" asp-controller="Users" asp-action="DeleteEvent" asp-route-eventId="@events.EventId">
+                                        <button type="submit" class="btn btn-b">Usuń event</button>
+                                    </form>
                                 </li>
                             </ul>
                         </div>
