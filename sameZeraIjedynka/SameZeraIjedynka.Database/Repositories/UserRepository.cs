@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SameZeraIjedynka.Database.Repositories
 {
     public class UserRepository : IUserRepository
@@ -17,19 +18,6 @@ namespace SameZeraIjedynka.Database.Repositories
             context = _context;
         }
 
-        public async Task AddUser(User newUser)
-        {
-            await context.Users.AddAsync(newUser);
-            await context.SaveChangesAsync();
-        }
-
-        public async Task<List<User>> GetAllUsers()
-        {
-            var users = await context.Users.ToListAsync();
-
-            return users;
-        }
-
         public async Task<User> GetUserById(int id)
         {
             var user = await context.Users.FirstOrDefaultAsync(x => x.UserId == id);
@@ -37,18 +25,38 @@ namespace SameZeraIjedynka.Database.Repositories
             return user;
         }
 
-        public async Task UpdateUser(User user, int newId, string newUsername, string newPassword)
+        public async Task UpdateUser(User user, string newUsername, string newEmail, string newPassword)
         {
-            user.UserId = newId;
             user.Name = newUsername;
             user.Password = newPassword;
+            user.Email = newEmail;
             await context.SaveChangesAsync();
         }
 
-        public async Task DeleteUser(User user)
+        public async Task<bool> Authenticate(string username, string hashedPassword)
         {
-            context.Users.Remove(user);
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Name == username && u.Password == hashedPassword);
+
+            return user != null;
+        }
+
+        public async Task<int> FindUserId(string username, string password)
+        {
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Name == username && u.Password == password);
+            var userId = user.UserId;
+
+            return userId;
+        }
+
+        public async Task AddUser(User newUser)
+        {
+            await context.Users.AddAsync(newUser);
             await context.SaveChangesAsync();
+        }
+
+        public async Task<User> GetUserByName(string username)
+        {
+            return await context.Users.FirstOrDefaultAsync(u => u.Name == username);
         }
     }
 }

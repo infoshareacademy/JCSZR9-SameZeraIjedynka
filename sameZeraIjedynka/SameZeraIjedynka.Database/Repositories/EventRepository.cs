@@ -35,7 +35,9 @@ namespace SameZeraIjedynka.Database.Repositories
 
         public async Task<IQueryable<Event>> Search(string searchPattern)
         {
-            IQueryable<Event> eventsQuery = context.Events.Where(e => e.Name.Contains(searchPattern));
+            IQueryable<Event> eventsQuery = context.Events.Where(e => e.Name.Contains(searchPattern) || 
+                                                                      e.Description.Contains(searchPattern) || 
+                                                                      e.Organizer.Contains(searchPattern));
 
             return eventsQuery;
         }

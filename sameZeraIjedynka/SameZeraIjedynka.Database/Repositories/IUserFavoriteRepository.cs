@@ -6,7 +6,7 @@ namespace SameZeraIjedynka.Database.Repositories
     {
         Task Add(UserFavorite newFavorite);
         Task Delete(UserFavorite newFavorite);
-        Task<UserFavorite> Find(int id);
-        Task<IQueryable<Event>> Get();
+        Task<UserFavorite> Find(int id, int userId);
+        Task<IQueryable<Event>> Get(int userId);
     }
 }

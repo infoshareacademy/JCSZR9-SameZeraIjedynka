@@ -17,7 +17,7 @@ namespace SameZeraIjedynka.Database.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("ProductVersion", "7.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -76,7 +76,7 @@ namespace SameZeraIjedynka.Database.Migrations
                             Organizer = "Fundacja Dla Dziecka",
                             Place = "Gdansk, Zielona 23",
                             Price = 0,
-                            Target = 1
+                            Target = 3
                         },
                         new
                         {
@@ -89,7 +89,7 @@ namespace SameZeraIjedynka.Database.Migrations
                             Organizer = "IT4U",
                             Place = "Gdynia, Zielona 31",
                             Price = 10,
-                            Target = 3
+                            Target = 1
                         },
                         new
                         {
@@ -102,7 +102,7 @@ namespace SameZeraIjedynka.Database.Migrations
                             Organizer = "Klub Uszko",
                             Place = "Gdańsk, Czerwona 1",
                             Price = 0,
-                            Target = 3
+                            Target = 1
                         },
                         new
                         {
@@ -141,7 +141,7 @@ namespace SameZeraIjedynka.Database.Migrations
                             Organizer = "Ewa Maj",
                             Place = "Gdansk, Niebieska 20",
                             Price = 10,
-                            Target = 1
+                            Target = 3
                         });
                 });
 
@@ -152,6 +152,10 @@ namespace SameZeraIjedynka.Database.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -169,18 +173,21 @@ namespace SameZeraIjedynka.Database.Migrations
                         new
                         {
                             UserId = 1,
+                            Email = "aaa@gmail.com",
                             Name = "AAA",
                             Password = "BBB"
                         },
                         new
                         {
                             UserId = 2,
+                            Email = "bbb@gmail.com",
                             Name = "BBB",
                             Password = "CCC"
                         },
                         new
                         {
                             UserId = 3,
+                            Email = "ccc@gmail.com",
                             Name = "CCC",
                             Password = "DDD"
                         });

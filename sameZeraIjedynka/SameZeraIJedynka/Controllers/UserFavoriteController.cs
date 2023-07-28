@@ -6,46 +6,57 @@ using SameZeraIJedynka.BusinnessLogic.Models;
 using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Repositories;
 using SameZeraIjedynka.BusinnessLogic.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace SameZeraIJedynka.Controllers
 {
     public class UserFavoriteController : Controller
     {
-        private readonly DatabaseContext mvcDbContext;
         private readonly IUserFavoriteService userFavoriteService;
 
-        public UserFavoriteController(DatabaseContext mvcDbContext, IUserFavoriteService userFavoriteService)
+        public UserFavoriteController(IUserFavoriteService userFavoriteService)
         {
-            this.mvcDbContext = mvcDbContext;
             this.userFavoriteService = userFavoriteService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index(string sortOption = null)
         {
-            var events = await userFavoriteService.GetFavoriteEvents(2, sortOption);
+            int? userId = HttpContext.Session.GetInt32("UserId");
 
-            return View(events);
-        }
+            if (userId.HasValue)
+            {
+                List<Event> events = await userFavoriteService.GetFavoriteEvents(userId.Value, sortOption);
 
-        [HttpGet]
-        public IActionResult Add()
-        {
-            return View();
+                return View(events);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Users");
+            }            
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(int id)
         {
-            await userFavoriteService.AddFavoriteEvent(id);
-
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId.HasValue)
+            {
+                await userFavoriteService.AddFavoriteEvent(id, userId.Value);
+            }
+            
             return RedirectToAction("Index", "UserFavorite");
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            await userFavoriteService.DeleteFavoriteEvent(id);
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId.HasValue)
+            {
+                await userFavoriteService.DeleteFavoriteEvent(id, userId.Value);
+            }
 
             return RedirectToAction("Index");
         }

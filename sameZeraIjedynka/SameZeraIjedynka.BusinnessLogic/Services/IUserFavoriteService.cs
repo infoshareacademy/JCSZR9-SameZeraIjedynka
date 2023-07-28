@@ -9,8 +9,8 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
 {
     public interface IUserFavoriteService
     {
-        Task AddFavoriteEvent(int id);
-        Task DeleteFavoriteEvent(int id);
+        Task AddFavoriteEvent(int id, int userId);
+        Task DeleteFavoriteEvent(int id, int userId);
         Task<List<Event>> GetFavoriteEvents(int userId, string sortOption = null);
     }
 }

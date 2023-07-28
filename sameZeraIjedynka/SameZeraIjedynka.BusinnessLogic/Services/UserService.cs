@@ -1,14 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SameZeraIjedynka.BusinnessLogic.Helpers.HelperMethods;
+using SameZeraIjedynka.BusinnessLogic.Models;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Repositories;
 using SameZeraIJedynka.Models;
+using MailKit.Security;
+using MimeKit.Text;
+using MimeKit;
+using MailKit.Net.Smtp;
+
 
 namespace SameZeraIjedynka.BusinnessLogic.Services
 {
@@ -19,24 +28,6 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
         public UserService(IUserRepository userRepository)
         {
             this.userRepository = userRepository;
-        }
-
-        public async Task Add(UserModel addUserRequest)
-        {
-            var user = new User()
-            {
-                UserId = addUserRequest.Id,
-                Name = addUserRequest.Name,
-                Password = addUserRequest.Password
-            };
-            await userRepository.AddUser(user);
-        }
-
-        public async Task<List<User>> GetAllUsers()
-        {
-            var users = await userRepository.GetAllUsers();
-
-            return users;
         }
 
         public async Task<UserModel> GetUserModelById(int id)
@@ -54,34 +45,79 @@ namespace SameZeraIjedynka.BusinnessLogic.Services
             }
             return null;
         }
-
-        public async Task<User> GetUserById(int id)
+        public async Task<int> GetUserId(LoginUserModel model)
         {
-            var user = await userRepository.GetUserById(id);
-            if (user != null)
+            var hashedPassword = HelperMethods.HashPassword(model.Password);
+            var userId = await userRepository.FindUserId(model.Name, hashedPassword);
+
+            if (userId != null)
             {
-                return user;
+                return userId;
             }
-            return null;
+            return -1;
         }
-        public async Task UpdateUser(User user, UserModel model)
+        public async Task<bool> IsUsernameUnique(string username)
         {
-            var userToUpdate = await userRepository.GetUserById(user.UserId);
+            var existingUser = await userRepository.GetUserByName(username);
 
-            if (user != null)
-            {
-                await userRepository.UpdateUser(user, model.Id, model.Name, model.Password);
-            }
+            return existingUser == null;
         }
 
-        public async Task DeleteUser(User user)
+        public async Task UpdateUser(UserModel user, UserModel model)
         {
-            var userToDelete = await userRepository.GetUserById(user.UserId);
+            var userToUpdate = await userRepository.GetUserById(user.Id);
 
-            if (userToDelete != null)
+            if (userToUpdate != null)
             {
-                await userRepository.DeleteUser(userToDelete);
+                var hashedPassword = HelperMethods.HashPassword(model.Password);
+                await userRepository.UpdateUser(userToUpdate, model.Name, model.Email, hashedPassword);
             }
         }
+
+        public async Task<bool> AuthenticateUser(LoginUserModel user)
+        {
+            var hashedPassword = HelperMethods.HashPassword(user.Password);
+            var authenticatedUser = await userRepository.Authenticate(user.Name, hashedPassword);
+
+            return authenticatedUser;
+        }
+
+        public async Task AddUser(RegisterUserModel addUserRequest)
+        {
+            if (addUserRequest.Password == addUserRequest.ConfirmPassword)
+            {
+                var hashedPassword = HelperMethods.HashPassword(addUserRequest.Password); 
+
+                var user = new User()
+                {
+                    Name = addUserRequest.Name,
+                    Password = hashedPassword,
+                    Email = addUserRequest.Email,
+                };
+                await userRepository.AddUser(user);
+            }
+        }
+
+        public async Task SendEmail(RegisterUserModel user)
+        {
+            var request = new EmailModel
+            {
+                To = user.Email, 
+                Subject = "Discover. Learn. Enjoy.", 
+            };
+
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("stanley.kassulke@ethereal.email"));
+            email.To.Add(MailboxAddress.Parse(request.To));
+            email.Subject = request.Subject;
+            email.Body = new TextPart(TextFormat.Html) { Text = request.Body };
+
+            using var smtp = new MailKit.Net.Smtp.SmtpClient();
+            smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("stanley.kassulke@ethereal.email", "44bMnvxFyhRtKFU18S");
+            smtp.Send(email);
+            smtp.Disconnect(true);
+        }
+
     }
 }

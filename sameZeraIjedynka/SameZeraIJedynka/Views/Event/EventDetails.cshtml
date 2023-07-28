@@ -76,6 +76,11 @@
                                                         <strong>Pojemność:</strong>
                                                         <span>@Model.Capacity</span>
                                                     </li>
+                                                    <li class="d-flex justify-content-between" style="padding: 10px 0px">
+                                                        <a href="#" onclick="addToFavorites(@Model.EventId)" class="">
+                                                            <button class="btn btn-b">Dodaj do ulubionych</button>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -90,43 +95,64 @@
 
         <!-- Script for showing position of the event on the map -->
         <script>
-    function initMap() {
-        var address = '@Model.Place'; 
+            function initMap() {
+                var address = '@Model.Place'; 
 
-        var geocoder = new google.maps.Geocoder();
+                var geocoder = new google.maps.Geocoder();
 
-        geocoder.geocode({ address: address }, function (results, status) {
-            if (status === "OK") {
-                var latitude = results[0].geometry.location.lat();
-                var longitude = results[0].geometry.location.lng();
-                console.log("Latitude: " + latitude);
-                console.log("Longitude: " + longitude);
+                geocoder.geocode({ address: address }, function (results, status) {
+                    if (status === "OK") {
+                        var latitude = results[0].geometry.location.lat();
+                        var longitude = results[0].geometry.location.lng();
+                        console.log("Latitude: " + latitude);
+                        console.log("Longitude: " + longitude);
 
-                var eventPosition = { lat: latitude, lng: longitude };
-                var mapOptions = {
-                    center: eventPosition,
-                    zoom: 15
-                };
-                var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                        var eventPosition = { lat: latitude, lng: longitude };
+                        var mapOptions = {
+                            center: eventPosition,
+                            zoom: 15
+                        };
+                        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-                var marker = new google.maps.Marker({
-                    position: eventPosition,
-                    map: map,
+                        var marker = new google.maps.Marker({
+                            position: eventPosition,
+                            map: map,
+                        });
+
+                        var infoWindow = new google.maps.InfoWindow();
+
+                        let labelContent = '<h5 class="title-d">@Model.Name</h3>';
+
+                        marker.addListener('click', function () {
+                            infoWindow.setContent(labelContent);
+                            infoWindow.open(map, marker);
+                        });
+                    } else {
+                        console.log("Błąd geokodowania: " + status);
+                    }
                 });
-
-                var infoWindow = new google.maps.InfoWindow();
-
-                let labelContent = '<h5 class="title-d">@Model.Name</h3>';
-
-                marker.addListener('click', function () {
-                    infoWindow.setContent(labelContent);
-                    infoWindow.open(map, marker);
-                });
-            } else {
-                console.log("Błąd geokodowania: " + status);
             }
-        });
-    }
 
-    google.maps.event.addDomListener(window, 'load', initMap);
+            google.maps.event.addDomListener(window, 'load', initMap);
         </script><!-- End Script for showing position of the event on the map -->
+        <!-- Script Helper For Adding Event To Favorites -->
+        <script>
+	        function addToFavorites(eventId) {
+		        fetch('/UserFavorite/Add/' + eventId, {
+			        method: 'POST'
+		        })
+			        .then(response => {
+				        if (response.ok) {
+					        window.location.href = "https://localhost:7000/UserFavorite"
+				        } else {
+					        console.error('Wystąpił błąd podczas dodawania do ulubionych.');
+					        window.location.href = "https://localhost:7000/UserFavorite"
+				        }
+			        })
+			        .catch(error => {
+				        console.error('Wystąpił błąd podczas wysyłania żądania.');
+		        window.location.href = "https://localhost:7000/UserFavorite"
+			        });
+				
+	        }
+        </script><!-- End Script Helper For Adding Event To Favorites -->

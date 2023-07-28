@@ -17,9 +17,9 @@ namespace SameZeraIjedynka.Database.Repositories
             context = _context;
         }
 
-        public async Task<IQueryable<Event>> Get()
+        public async Task<IQueryable<Event>> Get(int userId)
         {
-            IQueryable<Event> eventsQuery = context.Favorites.Where(x => x.UserId == 2).Select(x => x.Event);
+            IQueryable<Event> eventsQuery = context.Favorites.Where(x => x.UserId == userId).Select(x => x.Event);
 
             return eventsQuery;
         }
@@ -36,9 +36,9 @@ namespace SameZeraIjedynka.Database.Repositories
             await context.SaveChangesAsync();
         }
 
-        public async Task<UserFavorite> Find(int id)
+        public async Task<UserFavorite> Find(int id, int userId)
         {
-            var eventsQuery = await context.Favorites.FirstOrDefaultAsync(x => x.UserId == 2 && x.EventId == id);
+            var eventsQuery = await context.Favorites.FirstOrDefaultAsync(x => x.UserId == userId && x.EventId == id);
 
             return eventsQuery;
         }

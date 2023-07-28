@@ -42,11 +42,12 @@ namespace SameZeraIJedynka.Controllers
 		}
 
         [HttpGet]
-        public async Task<IActionResult> Search(string searchPattern)
+        public async Task<IActionResult> Search(string searchPattern, string sortOption = null)
         {
-            var eventsQuery = await eventService.Search(searchPattern);
+			ViewData["SearchPattern"] = searchPattern;
+			var eventsQuery = await eventService.Search(searchPattern, sortOption);
 
-            return View("Index", eventsQuery);
+            return View(eventsQuery);
         }
 
         [HttpPost]

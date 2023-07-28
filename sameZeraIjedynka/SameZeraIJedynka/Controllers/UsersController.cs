@@ -3,8 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using SameZeraIjedynka.Database.Entities;
 using SameZeraIjedynka.Database.Context;
 using SameZeraIJedynka.BusinnessLogic.Models;
-using SameZeraIJedynka.Models;
+
 using SameZeraIjedynka.BusinnessLogic.Services;
+using SameZeraIJedynka.Models;
+using SameZeraIjedynka.BusinnessLogic.Models;
 
 namespace SameZeraIJedynka.Controllers
 {
@@ -18,63 +20,104 @@ namespace SameZeraIJedynka.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult> Index()
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId.HasValue)
+            {
+                var user = await userService.GetUserModelById(userId.Value);
+
+                if (user != null)
+                {
+                    return View(user);
+                }
+            }
+
+            return RedirectToAction("Login");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(UserModel model)
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId.HasValue)
+            {
+                var user = await userService.GetUserModelById(userId.Value);
+
+                if (user != null)
+                {
+                    await userService.UpdateUser(user, model);
+                    // TODO: Show User That Data Has Been Updated
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Register()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(UserModel addUserRequest)
+        public async Task<IActionResult> Register(RegisterUserModel user)
         {
-            await userService.Add(addUserRequest);
+            if (ModelState.IsValid)
+            {
+                if (await userService.IsUsernameUnique(user.Name))
+                {
+                    await userService.AddUser(user);
+                    await userService.SendEmail(user);
 
-            return RedirectToAction("Add");
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("Name", "Użytkownik o podanej nazwie już istnieje.");
+                }
+            }
+            return View(user);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Login()
         {
-            var users = await userService.GetAllUsers();
+            return View();
+        }
 
-            return View(users);
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginUserModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool isAuthenticated = await userService.AuthenticateUser(model);
+
+                if (isAuthenticated)
+                {
+                    var userId = await userService.GetUserId(model);
+                    HttpContext.Session.SetString("IsLoggedIn", "true");
+                    HttpContext.Session.SetInt32("UserId", userId);
+                    return RedirectToAction("Index", new { id = userId });
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Nieprawidłowa nazwa użytkownika lub hasło.");
+                }
+            }
+
+            return View(model);
         }
 
         [HttpGet]
-        public async Task<IActionResult> View(int id)
+        public async Task<IActionResult> Logout()
         {
-            var user = await userService.GetUserModelById(id);
-      
-            if (user != null)
-            {
-                return  await Task.Run(() => View("View", user));
-            }
-            return RedirectToAction("Index");
-        }
+            HttpContext.Session.Remove("IsLoggedIn");
+            HttpContext.Session.Remove("UserId");
 
-        [HttpPost]
-        public async Task<IActionResult> View(UserModel model)
-        {
-            var user = await userService.GetUserById(model.Id);
-
-            if (user != null)
-            {
-                await userService.UpdateUser(user, model);
-                return RedirectToAction("View");
-            }
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Delete(UserModel model)
-        {
-            var user = await userService.GetUserById(model.Id);
-
-            if (user != null)
-            {
-                await userService.DeleteUser(user);
-                return RedirectToAction("Index");
-            }
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
     }
 }
