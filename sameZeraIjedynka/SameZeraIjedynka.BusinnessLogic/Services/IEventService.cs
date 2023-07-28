@@ -17,5 +17,6 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
         Task<Event> EventDetails(int eventId);
         Task<IQueryable<Event>> Index(string sortOption);
 		Task<List<Event>> Search(string searchPattern, string sortOption);
-	}
+        Task<List<Event>> GetEventsForUser(int id);
+    }
 }

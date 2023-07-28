@@ -7,16 +7,19 @@ using SameZeraIJedynka.BusinnessLogic.Models;
 using SameZeraIjedynka.BusinnessLogic.Services;
 using SameZeraIJedynka.Models;
 using SameZeraIjedynka.BusinnessLogic.Models;
+using SameZeraIJedynka.BusinnessLogic.Services;
 
 namespace SameZeraIJedynka.Controllers
 {
     public class UsersController : Controller
     {
         private readonly IUserService userService;
+        private readonly IEventService eventService;
 
-        public UsersController(IUserService userService)  
+        public UsersController(IUserService userService, IEventService eventService)  
         {
             this.userService = userService;
+            this.eventService = eventService;
         }
 
         [HttpGet]
@@ -119,6 +122,22 @@ namespace SameZeraIJedynka.Controllers
 
             return RedirectToAction("Login");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> MyEvents()
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId.HasValue)
+            {
+                var events = await eventService.GetEventsForUser(userId.Value);
+
+                return View(events);
+                
+            }
+            return RedirectToAction("Login");
+        }
+
     }
 }
 

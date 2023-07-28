@@ -120,5 +120,12 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
 
             return eventsQuery;
         }
+
+        public async Task<List<Event>> GetEventsForUser(int id)
+        {
+            var events = await eventRepository.GetUsersEvents(id);
+
+            return events;
+        }
     }
 }

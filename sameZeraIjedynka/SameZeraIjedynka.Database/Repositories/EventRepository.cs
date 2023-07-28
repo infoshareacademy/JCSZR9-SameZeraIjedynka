@@ -61,5 +61,9 @@ namespace SameZeraIjedynka.Database.Repositories
 
             return eventsQuery;
         }
+        public async Task<List<Event>> GetUsersEvents(int userId)
+        {
+            return context.Events.Where(u => u.UserId == userId).ToList();
+        }
     }
 }
