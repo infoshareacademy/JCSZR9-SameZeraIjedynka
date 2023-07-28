@@ -11,5 +11,7 @@ namespace SameZeraIjedynka.Database.Repositories
         Task<IQueryable<Event>> GetHomeEvents();
         Task<IQueryable<Event>> Search(string searchPattern);
         Task<List<Event>> GetUsersEvents(int userId);
+        Task<bool> EventBelongsToUser(int userId, int eventId);
+        Task UpdateEvent(int eventId, Event newEvent);
     }
 }

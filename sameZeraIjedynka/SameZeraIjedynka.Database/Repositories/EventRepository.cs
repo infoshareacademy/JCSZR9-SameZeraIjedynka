@@ -65,5 +65,30 @@ namespace SameZeraIjedynka.Database.Repositories
         {
             return context.Events.Where(u => u.UserId == userId).ToList();
         }
+
+        public async Task<bool> EventBelongsToUser(int userId, int eventId)
+        {
+            var events = context.Events.FirstOrDefault(e => e.UserId == userId && e.EventId == eventId);
+
+            return events != null;
+        }
+
+        public async Task UpdateEvent(int eventId, Event newEvent)
+        {
+            var existingEvent = await context.Events.FindAsync(eventId);
+
+            existingEvent.Name = newEvent.Name;
+            existingEvent.Date = newEvent.Date;
+            existingEvent.Organizer = newEvent.Organizer;
+            existingEvent.Place = newEvent.Place;
+            existingEvent.Price = newEvent.Price;
+            existingEvent.Capacity = newEvent.Capacity;
+            existingEvent.Target = newEvent.Target;
+            existingEvent.Description = newEvent.Description;
+            existingEvent.ImagePath = newEvent.ImagePath;
+
+            context.Events.Update(existingEvent);
+            await context.SaveChangesAsync();
+        }
     }
 }

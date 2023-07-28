@@ -17,6 +17,7 @@ using MailKit.Security;
 using MimeKit.Text;
 using MimeKit;
 using MailKit.Net.Smtp;
+using Microsoft.Extensions.Logging;
 
 
 namespace SameZeraIjedynka.BusinnessLogic.Services

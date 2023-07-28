@@ -18,5 +18,8 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
         Task<IQueryable<Event>> Index(string sortOption);
 		Task<List<Event>> Search(string searchPattern, string sortOption);
         Task<List<Event>> GetEventsForUser(int id);
+        Task<EventModel> ConvertEventToEventModel(Event events);
+        Task<bool> EventBelongsToUser(int userId, int eventId);
+        Task Update(EventModel addEventRequest, IFormFile image, int userId);
     }
 }

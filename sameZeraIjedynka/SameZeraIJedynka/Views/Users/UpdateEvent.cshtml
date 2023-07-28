@@ -19,8 +19,9 @@
         </div>
     </section><!-- End Intro Section -->
     <!-- Input Event Form -->
-    <form method="post" enctype="multipart/form-data" action="Add" class="php-email-form">
+    <form method="post" enctype="multipart/form-data" action="UpdateEvent" class="php-email-form">
         <div class="row">
+            <input type="text" class="form-control form-control-lg form-control-a" style="display: none;" asp-for="EventId">
             <div class="col-md-6 mb-3">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-lg form-control-a" placeholder="Nazwa eventu" required asp-for="Name">

@@ -127,5 +127,66 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
 
             return events;
         }
+
+        public async Task<EventModel> ConvertEventToEventModel(Event events)
+        {
+            var eventModel = new EventModel()
+            {
+                EventId = events.EventId,
+                Name = events.Name,
+                Date = events.Date,
+                Organizer = events.Organizer,
+                Place = events.Place,
+                Price = events.Price,
+                Capacity = events.Capacity,
+                Target = events.Target,
+                Description = events.Description,
+                ImagePath = events.ImagePath
+            };
+
+            return eventModel;
+        }
+
+        public async Task<bool> EventBelongsToUser(int userId, int eventId)
+        {
+            return await eventRepository.EventBelongsToUser(userId, eventId);
+        }
+
+        public async Task Update(EventModel addEventRequest, IFormFile image, int userId)
+        {
+            var newEvent = new Event()
+            {
+                EventId = addEventRequest.EventId,
+                Name = addEventRequest.Name,
+                Date = addEventRequest.Date,
+                Organizer = addEventRequest.Organizer,
+                Place = addEventRequest.Place,
+                Price = addEventRequest.Price,
+                Capacity = addEventRequest.Capacity,
+                Target = addEventRequest.Target,
+                Description = addEventRequest.Description,
+                UserId = userId
+            };
+
+            if (image != null && image.Length > 0)
+            {
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+                string path = Path.Combine(@"wwwroot\assets\img\", fileName);
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await image.CopyToAsync(stream);
+                }
+                addEventRequest.ImagePath = "/assets/img/" + fileName;
+                newEvent.ImagePath = addEventRequest.ImagePath;
+            }
+            else
+            {
+                var oldEvent = await eventRepository.GetById(newEvent.EventId);
+                var oldEventPath = oldEvent.ImagePath;
+                newEvent.ImagePath = oldEventPath;
+            }
+            
+            await eventRepository.UpdateEvent(addEventRequest.EventId, newEvent);
+        }
     }
 }

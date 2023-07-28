@@ -138,6 +138,43 @@ namespace SameZeraIJedynka.Controllers
             return RedirectToAction("Login");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> UpdateEvent(int eventId)
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
+            bool belongsToUser = await eventService.EventBelongsToUser(userId.Value, eventId);
+            if (!belongsToUser)
+            {
+                return RedirectToAction("EventDetails", "Event", new { id = eventId });
+            }
+
+            var events = await eventService.EventDetails(eventId);
+            var eventModel = await eventService.ConvertEventToEventModel(events);
+
+            return View(eventModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateEvent(EventModel addEventRequest, IFormFile image)
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId != null)
+            {
+                await eventService.Update(addEventRequest, image, userId.Value);
+
+                return RedirectToAction("EventDetails", "Event", new { id = addEventRequest.EventId });
+            }
+
+            return RedirectToAction("Login", "Users");
+        }
+
     }
 }
 
