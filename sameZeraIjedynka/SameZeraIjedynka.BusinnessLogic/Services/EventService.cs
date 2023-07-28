@@ -16,7 +16,7 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
             eventRepository = _eventRepository;
         }
 
-        public async Task<int> Add(EventModel addEventRequest, IFormFile image)
+        public async Task<int> Add(EventModel addEventRequest, IFormFile image, int userId)
         {
             if (image != null && image.Length > 0)
             {
@@ -44,7 +44,8 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
                 Capacity = addEventRequest.Capacity,
                 Target = addEventRequest.Target,
                 Description = addEventRequest.Description,
-                ImagePath = addEventRequest.ImagePath
+                ImagePath = addEventRequest.ImagePath,
+                UserId = userId
             };
 
             var newEventId = await eventRepository.AddEvent(newEvent);

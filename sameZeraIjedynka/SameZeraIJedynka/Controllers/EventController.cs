@@ -21,15 +21,30 @@ namespace SameZeraIJedynka.Controllers
         [HttpGet]
         public IActionResult Add()
         {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(EventModel addEventRequest, IFormFile image)
         {
-            var newEventId = await eventService.Add(addEventRequest, image); 
+            int? userId = HttpContext.Session.GetInt32("UserId");
 
-            return RedirectToAction("EventDetails", new { id = newEventId });
+            if (userId != null)
+            {
+                var newEventId = await eventService.Add(addEventRequest, image, userId.Value);
+
+                return RedirectToAction("EventDetails", new { id = newEventId });
+            }
+
+            return RedirectToAction("Login", "Users");
+
         }
 
 		[HttpGet]

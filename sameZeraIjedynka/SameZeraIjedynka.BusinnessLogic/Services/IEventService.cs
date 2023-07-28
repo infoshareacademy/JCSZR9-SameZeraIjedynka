@@ -12,7 +12,7 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
 {
     public interface IEventService
     {
-        Task<int> Add(EventModel addEventRequest, IFormFile image);
+        Task<int> Add(EventModel addEventRequest, IFormFile image, int userId);
         Task Delete(EventModel model);
         Task<Event> EventDetails(int eventId);
         Task<IQueryable<Event>> Index(string sortOption);
