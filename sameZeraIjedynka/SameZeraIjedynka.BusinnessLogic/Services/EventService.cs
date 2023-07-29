@@ -188,5 +188,15 @@ namespace SameZeraIJedynka.BusinnessLogic.Services
             
             await eventRepository.UpdateEvent(addEventRequest.EventId, newEvent);
         }
+
+        public Task Delete(EventModel eventToDelete)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Search(string searchPattern)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
