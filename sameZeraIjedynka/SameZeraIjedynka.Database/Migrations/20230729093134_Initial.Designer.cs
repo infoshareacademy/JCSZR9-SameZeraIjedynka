@@ -12,8 +12,8 @@ using SameZeraIjedynka.Database.Context;
 namespace SameZeraIjedynka.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230728154146_ChangeEventUserRelation")]
-    partial class ChangeEventUserRelation
+    [Migration("20230729093134_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,7 +83,7 @@ namespace SameZeraIjedynka.Database.Migrations
                             Place = "Gdansk, Zielona 23",
                             Price = 0,
                             Target = 3,
-                            UserId = 0
+                            UserId = 1
                         },
                         new
                         {
@@ -97,7 +97,7 @@ namespace SameZeraIjedynka.Database.Migrations
                             Place = "Gdynia, Zielona 31",
                             Price = 10,
                             Target = 1,
-                            UserId = 0
+                            UserId = 2
                         },
                         new
                         {
@@ -111,7 +111,7 @@ namespace SameZeraIjedynka.Database.Migrations
                             Place = "Gdańsk, Czerwona 1",
                             Price = 0,
                             Target = 1,
-                            UserId = 0
+                            UserId = 3
                         },
                         new
                         {
@@ -125,7 +125,7 @@ namespace SameZeraIjedynka.Database.Migrations
                             Place = "Sopot, Zolta 5",
                             Price = 0,
                             Target = 0,
-                            UserId = 0
+                            UserId = 2
                         },
                         new
                         {
@@ -139,7 +139,7 @@ namespace SameZeraIjedynka.Database.Migrations
                             Place = "Gdansk, Czerwona 123",
                             Price = 100,
                             Target = 2,
-                            UserId = 0
+                            UserId = 1
                         },
                         new
                         {
@@ -153,7 +153,7 @@ namespace SameZeraIjedynka.Database.Migrations
                             Place = "Gdansk, Niebieska 20",
                             Price = 10,
                             Target = 3,
-                            UserId = 0
+                            UserId = 2
                         });
                 });
 
@@ -187,21 +187,21 @@ namespace SameZeraIjedynka.Database.Migrations
                             UserId = 1,
                             Email = "aaa@gmail.com",
                             Name = "AAA",
-                            Password = "BBB"
+                            Password = "3NtwQQmkVHhLgSKdKwXzaGkudYv6M8th0Ewbk3kbAnM="
                         },
                         new
                         {
                             UserId = 2,
                             Email = "bbb@gmail.com",
                             Name = "BBB",
-                            Password = "CCC"
+                            Password = "jFX/laZg83ywXmROdpHmxmWT9FPLLLqk1kqlm0CugDI="
                         },
                         new
                         {
                             UserId = 3,
                             Email = "ccc@gmail.com",
                             Name = "CCC",
-                            Password = "DDD"
+                            Password = "TF+R2EJPlSms9xGNEzqT0qbKsZFBw1wwZIN+bdV7maM="
                         });
                 });
 

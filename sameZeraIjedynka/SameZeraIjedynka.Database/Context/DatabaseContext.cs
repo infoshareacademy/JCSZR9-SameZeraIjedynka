@@ -47,7 +47,8 @@ namespace SameZeraIjedynka.Database.Context
                       " tworzyć własne unikalne dzieła sztuki, pod opieką doświadczonych instruktorów. Warsztaty " +
                       "stwarzają przyjazną i inspirującą atmosferę, sprzyjającą rozwijaniu wyobraźni i twórczych " +
                       "umiejętności dzieci.",
-                      ImagePath = "/assets/img/1.jpg"
+                      ImagePath = "/assets/img/1.jpg",
+                      UserId = 1,
                     },
                     new Event
                     {
@@ -66,7 +67,8 @@ namespace SameZeraIjedynka.Database.Context
                         " z innymi profesjonalistami. Zlot programistów to także doskonała okazja do aktualizacji wiedzy z" +
                         " najnowszych trendów technologicznych oraz do odkrywania nowych możliwości i wyzwań w dziedzinie " +
                         "informatyki.",
-                        ImagePath = "/assets/img/2.jpg"
+                        ImagePath = "/assets/img/2.jpg",
+                        UserId = 2,
                     },
                     new Event
                     {
@@ -83,7 +85,8 @@ namespace SameZeraIjedynka.Database.Context
                         " dynamicznej atmosferze i świętować wspólnie z ulubionymi artystami. Koncerty pop przyciągają tłumy" +
                         " entuzjastów, którzy mogą wspólnie śpiewać, tańczyć i delektować się niezapomnianymi chwilami pełnymi" +
                         " emocji i rytmu.",
-                        ImagePath = "/assets/img/3.jpg"
+                        ImagePath = "/assets/img/3.jpg",
+                        UserId = 3,
                     },
                     new Event
                     {
@@ -100,7 +103,8 @@ namespace SameZeraIjedynka.Database.Context
                         "współzawodnictwa. Ten niezapomniany turniej zapewni dzieciom nie tylko wspaniałą zabawę, ale także " +
                         "możliwość spotkania rówieśników, nawiązania nowych przyjaźni oraz tworzenia piłkarskich wspomnień " +
                         "na całe życie.",
-                        ImagePath = "/assets/img/4.jpg"
+                        ImagePath = "/assets/img/4.jpg",
+                        UserId = 2,
                     },
                     new Event
                     {
@@ -114,7 +118,8 @@ namespace SameZeraIjedynka.Database.Context
                         Target = TargetEnum.grandpas,
                         Description = "Profesjonanle porady prawne i pomoc doradcza w zakresie finansów. Wpadnij i pozbądź " +
                         "się swoich problemów!",
-                        ImagePath = "/assets/img/5.jpg"
+                        ImagePath = "/assets/img/5.jpg",
+                        UserId = 1,
                     },
                     new Event
                     {
@@ -130,7 +135,8 @@ namespace SameZeraIjedynka.Database.Context
                         "będzie miała okazję podzielić się swoją inspirującą historią podróży, w tym niezapomnianym wyjazdem do" +
                         " urokliwego Mozambiku. Przygotujcie się na fascynujące opowieści, piękne zdjęcia i ciekawe anegdoty, " +
                         "które przeniosą Was w egzotyczne zakątki świata i rozbudzą Waszą pasję do odkrywania nowych miejsc.",
-                        ImagePath = "/assets/img/6.jpg"
+                        ImagePath = "/assets/img/6.jpg",
+                        UserId = 2,
                     }
             });
 
@@ -140,7 +146,7 @@ namespace SameZeraIjedynka.Database.Context
                 {
                     UserId=1,
                     Name="AAA",
-                    Password="BBB",
+                    Password="3NtwQQmkVHhLgSKdKwXzaGkudYv6M8th0Ewbk3kbAnM=",
                     Email="aaa@gmail.com"
                     //  UsersFavorites=
                 },
@@ -148,7 +154,7 @@ namespace SameZeraIjedynka.Database.Context
                 {
                     UserId=2,
                     Name="BBB",
-                    Password="CCC",
+                    Password="jFX/laZg83ywXmROdpHmxmWT9FPLLLqk1kqlm0CugDI=",
                     Email="bbb@gmail.com"
                     //UsersFavorites=
                 },
@@ -156,7 +162,7 @@ namespace SameZeraIjedynka.Database.Context
                 {
                     UserId=3,
                     Name="CCC",
-                    Password="DDD",
+                    Password="TF+R2EJPlSms9xGNEzqT0qbKsZFBw1wwZIN+bdV7maM=",
                     Email="ccc@gmail.com"
                     //  UsersFavorites=
                 }
